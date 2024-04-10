@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/bill_details")
+@RequestMapping("${api.prefix}/bill_details")
 public class BillDetailsControler {
 
-    @GetMapping("/list") // http://localhost:2330/bill/list?page=1&limit=10
+    @GetMapping("/list") // http://localhost:2330/VOX/bill_details/list?page=1&limit=10
     public ResponseEntity<String> getAllBillDetails(
             @RequestParam("page") int page,
             @RequestParam("limit") int limit
@@ -23,12 +23,18 @@ public class BillDetailsControler {
         return ResponseEntity.ok(String.format("List BillDetails,page = %d,limit=%d", page, limit));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<String> findBillDetailsByID(@PathVariable int id) {
+    @GetMapping("/{id}")  // http://localhost:2330/VOX/bill_details/{id}
+    public ResponseEntity<String> findBillDetailsByID(@Valid @PathVariable int id) {
         return ResponseEntity.ok("BillDetails "+ id);
     }
+    @GetMapping("Bill/{billID}")  // http://localhost:2330/VOX/bill_details/Bill/{billID}
+    public ResponseEntity<String> findBillDetailsByBillID(@Valid @PathVariable int billID) {
+        return ResponseEntity.ok("BillDetails "+ billID);
+    }
 
-    @PostMapping("/insert") //  http://localhost:2330/bill/insert
+
+
+    @PostMapping("/insert") //  http://localhost:2330/VOX/bill_details/insert
     public ResponseEntity<?> insertBillDetails(@Valid @RequestBody BillDetailsDTO billDetailsDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
@@ -42,12 +48,12 @@ public class BillDetailsControler {
 
     }
 
-    @PutMapping("/update/{id}") //   http://localhost:2330/bill/update
-    public ResponseEntity<String> updateBillDetails(@PathVariable int id) {
-        return ResponseEntity.ok("Cập nhật BillDetails");
+    @PutMapping("/update/{id}") //   http://localhost:2330/VOX/bill_details/update
+    public ResponseEntity<String> updateBillDetails(@Valid @PathVariable int id , @RequestBody BillDetailsDTO newBillDetailsDTO) {
+        return ResponseEntity.ok("Cập nhật BillDetails id= " + id +"New BillDetail "+ newBillDetailsDTO);
     }
 
-    @DeleteMapping("/delete/{id}") //    http://localhost:2330/bill/delete
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/bill_details/delete
     public ResponseEntity<String> deleteBill(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công BillDetails "+ id);
     }

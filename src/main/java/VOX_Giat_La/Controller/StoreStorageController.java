@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/storestorage")
+@RequestMapping("${api.prefix}/storestorage")
 public class StoreStorageController {
     @GetMapping("/list") // http://localhost:2330/storestorage/list
     public ResponseEntity<String> getAllStoreStorage() {

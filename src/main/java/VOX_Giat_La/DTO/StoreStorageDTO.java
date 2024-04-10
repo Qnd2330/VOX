@@ -1,11 +1,9 @@
 package VOX_Giat_La.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 
@@ -17,14 +15,16 @@ import java.util.Date;
 public class StoreStorageDTO {
     @NotNull
     private int storageID;
-    @NotNull
+    @NotBlank
     private String storeItemName;
+    @Size(min = 0, message = "")
+    @Size(max = 2000, message = "Tối đa là 2000 chữ cái ")
     private String storeItemDescription;
     @Min(0)
     private int storeItemQuantity;
     @Min(0)
     private float storeItemCost;
-    private String storeItemPicture;
+    private MultipartFile storeItemPicture;
     private Date storeItemDayIn;
     private Boolean storeItemStatus;
 }

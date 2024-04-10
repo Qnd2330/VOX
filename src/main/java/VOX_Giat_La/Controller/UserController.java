@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("${api.prefix}/user")
 public class UserController {
 
     @PostMapping("/register")

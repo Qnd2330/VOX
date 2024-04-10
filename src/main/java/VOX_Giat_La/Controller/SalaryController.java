@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/salary")
+@RequestMapping("${api.prefix}/salary")
 public class SalaryController {
     @GetMapping("/list") // http://localhost:2330/salary/list
     public ResponseEntity<String> getAllSalary() {

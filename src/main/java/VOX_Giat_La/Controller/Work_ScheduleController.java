@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/workschedule")
+@RequestMapping("${api.prefix}/workschedule")
 public class Work_ScheduleController {
     @GetMapping("/list") // http://localhost:2330/workschedule/list
     public ResponseEntity<String> getAllWork_Schedule() {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clothingwashingcompatible")
+@RequestMapping("${api.prefix}/clothingwashingcompatible")
 public class ClothingWashingCompatibleController {
     @GetMapping("/list") // http://localhost:2330/clothingwashingcompatible/list
     public ResponseEntity<String> getAllClothingWashingCompatible() {
