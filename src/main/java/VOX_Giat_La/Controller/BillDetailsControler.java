@@ -54,7 +54,7 @@ public class BillDetailsControler {
     }
 
     @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/bill_details/delete
-    public ResponseEntity<String> deleteBill(@PathVariable int id) {
+    public ResponseEntity<String> deleteBill(@Valid@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công BillDetails "+ id);
     }
 }
