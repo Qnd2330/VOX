@@ -17,6 +17,7 @@ public class Washing_MethodDTO {
     private String washName;
     @Min(0)
     private float washCost;
+    private Boolean washAvailability;
     @Size(min = 1, message = "Phần giới thiệu ít nhất phải có 10 chữ cái")
     @Size(max = 500, message = "Phần giới thiệu tối đa là 2000 chữ cái ")
     private String washDescription;
