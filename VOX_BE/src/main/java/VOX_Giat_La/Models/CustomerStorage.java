@@ -22,14 +22,14 @@ public class CustomerStorage {
     private int cusItemID;
     @OneToOne
     @JoinColumn(name = "storageID")
-    private Storage storageID;
+    private Storage storage;
     @OneToOne
     @JoinColumn(name = "billDetailID")
-    private int billDetailID;
+    private BillDetails billDetail;
     @Column(name = "itemDescription")
     private String itemDescription;
     @Column(name = "itemPicture")
-    private MultipartFile itemPicture;
+    private String itemPicture;
     @Column(name = "storedDateStart")
     private LocalDateTime storedDateStart;
     @Column(name = "storedDateEnd")

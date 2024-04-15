@@ -3,6 +3,8 @@ package VOX_Giat_La.Models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Functions")
 @Data
@@ -11,9 +13,14 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Functions {
+    @Id
+    private int id;
     @ManyToMany
-    @JoinColumn(name = "roleID")
-    private Roles roleID;
+    @JoinTable(
+            name = "functions_roles",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "roleID"))
+    private List<Roles> role;
     @Column(name = "functionName")
     private String functionName;
     @Column(name = "functionAvailability")

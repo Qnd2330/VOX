@@ -22,4 +22,6 @@ public class SalaryDetail {
     private String salaryCountType;
     @Column(name = "salaryValue")
     private float salaryValue;
+    @OneToOne
+    private Salary salary;
 }

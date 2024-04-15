@@ -19,13 +19,13 @@ public class BillDetails {
     private int billDetailID;
     @ManyToOne
     @JoinColumn(name = "billID")
-    private Bill billID;
+    private Bill bill;
     @OneToOne
     @JoinColumn(name = "clothesID")
-    private KindOfClothing clothesID;
+    private KindOfClothing clothes;
     @OneToOne
     @JoinColumn(name = "washID")
-    private Washing_Method washID;
+    private Washing_Method wash;
     @Column(name = "description")
     private String description;
     @Column(name = "weight")

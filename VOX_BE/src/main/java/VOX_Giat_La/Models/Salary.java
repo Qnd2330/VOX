@@ -19,14 +19,11 @@ public class Salary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int salaryID;
     @OneToOne
-    @JoinColumn(name = "userID")
-    private User userID;
-    @OneToMany
     @JoinColumn(name = "salaryDetailID")
-    private SalaryDetail salaryDetailID;
-    @OneToMany
-    @JoinColumn(name = "scheduleID")
-    private Work_Schedule scheduleID;
+    private SalaryDetail salaryDetail;
+    @OneToOne
+    @JoinColumn
+    private Work_Schedule schedule;
     @Column(name = "salaryPerDay")
     private float salaryPerDay;
     @Column(name = "salaryTotal")

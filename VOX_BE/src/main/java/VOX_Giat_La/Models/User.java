@@ -23,11 +23,9 @@ public class User {
     private String userName;
     @OneToOne
     @JoinColumn(name = "roleID")
-    private Roles roleID;
+    private Roles role;
     @Column(name = "userPassword")
     private String userPassword;
-    @Column(name = "retypePassword")
-    private String retypePassword;
     @Column(name = "phoneNumber")
     private String phoneNumber;
     @Column(name = "userGender")

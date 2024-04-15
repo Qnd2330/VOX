@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Roles")
@@ -20,8 +21,12 @@ public class Roles {
     private String roleName;
     @Column(name = "roleCreateDate")
     private LocalDateTime roleCreateDate;
+
+    @ManyToMany
+    private List<Functions> functions;
     @PrePersist
     protected void onCreate() {
         roleCreateDate = LocalDateTime.now();
     }
+
 }

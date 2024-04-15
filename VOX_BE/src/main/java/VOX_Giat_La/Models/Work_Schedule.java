@@ -19,7 +19,7 @@ public class Work_Schedule {
     private int scheduleID;
     @ManyToOne
     @JoinColumn(name = "userID")
-    private User userID;
+    private User user;
     @Column(name = "workDate")
     private Date workDate;
     @Column(name = "startTime")
@@ -28,4 +28,6 @@ public class Work_Schedule {
     private Time endTime;
     @Column(name = "shiftType")
     private String shiftType;
+    @OneToOne
+    private Salary salary;
 }

@@ -22,7 +22,7 @@ public class Bill {
     private int billID;
     @ManyToOne
     @JoinColumn(name = "userID")
-    private User userID;
+    private User user;
     @Column(name = "billDescription")
     private String billDescription;
     @Column(name = "sumWeight")
@@ -36,7 +36,7 @@ public class Bill {
     @Column(name = "billPayDate")
     private LocalDateTime billPayDate;
     @Column(name = "image")
-    private MultipartFile image;
+    private String image;
 
     @PrePersist
     protected void onCreate() {

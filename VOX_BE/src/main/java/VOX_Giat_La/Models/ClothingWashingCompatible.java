@@ -17,10 +17,10 @@ public class ClothingWashingCompatible {
     private int id;
     @OneToOne
     @JoinColumn(name = "clothID")
-    private KindOfClothing clothID;
+    private KindOfClothing cloth;
     @OneToOne
     @JoinColumn(name = "washID")
-    private Washing_Method washID;
+    private Washing_Method wash;
     @Column(name = "compatibility")
     private Boolean compatibility;
 }

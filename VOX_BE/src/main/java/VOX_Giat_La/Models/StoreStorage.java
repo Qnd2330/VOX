@@ -22,7 +22,7 @@ public class StoreStorage {
     private int storeItemID;
     @OneToOne
     @JoinColumn(name = "storageID")
-    private Storage storageID;
+    private Storage storage;
     @Column(name = "storeItemName")
     private String storeItemName;
     @Column(name = "storeItemDescription")
@@ -32,7 +32,7 @@ public class StoreStorage {
     @Column(name = "storeItemCost")
     private float storeItemCost;
     @Column(name = "storeItemPicture")
-    private MultipartFile storeItemPicture;
+    private String storeItemPicture;
     @Column(name = "storeItemDayIn")
     private LocalDateTime storeItemDayIn;
     @Column(name = "storeItemStatus")
