@@ -1,4 +1,4 @@
-package VOX_Giat_La.Entity;
+package VOX_Giat_La.Models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

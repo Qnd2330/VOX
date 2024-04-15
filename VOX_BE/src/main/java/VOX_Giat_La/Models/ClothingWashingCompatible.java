@@ -13,6 +13,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClothingWashingCompatible {
+    @Id
+    private int id;
     @OneToOne
     @JoinColumn(name = "clothID")
     private KindOfClothing clothID;
