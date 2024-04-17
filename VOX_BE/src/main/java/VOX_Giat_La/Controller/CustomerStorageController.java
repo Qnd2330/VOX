@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/customerstorage")
 public class CustomerStorageController {
-    @GetMapping("/list") // http://localhost:2330/customerstorage/list
+    @GetMapping("/list") // http://localhost:2330/VOX/customerstorage/list
     public ResponseEntity<String> getAllCustomerStorage() {
         return ResponseEntity.ok(String.format("List CustomerStorage"));
     }
@@ -24,7 +24,7 @@ public class CustomerStorageController {
         return ResponseEntity.ok("CustomerStorage "+ id);
     }
 
-    @PostMapping("/insert") //  http://localhost:2330/customerstorage/insert
+    @PostMapping("/insert") //  http://localhost:2330/VOX/customerstorage/insert
     public ResponseEntity<?> insertCustomerStorage(@Valid @RequestBody CustomerStorageDTO customerStorageDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
@@ -38,12 +38,12 @@ public class CustomerStorageController {
 
     }
 
-    @PutMapping("/update/{id}") //   http://localhost:2330/customerstorage/update
+    @PutMapping("/update/{id}") //   http://localhost:2330/VOX/customerstorage/update
     public ResponseEntity<String> updateCustomerStorage(@PathVariable int id) {
         return ResponseEntity.ok("Cập nhật CustomerStorage");
     }
 
-    @DeleteMapping("/delete/{id}") //    http://localhost:2330/customerstorage/delete
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/customerstorage/delete
     public ResponseEntity<String> deleteCustomerStorage(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công CustomerStorage "+ id);
     }

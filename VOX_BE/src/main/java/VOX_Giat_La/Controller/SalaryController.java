@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/salary")
 public class SalaryController {
-    @GetMapping("/list") // http://localhost:2330/salary/list
+    @GetMapping("/list") // http://localhost:2330/VOX/salary/list
     public ResponseEntity<String> getAllSalary() {
         return ResponseEntity.ok(String.format("List Salary"));
     }
@@ -23,7 +23,7 @@ public class SalaryController {
         return ResponseEntity.ok("Salary "+ id);
     }
 
-    @PostMapping("/insert") //  http://localhost:2330/salary/insert
+    @PostMapping("/insert") //  http://localhost:2330/VOX/salary/insert
     public ResponseEntity<?> insertSalary(@Valid @RequestBody SalaryDTO salaryDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
@@ -37,12 +37,12 @@ public class SalaryController {
 
     }
 
-    @PutMapping("/update/{id}") //   http://localhost:2330/salary/update
+    @PutMapping("/update/{id}") //   http://localhost:2330/VOX/salary/update
     public ResponseEntity<String> updateSalary(@PathVariable int id) {
         return ResponseEntity.ok("Cập nhật Salary");
     }
 
-    @DeleteMapping("/delete/{id}") //    http://localhost:2330/salary/delete
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/salary/delete
     public ResponseEntity<String> deleteSalary(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công Salary "+ id);
     }

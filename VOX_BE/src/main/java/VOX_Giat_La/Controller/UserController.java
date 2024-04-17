@@ -22,7 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 private final IUserService userService;
-    @PostMapping("/register")
+    @PostMapping("/register") //http://localhost:2330/VOX/user/register
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO userDTO, BindingResult result){
         try{
             if (result.hasErrors()) {
@@ -39,7 +39,7 @@ private final IUserService userService;
         }
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") //http://localhost:2330/VOX/user/login
     public ResponseEntity<String> login(@Valid @RequestBody UserLoginDTO userLoginDTO){
         return ResponseEntity.ok("some token");
     }

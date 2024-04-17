@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/storestorage")
 public class StoreStorageController {
-    @GetMapping("/list") // http://localhost:2330/storestorage/list
+    @GetMapping("/list") // http://localhost:2330/VOX/storestorage/list
     public ResponseEntity<String> getAllStoreStorage() {
         return ResponseEntity.ok(String.format("List StoreStorage"));
     }
@@ -24,7 +24,7 @@ public class StoreStorageController {
         return ResponseEntity.ok("StoreStorage "+ id);
     }
 
-    @PostMapping("/insert") //  http://localhost:2330/storestorage/insert
+    @PostMapping("/insert") //  http://localhost:2330/VOX/storestorage/insert
     public ResponseEntity<?> insertStoreStorage(@Valid @RequestBody StoreStorageDTO storeStorageDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
@@ -38,12 +38,12 @@ public class StoreStorageController {
 
     }
 
-    @PutMapping("/update/{id}") //   http://localhost:2330/storestorage/update
+    @PutMapping("/update/{id}") //   http://localhost:2330/VOX/storestorage/update
     public ResponseEntity<String> updateStoreStorage(@PathVariable int id) {
         return ResponseEntity.ok("Cập nhật StoreStorage");
     }
 
-    @DeleteMapping("/delete/{id}") //    http://localhost:2330/storestorage/delete
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/storestorage/delete
     public ResponseEntity<String> deleteStoreStorage(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công StoreStorage "+ id);
     }

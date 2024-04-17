@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/salarydetail")
 public class SalaryDetailController {
-    @GetMapping("/list") // http://localhost:2330/salarydetail/list
+    @GetMapping("/list") // http://localhost:2330/VOX/salarydetail/list
     public ResponseEntity<String> getAllSalaryDetail() {
         return ResponseEntity.ok(String.format("List SalaryDetail"));
     }
@@ -23,7 +23,7 @@ public class SalaryDetailController {
         return ResponseEntity.ok("SalaryDetail "+ id);
     }
 
-    @PostMapping("/insert") //  http://localhost:2330/salarydetail/insert
+    @PostMapping("/insert") //  http://localhost:2330/VOX/salarydetail/insert
     public ResponseEntity<?> insertSalaryDetail(@Valid @RequestBody SalaryDetailDTO salaryDetailDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
@@ -37,12 +37,12 @@ public class SalaryDetailController {
 
     }
 
-    @PutMapping("/update/{id}") //   http://localhost:2330/salarydetail/update
+    @PutMapping("/update/{id}") //   http://localhost:2330/VOX/salarydetail/update
     public ResponseEntity<String> updateSalaryDetail(@PathVariable int id) {
         return ResponseEntity.ok("Cập nhật SalaryDetail");
     }
 
-    @DeleteMapping("/delete/{id}") //    http://localhost:2330/salarydetail/delete
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/salarydetail/delete
     public ResponseEntity<String> deleteSalaryDetail(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công SalaryDetail "+ id);
     }
