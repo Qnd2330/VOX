@@ -2,7 +2,10 @@ package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.UserDTO;
 import VOX_Giat_La.DTO.UserLoginDTO;
+import VOX_Giat_La.Service.User.IUserService;
+import VOX_Giat_La.Service.User.UserService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -16,8 +19,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.prefix}/user")
+@RequiredArgsConstructor
 public class UserController {
-
+private final IUserService userService;
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO userDTO, BindingResult result){
         try{
@@ -28,6 +32,7 @@ public class UserController {
             if(!userDTO.getUserPassword().equals(userDTO.getRetypePassword())){
                 return ResponseEntity.badRequest().body("Mật khẩu xác thực không đúng !!!");
             }
+            userService.createUser(userDTO);
             return ResponseEntity.ok("Đăng ký thành công!");
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

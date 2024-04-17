@@ -16,6 +16,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CustomerStorage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

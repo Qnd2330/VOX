@@ -13,6 +13,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class BillDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

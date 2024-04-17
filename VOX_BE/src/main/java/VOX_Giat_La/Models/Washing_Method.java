@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "Washing_Method")
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Washing_Method {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +28,6 @@ public class Washing_Method {
     private Boolean washAvailability;
     @Column(name = "washDescription")
     private String washDescription;
-    @Column(name = "washExpPictures")
-    private String washExpPictures;
     @Column(name = "washCreateDate")
-    private LocalDateTime washCreateDate;
+    private Date washCreateDate;
 }

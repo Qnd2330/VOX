@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

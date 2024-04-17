@@ -13,6 +13,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Work_Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

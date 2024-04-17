@@ -12,6 +12,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class SalaryDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

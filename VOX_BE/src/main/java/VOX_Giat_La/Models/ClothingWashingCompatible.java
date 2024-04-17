@@ -12,6 +12,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ClothingWashingCompatible {
     @Id
     private int id;

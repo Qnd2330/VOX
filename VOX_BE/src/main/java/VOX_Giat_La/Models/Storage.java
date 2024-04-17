@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Storage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

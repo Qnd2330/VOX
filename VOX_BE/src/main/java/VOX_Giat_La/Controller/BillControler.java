@@ -1,7 +1,9 @@
 package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.BillDTO;
+import VOX_Giat_La.Service.Bill.BillService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +24,9 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("${api.prefix}/bill")
+@RequiredArgsConstructor
 public class BillControler {
+    private final BillService billService;
     @GetMapping("/list") // bill/list?page=1&limit=10
     public ResponseEntity<String> getAllBill(
             @RequestParam("page") int page,
@@ -36,6 +39,7 @@ public class BillControler {
     public ResponseEntity<String> findBillByID(@PathVariable int id) {
         return ResponseEntity.ok("Bill "+ id);
     }
+
     @GetMapping("/user/{id}") //  http://localhost:2330/VOX/bill/user/{id}
     public ResponseEntity<?> getBillByUserID (@Valid @PathVariable("id")int userID){
         try{
@@ -46,7 +50,7 @@ public class BillControler {
     }
 
     @PostMapping(value = "/insert",consumes = MediaType.MULTIPART_FORM_DATA_VALUE) //  http://localhost:2330/VOX/bill/insert
-    public ResponseEntity<?> insertBill(@Valid @ModelAttribute BillDTO billDTO, BindingResult result) {
+    public ResponseEntity<?> createBill(@Valid @ModelAttribute BillDTO billDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
@@ -65,7 +69,6 @@ public class BillControler {
                 String filename = storeFile(file);
 
             }
-
             return ResponseEntity.ok("Thêm mới bill" + billDTO);
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
