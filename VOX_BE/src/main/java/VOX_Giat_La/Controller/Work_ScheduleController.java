@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("${api.prefix}/workschedule")
 public class Work_ScheduleController {
-    @GetMapping("/list") // http://localhost:2330/workschedule/list
+    @GetMapping("/list") // http://localhost:2330/VOX/workschedule/list
     public ResponseEntity<String> getAllWork_Schedule() {
         return ResponseEntity.ok(String.format("List Work_Schedule"));
     }
@@ -24,7 +24,7 @@ public class Work_ScheduleController {
         return ResponseEntity.ok("Work_Schedule "+ id);
     }
 
-    @PostMapping("/insert") //  http://localhost:2330/workschedule/insert
+    @PostMapping("/insert") //  http://localhost:2330/VOX/workschedule/insert
     public ResponseEntity<?> insertWork_Schedule(@Valid @RequestBody Work_ScheduleDTO workScheduleDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
@@ -38,12 +38,12 @@ public class Work_ScheduleController {
 
     }
 
-    @PutMapping("/update/{id}") //   http://localhost:2330/workschedule/update
+    @PutMapping("/update/{id}") //   http://localhost:2330/VOX/workschedule/update
     public ResponseEntity<String> updateWork_Schedule(@PathVariable int id) {
         return ResponseEntity.ok("Cập nhật Work_Schedule");
     }
 
-    @DeleteMapping("/delete/{id}") //    http://localhost:2330/workschedule/delete
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/workschedule/delete
     public ResponseEntity<String> deleteWork_Schedule(@PathVariable int id) {
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công Work_Schedule "+ id);
     }

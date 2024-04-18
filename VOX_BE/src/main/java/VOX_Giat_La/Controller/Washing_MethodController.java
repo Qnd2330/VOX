@@ -46,13 +46,13 @@ public class Washing_MethodController {
 
     }
 
-    @PutMapping("/update/{id}") //   http://localhost:2330/washing_method/update
+    @PutMapping("/update/{id}") //   http://localhost:2330/VOX/washing_method/update
     public ResponseEntity<?> updateWashingMethod(@PathVariable int id,@Valid @RequestBody Washing_MethodDTO washingMethodDTO ) {
         washingMethodService.updateWashing_Method(id,washingMethodDTO);
         return ResponseEntity.ok("Cập nhật Washing Method"+ washingMethodDTO);
     }
 
-    @DeleteMapping("/delete/{id}") //    http://localhost:2330/washing_method/delete
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/washing_method/delete
     public ResponseEntity<?> deleteWashingMethod(@PathVariable int id) {
         washingMethodService.deleteWashing_Method(id);
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công Washing Method "+ id);

@@ -1,8 +1,6 @@
 package VOX_Giat_La.Service.Washing_Method;
 
-import VOX_Giat_La.DTO.BillDTO;
 import VOX_Giat_La.DTO.Washing_MethodDTO;
-import VOX_Giat_La.Models.Bill;
 import VOX_Giat_La.Models.Washing_Method;
 
 import java.util.List;
