@@ -4,4 +4,5 @@ import VOX_Giat_La.Models.Storage;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StorageRepos extends JpaRepository<Storage, Integer> {
+    boolean existsByPosition(String storagePosition);
 }
