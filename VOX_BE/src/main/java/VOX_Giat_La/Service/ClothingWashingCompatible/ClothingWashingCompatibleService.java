@@ -31,6 +31,7 @@ public class ClothingWashingCompatibleService implements IClothingWashingCompati
         newClothingWashingCompatible.setCloth(kindOfClothing);
         Washing_Method washingMethod = washingMethodRepos.findById(clothingWashingCompatibleDTO.getWashID()).orElseThrow(()-> new DataNotFoundException("Không tìm thấy loại kiểu giặt "));
         newClothingWashingCompatible.setWash(washingMethod);
+
         return clothingWashingCompatibleRepos.save(newClothingWashingCompatible);
     }
 
@@ -41,13 +42,12 @@ public class ClothingWashingCompatibleService implements IClothingWashingCompati
 
     @Override
     public ClothingWashingCompatible updateClothingWashingCompatible(int id, ClothingWashingCompatibleDTO clothingWashingCompatibleDTO) throws Exception {
-        ClothingWashingCompatible newClothingWashingCompatible = ClothingWashingCompatible.builder()
-                .compatibility(clothingWashingCompatibleDTO.getCompatibility())
-                .build();
+        ClothingWashingCompatible newClothingWashingCompatible = getClothingWashingCompatiblebyID(id);
         KindOfClothing kindOfClothing = kindOfClothingRepos.findById(clothingWashingCompatibleDTO.getClothID()).orElseThrow(()-> new DataNotFoundException("Không tìm thấy loại Quần áo "));
         newClothingWashingCompatible.setCloth(kindOfClothing);
         Washing_Method washingMethod = washingMethodRepos.findById(clothingWashingCompatibleDTO.getWashID()).orElseThrow(()-> new DataNotFoundException("Không tìm thấy loại kiểu giặt "));
         newClothingWashingCompatible.setWash(washingMethod);
+        newClothingWashingCompatible.setCompatibility(clothingWashingCompatibleDTO.getCompatibility());
         return clothingWashingCompatibleRepos.saveAndFlush(newClothingWashingCompatible);
     }
 

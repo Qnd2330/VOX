@@ -13,9 +13,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClothingWashingCompatibleDTO {
-    @NotEmpty(message = "Phải có id kiểu quần áo")
+    @NotNull(message = "Phải có id kiểu quần áo")
     private int clothID;
-    @NotEmpty(message = "Phải có id kiểu giặt")
+    @NotNull(message = "Phải có id kiểu giặt")
     private int washID;
     private Boolean compatibility;
 }

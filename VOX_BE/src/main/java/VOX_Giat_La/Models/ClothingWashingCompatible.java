@@ -15,6 +15,7 @@ import lombok.*;
 @Builder
 public class ClothingWashingCompatible {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToOne
     @JoinColumn(name = "clothID")
