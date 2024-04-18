@@ -35,16 +35,12 @@ public class Bill {
     @Column(name = "billStatus")
     private Boolean billStatus;
     @Column(name = "billPayDate")
-    private LocalDateTime billPayDate;
+    private Date billPayDate;
     @Column(name = "image")
     private String image;
 
     @PrePersist
     protected void onCreate() {
         billCreateDate = LocalDateTime.now();
-    }
-    @PreUpdate
-    protected void onUpdate() {
-        billPayDate = LocalDateTime.now();
     }
 }

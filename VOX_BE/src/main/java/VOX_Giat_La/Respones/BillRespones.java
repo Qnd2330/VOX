@@ -1,13 +1,14 @@
-package VOX_Giat_La.DTO;
+package VOX_Giat_La.Respones;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -15,20 +16,22 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BillDTO {
-    @JsonProperty("userID")
-    @NotNull(message = "Phải có Id người dùng")
+@Builder
+public class BillRespones {
     private int userID;
-    @Size(min = 10, message = "Phần giới thiệu ít nhất phải có 10 chữ cái")
-    @Size(max = 2000, message = "Phần giới thiệu tối đa là 2000 chữ cái ")
+    private String userName;
+
     private String billDescription;
-    @Min(0)
+
     private float sumWeight;
-    @Min(0)
+    private Boolean billStatus;
+
     private float cost;
 
-    private MultipartFile image;
+    private String image;
 
     private Date billPayDate;
+
+    private LocalDateTime billCreateDate;
 
 }

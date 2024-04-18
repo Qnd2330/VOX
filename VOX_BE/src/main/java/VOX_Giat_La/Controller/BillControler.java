@@ -1,9 +1,16 @@
 package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.BillDTO;
+import VOX_Giat_La.Models.Bill;
+import VOX_Giat_La.Respones.BillListRespone;
+import VOX_Giat_La.Respones.BillRespones;
 import VOX_Giat_La.Service.Bill.BillService;
+import VOX_Giat_La.Service.Bill.IBillService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,13 +33,17 @@ import java.util.UUID;
 @RequestMapping("${api.prefix}/bill")
 @RequiredArgsConstructor
 public class BillControler {
-    private final BillService billService;
+    private final IBillService billService;
     @GetMapping("/list") // bill/list?page=1&limit=10
-    public ResponseEntity<String> getAllBill(
-            @RequestParam("page") int page,
-            @RequestParam("limit") int limit
-    ) {
-        return ResponseEntity.ok(String.format("List bill,page = %d,limit=%d", page, limit));
+    public ResponseEntity<BillListRespone> getAllBill(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+        PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("billCreateDate").descending());
+        Page<BillRespones> billsPage = billService.getListBill(pageRequest);
+        int totalPages = billsPage.getTotalPages();
+        List<BillRespones> bills = billsPage.getContent();
+        return ResponseEntity.ok(BillListRespone.builder()
+                .bills(bills)
+                .totalPages(totalPages)
+                .build());
     }
 
     @GetMapping("/{id}") // http://localhost:2330/VOX/bill/{id}
@@ -49,31 +60,38 @@ public class BillControler {
         }
     }
 
-    @PostMapping(value = "/insert",consumes = MediaType.MULTIPART_FORM_DATA_VALUE) //  http://localhost:2330/VOX/bill/insert
-    public ResponseEntity<?> createBill(@Valid @ModelAttribute BillDTO billDTO, BindingResult result) {
+    @PostMapping(value = "/insert") //  http://localhost:2330/VOX/bill/insert
+    public ResponseEntity<?> createBill(@Valid @RequestBody  BillDTO billDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            MultipartFile file = billDTO.getImage();
-            if(file != null){
-                if(file.getSize() > 10 * 1024 * 1024){
-                    throw  new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE,"File ảnh của bạn quá lớn, tối đa là 10MB");
-                }
-                String contectType = file.getContentType();
-                if(contectType == null || !contectType.startsWith("image/")){
-                    return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body("File này phải là ảnh");
-
-                }
-                String filename = storeFile(file);
-
-            }
-            return ResponseEntity.ok("Thêm mới bill" + billDTO);
+            Bill bill = billService.createBill(billDTO);
+            return ResponseEntity.ok("Thêm mới bill" + bill);
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
 
+    }
+    @PostMapping(value = "uploads/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadImages( @PathVariable("id") int id, @ModelAttribute BillDTO billDTO ) throws Exception {
+        Bill existingBill = billService.getBillByID(id);
+        MultipartFile file = billDTO.getImage();
+        if(file != null){
+            if(file.getSize() > 10 * 1024 * 1024){
+                throw  new ResponseStatusException(HttpStatus.PAYLOAD_TOO_LARGE,"File ảnh của bạn quá lớn, tối đa là 10MB");
+            }
+            String contectType = file.getContentType();
+            if(contectType == null || !contectType.startsWith("image/")){
+                return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body("File này phải là ảnh");
+
+            }
+            String filename = storeFile(file);
+            existingBill.setImage(filename);
+            billService.updateImge(id, billDTO);
+        }
+        return ResponseEntity.ok("Đã thêm đc ảnh" + existingBill.getImage());
     }
 
     private String storeFile(MultipartFile file) throws IOException{

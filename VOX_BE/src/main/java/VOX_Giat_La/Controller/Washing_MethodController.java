@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("${api.prefix}/washing_method")
+@RequestMapping("${api.prefix}/washing_method") //   VOX/washing_method
 @RequiredArgsConstructor
 public class Washing_MethodController {
     private final IWashing_MethodService washingMethodService;
-    @GetMapping("/list") // http://localhost:2330/washing_method/list
+    @GetMapping("/list") // http://localhost:2330/VOX/washing_method/list
     public ResponseEntity<List<Washing_Method>> getAllWashingMethod() {
         List<Washing_Method> washingMethods = washingMethodService.getListWashing_Method();
         return ResponseEntity.ok(washingMethods);
