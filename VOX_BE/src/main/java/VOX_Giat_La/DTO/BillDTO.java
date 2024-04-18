@@ -27,6 +27,8 @@ public class BillDTO {
     @Min(0)
     private float cost;
 
+    private Boolean billStatus;
+
     private MultipartFile image;
 
     private Date billPayDate;

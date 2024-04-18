@@ -29,7 +29,7 @@ public class BillService implements IBillService {
                 .billDescription(billDTO.getBillDescription())
                 .sumWeight(billDTO.getSumWeight())
                 .cost(billDTO.getCost())
-
+                .billStatus(false)
                 .build();
         return billRepos.save(newBill);
     }
@@ -41,20 +41,7 @@ public class BillService implements IBillService {
 
     @Override
     public Page<BillRespones> getListBill(PageRequest pageRequest) {
-        return billRepos.findAll(pageRequest).map(bill ->{ BillRespones billRespones =BillRespones.builder()
-                    .userID(bill.getUser().getUserID())
-                    .userName(bill.getUser().getUserName())
-                    .billDescription(bill.getBillDescription())
-                    .sumWeight(bill.getSumWeight())
-                    .cost(bill.getCost())
-                    .billStatus(bill.getBillStatus())
-                    .image(bill.getImage())
-                    .billPayDate(bill.getBillPayDate())
-                    .build();
-            billRespones.setBillCreateDate(bill.getBillCreateDate());
-            billRespones.setBillPayDate(bill.getBillPayDate());
-            return billRespones;
-        });
+        return billRepos.findAll(pageRequest).map(bill -> BillRespones.fromBill(bill));
     }
 
     @Override
@@ -62,6 +49,12 @@ public class BillService implements IBillService {
         Bill billUpdate = getBillByID(id);
         billUpdate.setImage(String.valueOf(billDTO.getImage()));
         return billRepos.saveAndFlush(billUpdate);
+    }
+
+    @Override
+    public Bill getBillByUserId(int userID) throws Exception{
+         User user = userRepos.findById(userID).orElseThrow(()->new DataNotFoundException("Không tìm thấy user với ID: "+ userID));
+        return billRepos.findByUser(user);
     }
 
     @Override
@@ -73,6 +66,7 @@ public class BillService implements IBillService {
         billUpdate.setSumWeight(billDTO.getSumWeight());
         billUpdate.setCost(billDTO.getCost());
         billUpdate.setBillPayDate(billDTO.getBillPayDate());
+        billUpdate.setBillStatus(billDTO.getBillStatus());
         return billRepos.saveAndFlush(billUpdate);
     }
 

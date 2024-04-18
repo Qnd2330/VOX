@@ -3,6 +3,7 @@ package VOX_Giat_La.Service.Bill;
 import VOX_Giat_La.DTO.BillDTO;
 import VOX_Giat_La.Exeception.DataNotFoundException;
 import VOX_Giat_La.Models.Bill;
+import VOX_Giat_La.Models.User;
 import VOX_Giat_La.Respones.BillRespones;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,8 +16,10 @@ public interface IBillService {
     Bill updateBill(int id, BillDTO billDTO) throws  Exception;
     void deleteBill(int id);
     Page<BillRespones> getListBill(PageRequest pageRequest);
-
     Bill updateImge(int id, BillDTO billDTO) throws Exception;
+
+    Bill getBillByUserId(int UserID) throws Exception;
+
 
 
 }

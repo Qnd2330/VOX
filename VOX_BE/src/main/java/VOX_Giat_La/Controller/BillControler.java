@@ -47,14 +47,20 @@ public class BillControler {
     }
 
     @GetMapping("/{id}") // http://localhost:2330/VOX/bill/{id}
-    public ResponseEntity<String> findBillByID(@PathVariable int id) {
-        return ResponseEntity.ok("Bill "+ id);
+    public ResponseEntity<?> findBillByID(@PathVariable int id) {
+        try{
+            Bill existingBill = billService.getBillByID(id);
+            return ResponseEntity.ok(BillRespones.fromBill(existingBill));
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Không tìm thấy bill với id trên");
+        }
     }
 
     @GetMapping("/user/{id}") //  http://localhost:2330/VOX/bill/user/{id}
     public ResponseEntity<?> getBillByUserID (@Valid @PathVariable("id")int userID){
         try{
-            return ResponseEntity.ok("Lấy danh sách bill từ userID");
+            Bill existingBill = billService.getBillByUserId(userID);
+            return ResponseEntity.ok(BillRespones.fromBill(existingBill));
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -85,7 +91,6 @@ public class BillControler {
             String contectType = file.getContentType();
             if(contectType == null || !contectType.startsWith("image/")){
                 return ResponseEntity.status(HttpStatus.UNSUPPORTED_MEDIA_TYPE).body("File này phải là ảnh");
-
             }
             String filename = storeFile(file);
             existingBill.setImage(filename);
@@ -107,13 +112,22 @@ public class BillControler {
     }
 
     @PutMapping("/update/{id}") //   http://localhost:2330/VOX/bill/update
-    public ResponseEntity<String> updateBill(@Valid @PathVariable int id, @Valid @RequestBody BillDTO billDTO) {
-        return ResponseEntity.ok("Cập nhật bill");
+    public ResponseEntity<?> updateBill(@Valid @PathVariable int id, @Valid @RequestBody BillDTO billDTO) {
+        try{
+            return ResponseEntity.ok(billService.updateBill(id,billDTO));
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/bill/delete
-    public ResponseEntity<String> deleteBill(@PathVariable int id) {
-        return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công bill "+ id);
+    public ResponseEntity<?> deleteBill(@PathVariable int id) {
+        try{
+             billService.deleteBill(id);
+            return ResponseEntity.ok("Đã xóa thành công !");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Không tìm thấy bill với id trên");
+        }
     }
 
 }
