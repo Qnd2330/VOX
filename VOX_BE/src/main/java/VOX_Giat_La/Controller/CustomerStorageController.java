@@ -1,6 +1,11 @@
 package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.CustomerStorageDTO;
+import VOX_Giat_La.Models.CustomerStorage;
+import VOX_Giat_La.Models.StoreStorage;
+import VOX_Giat_La.Service.CustomerStorage.CustomerStorageService;
+import VOX_Giat_La.Service.Storage.IStorageService;
+import VOX_Giat_La.Service.StoreStorage.IStoreStorageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,14 +20,18 @@ import java.util.List;
 @RequestMapping("${api.prefix}/customerstorage")
 @RequiredArgsConstructor
 public class CustomerStorageController {
+    private final CustomerStorageService customerStorageService;
+    private final IStorageService storageService;
     @GetMapping("/list") // http://localhost:2330/VOX/customerstorage/list
-    public ResponseEntity<String> getAllCustomerStorage() {
-        return ResponseEntity.ok(String.format("List CustomerStorage"));
+    public ResponseEntity<?> getAllCustomerStorage() {
+        List<CustomerStorage> customerStorageList = customerStorageService.getListCustomerStorage();
+        return ResponseEntity.ok(customerStorageList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> findCustomerStorageByID(@PathVariable int id) {
-        return ResponseEntity.ok("CustomerStorage "+ id);
+    public ResponseEntity<?> findCustomerStorageByID(@PathVariable int id) throws Exception {
+        CustomerStorage customerStorage = customerStorageService.getCustomerStoragebyID(id);
+        return ResponseEntity.ok(customerStorage);
     }
 
     @PostMapping("/insert") //  http://localhost:2330/VOX/customerstorage/insert
@@ -32,7 +41,8 @@ public class CustomerStorageController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            return ResponseEntity.ok("Thêm mới CustomerStorage" + customerStorageDTO);
+            CustomerStorage customerStorage = customerStorageService.createCustomerStorage(customerStorageDTO);
+            return ResponseEntity.ok(customerStorage);
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -40,12 +50,13 @@ public class CustomerStorageController {
     }
 
     @PutMapping("/update/{id}") //   http://localhost:2330/VOX/customerstorage/update
-    public ResponseEntity<String> updateCustomerStorage(@PathVariable int id) {
+    public ResponseEntity<String> updateCustomerStorage(@PathVariable int id, @Valid @RequestBody CustomerStorageDTO customerStorageDTO) throws Exception {
+        CustomerStorage customerStorage = customerStorageService.updateCustomerStorage(id,customerStorageDTO);
         return ResponseEntity.ok("Cập nhật CustomerStorage");
     }
 
     @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/customerstorage/delete
-    public ResponseEntity<String> deleteCustomerStorage(@PathVariable int id) {
-        return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công CustomerStorage "+ id);
+    public void deleteCustomerStorage(@PathVariable int id) {
+        customerStorageService.deleteCustomerStorage(id);
     }
 }
