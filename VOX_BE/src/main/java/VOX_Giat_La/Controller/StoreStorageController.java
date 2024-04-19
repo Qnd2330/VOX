@@ -2,7 +2,12 @@ package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.SalaryDetailDTO;
 import VOX_Giat_La.DTO.StoreStorageDTO;
+import VOX_Giat_La.Models.Storage;
+import VOX_Giat_La.Models.StoreStorage;
+import VOX_Giat_La.Service.Storage.IStorageService;
+import VOX_Giat_La.Service.StoreStorage.IStoreStorageService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,15 +18,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.prefix}/storestorage")
+@RequiredArgsConstructor
 public class StoreStorageController {
+    private final IStoreStorageService storeStorageService;
+    private final IStorageService storageService;
     @GetMapping("/list") // http://localhost:2330/VOX/storestorage/list
-    public ResponseEntity<String> getAllStoreStorage() {
-        return ResponseEntity.ok(String.format("List StoreStorage"));
+    public ResponseEntity<?> getAllStoreStorage() {
+        List<StoreStorage> storeStorageList = storeStorageService.getListStoreStorage();
+        return ResponseEntity.ok(storeStorageList);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> findStoreStorageByID(@PathVariable int id) {
-        return ResponseEntity.ok("StoreStorage "+ id);
+    public ResponseEntity<?> findStoreStorageByID(@PathVariable int id) throws Exception {
+        StoreStorage storeStorage = storeStorageService.getStoreStorageByID(id);
+        return ResponseEntity.ok(storeStorage);
     }
 
     @PostMapping("/insert") //  http://localhost:2330/VOX/storestorage/insert
@@ -31,7 +41,8 @@ public class StoreStorageController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            return ResponseEntity.ok("Thêm mới StoreStorage" + storeStorageDTO);
+            StoreStorage storeStorage = storeStorageService.createStoreStorage(storeStorageDTO);
+            return ResponseEntity.ok(storeStorage);
         } catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -39,12 +50,13 @@ public class StoreStorageController {
     }
 
     @PutMapping("/update/{id}") //   http://localhost:2330/VOX/storestorage/update
-    public ResponseEntity<String> updateStoreStorage(@PathVariable int id) {
+    public ResponseEntity<String> updateStoreStorage(@PathVariable int id,@Valid @RequestBody StoreStorageDTO storeStorageDTO) throws Exception {
+        StoreStorage storeStorage = storeStorageService.updateStoreStorage(id,storeStorageDTO);
         return ResponseEntity.ok("Cập nhật StoreStorage");
     }
 
     @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/storestorage/delete
-    public ResponseEntity<String> deleteStoreStorage(@PathVariable int id) {
-        return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công StoreStorage "+ id);
+    public void deleteStoreStorage(@PathVariable int id) {
+        storeStorageService.deleteStoreStorage(id);
     }
 }

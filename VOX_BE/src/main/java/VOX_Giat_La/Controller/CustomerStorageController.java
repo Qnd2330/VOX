@@ -1,8 +1,8 @@
 package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.CustomerStorageDTO;
-import VOX_Giat_La.DTO.KindOfClothingDTO;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("${api.prefix}/customerstorage")
+@RequiredArgsConstructor
 public class CustomerStorageController {
     @GetMapping("/list") // http://localhost:2330/VOX/customerstorage/list
     public ResponseEntity<String> getAllCustomerStorage() {

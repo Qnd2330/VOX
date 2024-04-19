@@ -1,7 +1,6 @@
 package VOX_Giat_La.Service.Storage;
 
 import VOX_Giat_La.DTO.StorageDTO;
-import VOX_Giat_La.Models.ClothingWashingCompatible;
 import VOX_Giat_La.Models.Storage;
 import VOX_Giat_La.Repositories.StorageRepos;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ public class StorageService implements IStorageService{
     @Override
     public Storage createStorage(StorageDTO storageDTO) throws Exception {
         String position = storageDTO.getStoragePosition();
-        if(storageRepos.existsByPosition(position)){
+        if(storageRepos.existsByStoragePosition(position)){
             throw  new DataIntegrityViolationException("Vị trí đã tồn tại");
         }
         Storage newStorage = Storage.builder()

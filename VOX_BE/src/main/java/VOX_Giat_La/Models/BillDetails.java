@@ -22,9 +22,6 @@ public class BillDetails {
     @JoinColumn(name = "billID")
     private Bill bill;
     @OneToOne
-    @JoinColumn(name = "clothesID")
-    private KindOfClothing clothes;
-    @OneToOne
     @JoinColumn(name = "washID")
     private Washing_Method wash;
     @Column(name = "description")
