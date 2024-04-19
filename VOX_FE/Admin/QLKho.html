@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Focus - Bootstrap Admin Dashboard </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
+    <!-- Datatable -->
+    <link href="./vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link href="./css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <a href="index.html" class="brand-logo">
+                <img class="logo-abbr" src="./images/logo.png" alt="">
+                <img class="logo-compact" src="./images/logo-text.png" alt="">
+                <img class="brand-title" src="./images/logo-text.png" alt="">
+            </a>
+
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+                            <div class="search_bar dropdown">
+                                <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
+                                    <i class="mdi mdi-magnify"></i>
+                                </span>
+                                <div class="dropdown-menu p-0 m-0">
+                                    <form>
+                                        <input class="form-control" type="search" placeholder="Search"
+                                            aria-label="Search">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="quixnav">
+            <div class="quixnav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Main Menu</li>
+                    <li>
+                        <a href="./QLTaiKhoan.html">
+                            <i class="icon icon-home-minimal"></i>
+                            <span class="nav-text">
+                                Quản Lý Tài Khoản
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLNhanVien.html">
+                            <i class="icon icon-single-04"></i>
+                            <span class="nav-text">
+                                Quản Lý Nhân Viên
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLViecLam.html">
+                            <i class="icon icon-single-content-03"></i>
+                            <span class="nav-text">
+                                Quản Lý Việc Làm
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLDonGiat.html">
+                            <i class="icon icon-cart-simple"></i>
+                            <span class="nav-text">
+                                Quản Lý Đơn Giặt
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLThongTinKH.html">
+                            <i class="icon icon-app-store"></i>
+                            <span class="nav-text">
+                                Quản Lý Thông Tin Khách Hàng
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLKho.html">
+                            <i class="icon icon-folder-15"></i>
+                            <span class="nav-text">
+                                Quản Lý Kho
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLKhuyenMai.html">
+                            <i class="icon icon-share-66"></i>
+                            <span class="nav-text">
+                                Quản Lý Khuyến Mãi
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLGiaoDien.html">
+                            <i class="icon icon-edit-72"></i>
+                            <span class="nav-text">
+                                Quản Lý Giao Diện
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./QLGiatLa.html">
+                            <i class="icon icon-attach-87"></i>
+                            <span class="nav-text">
+                                Quản Lý Giặt Là
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-label">Extra</li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                                class="icon icon-single-copy-06"></i><span class="nav-text">Pages</span></a>
+                        <ul aria-expanded="false">
+                            <li><a href="./page-register.html">Register</a></li>
+                            <li><a href="./page-login.html">Login</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="./page-error-400.html">Error 400</a></li>
+                                    <li><a href="./page-error-403.html">Error 403</a></li>
+                                    <li><a href="./page-error-404.html">Error 404</a></li>
+                                    <li><a href="./page-error-500.html">Error 500</a></li>
+                                    <li><a href="./page-error-503.html">Error 503</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="./page-lock-screen.html">Lock Screen</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body" style="min-height: 876px;">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-6 p-md-0">
+                        <div class="welcome-text">
+                            <h4>Hi, welcome back!</h4>
+                            <span class="ml-1">Kho</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Table</a></li>
+                            <li class="breadcrumb-item active"><a href="javascript:void(0)">Store</a></li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Quản Lý Kho</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <div id="example_wrapper" class="dataTables_wrapper">
+                                        <table id="example" class="display dataTable" style="min-width: 845px"
+                                            role="grid" aria-describedby="example_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="ID" tabindex="0" aria-controls="example" rowspan="1"
+                                                        colspan="1" aria-sort="ascending"
+                                                        aria-label="Name: activate to sort column descending"
+                                                        style="width: 292.663px;">ID</th>
+                                                    <th class="Position" tabindex="0" aria-controls="example"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label="Position: activate to sort column ascending"
+                                                        style="width: 292.663px;">Position</th>
+                                                    <th class="Status" tabindex="0" aria-controls="example" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Status: activate to sort column ascending"
+                                                        style="width: 146.3px;">Status</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 126.713px;">Ngày Nhập Kho</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Start date: activate to sort column ascending"
+                                                        style="width: 126.713px;"> Loại Đồ</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="example" rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Money: activate to sort column ascending"
+                                                        style="width: 126.713px;">Thanh Toán</th>
+                                                    <td>
+                                                        <a href="QLKho-Form.html"
+                                                            class="btn btn-rounded btn-secondary">Thêm
+                                                            mới</a>
+                                                    </td>
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">1</td>
+                                                    <td>K1H1T1</td>
+                                                    <td>Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của khách</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">2</td>
+                                                    <td>K1H2T1</td>
+                                                    <td>Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của cửa hàng</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">3</td>
+                                                    <td>K1H2T3</td>
+                                                    <td>Chưa Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của cửa hàng</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">4</td>
+                                                    <td>K1H2T3</td>
+                                                    <td>Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của khách</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">5</td>
+                                                    <td>K1H3T3</td>
+                                                    <td>Chưa Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của khách</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">6</td>
+                                                    <td>K1H2T3</td>
+                                                    <td>Chưa Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của cửa hàng</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">7</td>
+                                                    <td>K1H3T3</td>
+                                                    <td>Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của cửa hàng</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">8</td>
+                                                    <td>K2H3T3</td>
+                                                    <td>Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của khách</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">9</td>
+                                                    <td>K1H3T3</td>
+                                                    <td>Chưa Hoàn thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của cửa hàng</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr class="odd" role="row">
+                                                    <td class="sorting_1">10</td>
+                                                    <td>K1H3T1</td>
+                                                    <td>Hoàn Thành</td>
+                                                    <td>2024/12/18</td>
+                                                    <td>Đồ của khách</td>
+                                                    <td>50.000VNĐ</td>
+                                                    <td>
+                                                        <a href="QLKho-Form.html" class="btn btn-rounded btn-warning">
+                                                            Chỉnh sửa
+                                                        </a>
+                                                        <a href="" class="btn btn-rounded btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn xóa không?');">
+                                                            Xóa
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th rowspan="1" colspan="1">Id</th>
+                                                    <th rowspan="1" colspan="1">Position</th>
+                                                    <th rowspan="1" colspan="1">Status</th>
+                                                    <th rowspan="1" colspan="1">Ngày nhập Kho</th>
+                                                    <th rowspan="1" colspan="1">Loại Đồ</th>
+                                                    <th rowspan="1" colspan="1">Thanh Toán</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+
+                    <!--**********************************
+            Footer start
+        ***********************************-->
+                    <div class="footer">
+                        <div class="copyright">
+
+                        </div>
+                    </div>
+                    <!--**********************************
+            Footer end
+        ***********************************-->
+
+                    <!--**********************************
+           Support ticket button start
+        ***********************************-->
+
+                    <!--**********************************
+           Support ticket button end
+        ***********************************-->
+
+
+                </div>
+                <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+                <!--**********************************
+        Scripts
+    ***********************************-->
+                <!-- Required vendors -->
+                <script src="./vendor/global/global.min.js"></script>
+                <script src="./js/quixnav-init.js"></script>
+                <script src="./js/custom.min.js"></script>
+
+
+
+                <!-- Datatable -->
+                <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+                <script src="./js/plugins-init/datatables.init.js"></script>
+
+</body>
+
+</html>
