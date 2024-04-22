@@ -23,6 +23,11 @@ public class Roles {
     @Column(name = "roleCreateDate")
     private LocalDateTime roleCreateDate;
 
+    public static String ADMIN = "ADMIN";
+    public static String EMPLOYEE = "EMPLOYEE";
+    public static String USER = "USER";
+
+
     @ManyToMany
     private List<Functions> functions;
     @PrePersist

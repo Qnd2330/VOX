@@ -41,6 +41,12 @@ private final IUserService userService;
 
     @PostMapping("/login") //http://localhost:2330/VOX/user/login
     public ResponseEntity<String> login(@Valid @RequestBody UserLoginDTO userLoginDTO){
-        return ResponseEntity.ok("some token");
+        try {
+            String token = userService.login(userLoginDTO.getPhoneNumber(),userLoginDTO.getUserPassword());
+
+            return ResponseEntity.ok(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }

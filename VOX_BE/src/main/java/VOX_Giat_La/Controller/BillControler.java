@@ -66,7 +66,7 @@ public class BillControler {
         }
     }
 
-    @PostMapping(value = "/insert") //  http://localhost:2330/VOX/bill/insert
+    @PostMapping("/insert") //  http://localhost:2330/VOX/bill/insert
     public ResponseEntity<?> createBill(@Valid @RequestBody  BillDTO billDTO, BindingResult result) {
         try {
             if (result.hasErrors()) {

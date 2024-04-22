@@ -38,7 +38,7 @@ public class BillRespones {
     public static BillRespones fromBill(Bill bill) {
         BillRespones billRespones =BillRespones.builder()
                 .userID(bill.getUser().getUserID())
-                .userName(bill.getUser().getUserName())
+                .userName(bill.getUser().getUsername())
                 .billDescription(bill.getBillDescription())
                 .sumWeight(bill.getSumWeight())
                 .cost(bill.getCost())
