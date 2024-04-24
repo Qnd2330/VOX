@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+VOX_BE/src/main/resources/application.properties
+VOX_BE/src/main/resources/application.properties
