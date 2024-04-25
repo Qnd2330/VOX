@@ -1,30 +1,34 @@
 <app-header></app-header>
-<!-- START LOGIN PAGE -->
+<!-- START MAIN CONTENT  -->
 <div class="contact-us-content">
-
     <div class="slider-content">
-
-        <div class="parallax-slide banner-slide" style='background:url("../../assets/img/project-banner12.jpg")'></div>
-
-       <!--  START HEADING TITLE -->
+        <div class="parallax-slide banner-slide" style='background:url("../../assets/img/project-banner6.jpg")'>
+        </div>
+        <!--  START MANAGE CONTEND  -->
         <div class="about_content">
             <div class="container">
                 <div class="row">
                     <div class="col-12  col-lg-8 offset-lg-2 text-center wow slideInUp" data-wow-duration="2s">
-                        <h1 class="heading">Member's Area</h1>
+                        <h1 class="heading">Registeration</h1>
                         <p class="para_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolores explicabo laudantium, omnis provident quam reiciendis voluptatum?</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!--  END HEADING TITLE -->
+        <!--  END MANAGE CONTEND  -->
 
-        <!-- START LOGIN FORM -->
+        <!--  START FORM SECTION  -->
         <div class="offset-lg-3 col-lg-6 col-md-12 col-sm-12 pr-lg-0 whitebox">
             <div class="widget logincontainer">
-                <h3 class="bottom35 text-center text-md-left">Log In to Your Account </h3>
+                <h3 class="bottom35 text-center text-md-left">Create Your Account </h3>
                 <form class="getin_form border-form" id="register">
                     <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group bottom35">
+                                <label for="registerName" class="d-none"></label>
+                                <input class="form-control" type="text" placeholder="Full Name:" required="" id="registerName">
+                            </div>
+                        </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group bottom35">
                                 <label for="registerEmail" class="d-none"></label>
@@ -37,7 +41,12 @@
                                 <input class="form-control" type="password" placeholder="Password:" required="" id="registerPass">
                             </div>
                         </div>
-
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group bottom35">
+                                <label for="registerPassConfirm" class="d-none"></label>
+                                <input class="form-control" type="password" placeholder="Confirm Password:" required="" id="registerPassConfirm">
+                            </div>
+                        </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group bottom35">
                                 <div class="form-check text-left">
@@ -49,28 +58,26 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <button type="submit" class="button btn btn-gradient w-100 rounded-pill register-btn ">Log In</button>
-                            <p class="top20"> Not account yet? &nbsp;<a href="registeration.html" class="defaultcolor">Sign In</a> </p>
+                            <button type="submit" class="button btn btn-gradient w-100 rounded-pill register-btn ">Register</button>
+                            <p class="top20"> Already have an account? &nbsp;<a href="login.html" class="defaultcolor">Sign In</a> </p>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <!-- END LOGIN FORM -->
+        <!--  END FORM SECTION  -->
 
-        <!-- START FOOTER NOTES -->
+        <!--  START FOOTER SECTION  -->
         <div class="row">
             <div class="col-12 text-center footer_rights pb-5">
                 <p>&copy; 2019 MegaOne. Made With Love by <a class="web-link" href="http://www.themesindustry.com/" target="_blank">Themesindustry</a></p>
             </div>
         </div>
-        <!-- END FOOTER NOTES -->
+        <!--  END FOOTER SECTION  -->
 
     </div>
-
 </div>
-<!-- END  LOGIN PAGE -->
-
+<!-- END MAIN CONTENT  -->
 <app-slidebar></app-slidebar>
-<app-overlay-menu></app-overlay-menu>
 
+<app-overlay-menu></app-overlay-menu>

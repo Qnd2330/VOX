@@ -7,6 +7,10 @@ import { LoaderComponent } from './static/loader/loader.component';
 import { OverlayMenuComponent } from './static/overlay-menu/overlay-menu.component';
 import { SlidebarComponent } from './static/slidebar/slidebar.component';
 import { LoginComponent } from './login/login.component';
+import { MainIndexComponent } from './main-index/main-index.component';
+import { RegisterationComponent } from './registeration/registeration.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { BillCheckoutComponent } from './bill-checkout/bill-checkout.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,11 @@ import { LoginComponent } from './login/login.component';
     LoaderComponent,
     OverlayMenuComponent,
     SlidebarComponent,
-    LoginComponent
+    LoginComponent,
+    MainIndexComponent,
+    RegisterationComponent,
+    AboutUsComponent,
+    BillCheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +31,6 @@ import { LoginComponent } from './login/login.component';
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [LoginComponent]
+  // bootstrap: [RegisterationComponent]
 })
 export class AppModule { }

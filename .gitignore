@@ -33,3 +33,5 @@ build/
 .vscode/
 VOX_BE/src/main/resources/application.properties
 VOX_BE/src/main/resources/application.properties
+VOX_BE/src/main/java/VOX_Giat_La/Components/JwtTokenUtil.java
+VOX_BE/src/main/resources/application.properties
