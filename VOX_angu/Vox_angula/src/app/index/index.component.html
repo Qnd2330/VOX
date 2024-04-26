@@ -1,0 +1,69 @@
+<!--START MODEL WINDOW LOADER-->
+<app-loader></app-loader>
+<!--END MODEL WINDOW LOADER-->
+
+<!--START MAIN-->
+<div class="main">
+    <!-- <div class="body-overlay" data-value="dismis"></div> -->
+    <!--START PRODUCT SECTION -->
+    <div class="product-section">
+        <!--START HEADER -->
+        <header>
+            <div class="container container-setting">
+                <div class="row justify-content-center">
+                    <!-- START HEADER NAV   -->
+                    <nav class="navbar navbar-expand  navbar-light bg-light">
+                        <a [routerLink]="['/index']"><img class="d-none d-lg-block" src="..\..\assets\img\logo.png"
+                                class="manage-logo" alt="logo"></a>
+                        <h4 class="brand-logo d-block d-lg-none"> <a href="index-product.html"><img
+                                    src="..\..\assets\img\logo-white.png" alt="white-logo"></a></h4>
+                        <div class="menu-tog d-block d-md-none" id="sidemenu_toggle1">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="collapse navbar-collapse transparent-nav" id="navbarTogglerDemo03">
+                            <ul class="navbar-nav ml-auto header-nav">
+                                <li class="nav-item main_item_menu dropdown dmenu d-none d-md-block">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
+                                        data-toggle="dropdown">
+                                        ACCOUNT
+                                    </a>
+                                    <div class="dropdown-menu main_item_menu_sub sm-menu">
+                                        <a class="dropdown-item" [routerLink]="['/login']">Login</a>
+                                        <a class="dropdown-item" [routerLink]="['/registeration']">Register</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown cart-item">
+                                    <a href="#" class="nav-link" routerLink="/bill-checkout">
+                                        <i class="lni-cart"> <span class="badge badge-custom-setting"></span></i>
+                                    </a>
+                                    <div class="mini-cart">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- END HEADER NAV   -->
+                </div>
+            </div>
+        </header>
+
+        <app-main-index></app-main-index>
+
+    </div>
+    <!--START PRODUCT SECTION -->
+
+    <!--START SIDEBAR SECTION -->
+    <!-- <app-slidebar></app-slidebar> -->
+    <!--END SIDEBAR SECTION -->
+
+    <!--START OVERLAY MENU -->
+    <!-- <app-overlay-menu></app-overlay-menu> -->
+    <!-- End OVERLAY Menu -->
+</div>
+<!--END MAIN-->
+
+<!--LOAD MODEL WINDOW-->
+<div id="modal-data"></div>
+<!--END LOAD MODEL WINDOW-->

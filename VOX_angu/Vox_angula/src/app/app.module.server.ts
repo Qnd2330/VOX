@@ -7,12 +7,14 @@ import { RegisterationComponent } from './registeration/registeration.component'
 import { AboutUsComponent } from './about-us/about-us.component';
 import { BillCheckoutComponent } from './bill-checkout/bill-checkout.component';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [
-    AppModule,
     ServerModule,
+    AppRoutingModule
   ],
-  bootstrap: [MainIndexComponent],
+  bootstrap: [AppComponent],
 })
 export class AppServerModule {}
