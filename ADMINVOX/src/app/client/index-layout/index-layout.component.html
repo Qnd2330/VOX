@@ -1,0 +1,17 @@
+<!-- <body class="page-body"> -->
+    <div>
+        <app-loader></app-loader>
+        <div class="main">
+            <div class="body-overlay"></div>
+            <div class="product-section contact-body">
+                <div *ngIf="showHeader"><app-header></app-header></div>
+
+                <router-outlet></router-outlet>
+
+                <app-slidebar></app-slidebar>
+
+                <app-overlay-menu></app-overlay-menu>
+            </div>
+        </div>
+    </div>
+<!-- </body> -->
