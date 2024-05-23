@@ -1,0 +1,68 @@
+<div class="main">
+    <div class="body-overlay"></div>
+    <div class="product-section contact-body">
+        <header class="contact-us-header">
+            <div class="container container-setting">
+                <div class="row justify-content-center about_us_nav">
+                    <nav class="navbar navbar-expand contact-us-nav navbar-light bg-light">
+                        <a [routerLink]="['/home']" class="navbar-brand"> <img src="..\..\..\..\assets\img\logo.png"
+                                alt="logo"></a>
+                        <div class="menu-tog d-block d-lg-none" id="sidemenu_toggle1">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                            <ul class="navbar-nav ml-auto header-nav">
+                                <li class="nav-item dropdown dmenu d-none d-md-block">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        ENG
+                                    </a>
+                                    <div class="dropdown-menu sm-menu">
+                                        <a class="dropdown-item" href="#"><img
+                                                src="..\..\..\..\assets\img\flags\russia.jpg" alt="Russia">Russia</a>
+                                        <a class="dropdown-item" href="#"><img
+                                                src="..\..\..\..\assets\img\flags\french.jpg" alt="French">French</a>
+                                        <a class="dropdown-item" href="#"><img src="..\..\..\..\assets\img\flags\spain.jpg"
+                                                alt="spain">Spanish</a>
+
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown dmenu d-none d-md-block">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop2"
+                                        data-toggle="dropdown">
+                                        USD
+                                    </a>
+                                    <div class="dropdown-menu sm-menu">
+                                        <a class="dropdown-item" href="#"><img src="..\..\..\..\assets\img\flags\usd.png"
+                                                alt="flag_usa">USD</a>
+                                        <a class="dropdown-item" href="#"><img src="..\..\..\..\assets\img\flags\eur.png"
+                                                alt="flag_eur">EUR</a>
+                                        <a class="dropdown-item" href="#"><img src="..\..\..\..\assets\img\flags\aud.png"
+                                                alt="flag_cad">CAD</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown dmenu d-none d-md-block">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop3"
+                                        data-toggle="dropdown">
+                                        ACCOUNT
+                                    </a>
+                                    <div class="dropdown-menu sm-menu">
+                                        <a class="dropdown-item" [routerLink]="['/login']">Login</a>
+                                        <a class="dropdown-item" [routerLink]="['/registeration']">Register</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown cart-item">
+                                    <a href="#" class="nav-link" [routerLink]="['/bill-checkout']">
+                                        <i class="lni-cart"> <span class="badge badge-custom-setting"></span></i>
+                                    </a>
+                                    <div class="mini-cart">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
