@@ -49,7 +49,7 @@ public class JwtTokenUtil {
     }
     private Key getSignInKey() {
         byte[] bytes = Decoders.BASE64.decode(secretKey);
-        //Keys.hmacShaKeyFor(Decoders.BASE64.decode("TaqlmGv1iEDMRiFp/pHuID1+T84IABfuA0xXh4GhiUI="));
+        Keys.hmacShaKeyFor(Decoders.BASE64.decode("vdAZZxDJsrtrwpaX3dwLUMBUKK6rZTOo9jepJASepgk="));
         return Keys.hmacShaKeyFor(bytes);
     }
     private String generateSecretKey() {

@@ -7,8 +7,11 @@ import VOX_Giat_La.Models.Roles;
 import VOX_Giat_La.Models.User;
 import VOX_Giat_La.Repositories.RolesRepos;
 import VOX_Giat_La.Repositories.UserRepos;
+import VOX_Giat_La.Respones.UserRespone;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -69,4 +72,10 @@ public class UserService implements IUserService{
         Optional<User> exitingUser = userRepos.findByPhoneNumber(phoneNumber);
         return exitingUser;
     }
+
+    @Override
+    public Page<UserRespone> getListUser(PageRequest pageRequest) {
+        return userRepos.findAll(pageRequest).map(user -> UserRespone.fromUser(user));
+    }
+
 }

@@ -20,6 +20,9 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminHeaderComponent } from './static/admin-header/admin-header.component';
 import { AdminPreloaderComponent } from './static/admin-preloader/admin-preloader.component';
 import { AdminSidebarComponent } from './static/admin-sidebar/admin-sidebar.component';
+import { AdminFooterComponent } from './static/admin-footer/admin-footer.component';
+import { UserService } from '../service/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -44,10 +47,16 @@ import { AdminSidebarComponent } from './static/admin-sidebar/admin-sidebar.comp
     AdminHeaderComponent,
     AdminPreloaderComponent,
     AdminSidebarComponent,
+    AdminFooterComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
-  ]
+    AdminRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    UserService,
+    // Các nhà cung cấp khác của bạn
+  ],
 })
 export class AdminModule { }

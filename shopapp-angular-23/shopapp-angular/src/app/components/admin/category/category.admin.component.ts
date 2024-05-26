@@ -12,9 +12,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 @Component({
   selector: 'app-category-admin',
   templateUrl: './category.admin.component.html',
-  styleUrls: [
-    './category.admin.component.scss',        
-  ],
+  styleUrls: ['./category.admin.component.scss', ],
   standalone: true,
   imports: [   
     CommonModule,
