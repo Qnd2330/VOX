@@ -18,4 +18,6 @@ public interface IUserService {
 
         Page<UserRespone> getListUser(PageRequest pageRequest);
 
+        void deleteUser(int id);
+
 }

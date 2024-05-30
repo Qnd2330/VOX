@@ -19,7 +19,7 @@ public class UserRespone {
     public static UserRespone fromUser(User user){
         UserRespone userRespone = UserRespone.builder()
                 .userID(user.getUserID())
-                .userName(user.getUsername())
+                .userName(user.getUserNames())
                 .roleID(user.getRoleName(user.getRole().getRoleID()))
                 .userGender(user.getUserGender())
                 .build();

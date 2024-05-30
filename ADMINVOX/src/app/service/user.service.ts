@@ -19,12 +19,11 @@ export class UserService {
     .set('limit', limit.toString());
     return this.http.get<any>(`${environment.apiBaseUrl}/user/list`, {params});   
   }
-  getDetailUser(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiBaseUrl}/user/${id}`);
+  getDetailUser(userID: number): Observable<any> {
+    return this.http.get<any>(`${this.apiBaseUrl}/user/${userID}`);
   }
-  deleteUser(id: number): Observable<any> {
-    debugger
-    return this.http.delete<any>(`${this.apiBaseUrl}/user/${id}`);
+  deleteUser(userID: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiBaseUrl}/user/delete/${userID}`);
   }
   
 }

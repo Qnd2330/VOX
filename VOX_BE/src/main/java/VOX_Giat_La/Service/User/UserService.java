@@ -4,6 +4,7 @@ import VOX_Giat_La.Components.JwtTokenUtil;
 import VOX_Giat_La.DTO.UserDTO;
 import VOX_Giat_La.Exeception.DataNotFoundException;
 import VOX_Giat_La.Models.Roles;
+import VOX_Giat_La.Models.StoreStorage;
 import VOX_Giat_La.Models.User;
 import VOX_Giat_La.Repositories.RolesRepos;
 import VOX_Giat_La.Repositories.UserRepos;
@@ -76,6 +77,12 @@ public class UserService implements IUserService{
     @Override
     public Page<UserRespone> getListUser(PageRequest pageRequest) {
         return userRepos.findAll(pageRequest).map(user -> UserRespone.fromUser(user));
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        Optional<User> optionalUser = userRepos.findById(id);
+        optionalUser.ifPresent(userRepos::delete);
     }
 
 }

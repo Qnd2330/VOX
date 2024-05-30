@@ -39,6 +39,10 @@ public class User implements UserDetails {
     @Column(name = "userBirthDate")
     private Date userBirthDate;
 
+    public String getUserNames() {
+        return userName;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();

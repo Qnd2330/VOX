@@ -68,4 +68,10 @@ private final IUserService userService;
                 .totalPages(totalPages)
                 .build());
     }
+
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/user/delete
+    public ResponseEntity<?> deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công User "+ id);
+    }
 }

@@ -19,7 +19,7 @@ export class ListTaiKhoanComponent implements OnInit {
   keyword: string = "";
 
   constructor(
-    private  userService: UserService,
+    private userService: UserService,
     private router: Router,
   ) { }   
 
@@ -50,13 +50,20 @@ export class ListTaiKhoanComponent implements OnInit {
     const confirmation = window.confirm('Are you sure you want to delete this user?');
     if (confirmation) {
       this.userService.deleteUser(user.userID).subscribe({
-        next: () => {
-          this.getUser(this.keyword, this.currentPage, this.itemsPerPage);
+        next: (apiResponse: any) => {
+          console.log('Xóa thành công:', apiResponse);
+        },
+        complete: () => {
+          console.log('Hoàn thành thao tác xóa, tải lại trang...');
+          location.reload();         
         },
         error: (error: HttpErrorResponse) => {
-          console.error(error?.error?.message ?? '');
+          console.error('Đã xảy ra lỗi khi xóa người dùng:',error?.error?.message ?? '');
         }
       });
+    }
+    else {
+      console.log('Hủy xóa người dùng');
     }
   }
 
