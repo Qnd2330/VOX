@@ -2,18 +2,24 @@ package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.UserDTO;
 import VOX_Giat_La.DTO.UserLoginDTO;
+import VOX_Giat_La.Models.Storage;
+import VOX_Giat_La.Models.User;
+import VOX_Giat_La.Respones.BillListRespone;
+import VOX_Giat_La.Respones.BillRespones;
+import VOX_Giat_La.Respones.UserListRespone;
+import VOX_Giat_La.Respones.UserRespone;
 import VOX_Giat_La.Service.User.IUserService;
 import VOX_Giat_La.Service.User.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +28,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 private final IUserService userService;
+
     @PostMapping("/register") //http://localhost:2330/VOX/user/register
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO userDTO, BindingResult result){
         try{
@@ -48,5 +55,23 @@ private final IUserService userService;
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/list") // http://localhost:2330/VOX/user/list
+    public ResponseEntity<UserListRespone> getAllUser(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+        PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("userID").descending());
+        Page<UserRespone>  userPage = userService.getListUser(pageRequest);
+        int totalPages = userPage.getTotalPages();
+        List<UserRespone> user = userPage.getContent();
+        return ResponseEntity.ok(UserListRespone.builder()
+                .userResponeList(user)
+                .totalPages(totalPages)
+                .build());
+    }
+
+    @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/user/delete
+    public ResponseEntity<?> deleteUser(@PathVariable int id) {
+        userService.deleteUser(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công User "+ id);
     }
 }

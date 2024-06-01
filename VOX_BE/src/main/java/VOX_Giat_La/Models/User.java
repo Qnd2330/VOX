@@ -1,9 +1,6 @@
 package VOX_Giat_La.Models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -42,6 +39,10 @@ public class User implements UserDetails {
     @Column(name = "userBirthDate")
     private Date userBirthDate;
 
+    public String getUserNames() {
+        return userName;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
@@ -77,5 +78,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getRoleName(int id){
+        return this.role.getRoleName();
     }
 }
