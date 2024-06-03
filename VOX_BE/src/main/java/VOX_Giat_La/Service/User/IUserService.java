@@ -2,6 +2,7 @@ package VOX_Giat_La.Service.User;
 
 import VOX_Giat_La.DTO.UserDTO;
 import VOX_Giat_La.Models.User;
+import VOX_Giat_La.Respones.UserDetailRespone;
 import VOX_Giat_La.Respones.UserListRespone;
 import VOX_Giat_La.Respones.UserRespone;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,8 @@ public interface IUserService {
         String login(String phoneNumber, String password) throws Exception;
 
         Optional<User> getByPhoneNumber(String phoneNumber) throws Exception;
+
+        UserDetailRespone getUser(int id)throws Exception;
 
         Page<UserRespone> getListUser(PageRequest pageRequest);
 

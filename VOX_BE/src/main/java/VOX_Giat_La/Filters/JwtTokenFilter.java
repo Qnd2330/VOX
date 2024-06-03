@@ -37,26 +37,28 @@ public class JwtTokenFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain)
             throws ServletException, IOException {
         try {
-            if(isBypassToken(request)) {
+            if (isBypassToken(request)) {
                 filterChain.doFilter(request, response); //enable bypass
                 return;
             }
+            //Bắt token
             final String authHeader = request.getHeader("Authorization");
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized"); // ko có báo Unauthorized
                 return;
             }
-            final String token = authHeader.substring(7);
-            final String phoneNumber = jwtTokenUtil.extractPhoneNumber(token);
+            final String token = authHeader.substring(7); // token
+            final String phoneNumber = jwtTokenUtil.extractPhoneNumber(token); // Bearer token
+
             if (phoneNumber != null
                     && SecurityContextHolder.getContext().getAuthentication() == null) {
-                User userDetails = (User) userDetailsService.loadUserByUsername(phoneNumber);
-                if(jwtTokenUtil.validateToken(token, userDetails)) {
+                User userDetails = (User) userDetailsService.loadUserByUsername(phoneNumber); // bắt đối tượng user của java Spring
+                if(jwtTokenUtil.validateToken(token, userDetails)) { //token đấy còn hạn hay không ?
                     UsernamePasswordAuthenticationToken authenticationToken =
                             new UsernamePasswordAuthenticationToken(
                                     userDetails,
                                     null,
-                                    userDetails.getAuthorities()
+                                    userDetails.getAuthorities() // lấy quyền của user
                             );
                     authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authenticationToken);

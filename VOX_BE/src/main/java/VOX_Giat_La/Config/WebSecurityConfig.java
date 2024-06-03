@@ -33,6 +33,11 @@ public class WebSecurityConfig  {
                                     String.format("%s/user/login", apiPrefix)
                             )
                             .permitAll()
+                            .requestMatchers(GET,String.format("%s/user/list/",apiPrefix)).hasAnyRole(Roles.ADMIN,Roles.EMPLOYEE)
+                            .requestMatchers(DELETE,String.format("%s/user/delete**",apiPrefix)).hasAnyRole(Roles.ADMIN,Roles.EMPLOYEE)
+                            .requestMatchers(GET, String.format("%s/user/get**",apiPrefix)).hasAnyRole(Roles.ADMIN,Roles.USER,Roles.EMPLOYEE)
+
+
                             .requestMatchers(GET, String.format("%s/bill**",apiPrefix)).hasAnyRole(Roles.ADMIN,Roles.USER,Roles.EMPLOYEE)
                             .requestMatchers(POST, String.format("%s/bill**",apiPrefix)).hasAnyRole(Roles.ADMIN,Roles.USER,Roles.EMPLOYEE)
                             .requestMatchers(PUT, String.format("%s/bill**",apiPrefix)).hasAnyRole(Roles.ADMIN,Roles.USER,Roles.EMPLOYEE)

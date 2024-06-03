@@ -35,6 +35,11 @@ public class BillService implements IBillService {
     }
 
     @Override
+    public BillRespones getBillResponesByID(int billID) throws DataNotFoundException {
+        return BillRespones.fromBill( billRepos.findById(billID).orElseThrow(()-> new DataNotFoundException("Không tìm thấy bill")));
+    }
+
+    @Override
     public Bill getBillByID(int billID) throws DataNotFoundException {
         return billRepos.findById(billID).orElseThrow(()-> new DataNotFoundException("Không tìm thấy bill"));
     }

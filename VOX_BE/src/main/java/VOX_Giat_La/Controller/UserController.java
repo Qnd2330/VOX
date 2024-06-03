@@ -4,10 +4,7 @@ import VOX_Giat_La.DTO.UserDTO;
 import VOX_Giat_La.DTO.UserLoginDTO;
 import VOX_Giat_La.Models.Storage;
 import VOX_Giat_La.Models.User;
-import VOX_Giat_La.Respones.BillListRespone;
-import VOX_Giat_La.Respones.BillRespones;
-import VOX_Giat_La.Respones.UserListRespone;
-import VOX_Giat_La.Respones.UserRespone;
+import VOX_Giat_La.Respones.*;
 import VOX_Giat_La.Service.User.IUserService;
 import VOX_Giat_La.Service.User.UserService;
 import jakarta.validation.Valid;
@@ -73,5 +70,15 @@ private final IUserService userService;
     public ResponseEntity<?> deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công User "+ id);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getUserDetail(@PathVariable int id) throws Exception {
+        try {
+            UserDetailRespone userDetailRespone = userService.getUser(id);
+            return ResponseEntity.ok(userDetailRespone);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Không tìm thấy user");
+        }
     }
 }

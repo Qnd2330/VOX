@@ -8,6 +8,7 @@ import VOX_Giat_La.Models.StoreStorage;
 import VOX_Giat_La.Models.User;
 import VOX_Giat_La.Repositories.RolesRepos;
 import VOX_Giat_La.Repositories.UserRepos;
+import VOX_Giat_La.Respones.UserDetailRespone;
 import VOX_Giat_La.Respones.UserRespone;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -72,6 +73,11 @@ public class UserService implements IUserService{
     public Optional<User> getByPhoneNumber(String phoneNumber) throws Exception {
         Optional<User> exitingUser = userRepos.findByPhoneNumber(phoneNumber);
         return exitingUser;
+    }
+
+    @Override
+    public UserDetailRespone getUser(int id) throws Exception {
+        return UserDetailRespone.fromUser(userRepos.findById(id).orElseThrow(() -> new DataNotFoundException("Không tìm thấy User theo ID trên")));
     }
 
     @Override

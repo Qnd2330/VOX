@@ -123,10 +123,20 @@ public class BillControler {
     @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/bill/delete
     public ResponseEntity<?> deleteBill(@PathVariable int id) {
         try{
-             billService.deleteBill(id);
+            billService.deleteBill(id);
             return ResponseEntity.ok("Đã xóa thành công !");
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Không tìm thấy bill với id trên");
+        }
+    }
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> get(@PathVariable int id){
+        try{
+            BillRespones billRespones = billService.getBillResponesByID(id);
+            return ResponseEntity.ok(billRespones);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Không tìm thấy bill với id trên");
+
         }
     }
 

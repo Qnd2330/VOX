@@ -14,9 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class BillDetailRespone {
-
+    private int billDetailID;
     private int billID;
-
 
     private String washName;
 
@@ -30,6 +29,7 @@ public class BillDetailRespone {
 
     public static BillDetailRespone fromBillDetail(BillDetails billDetails) {
         BillDetailRespone billDetailRespone =BillDetailRespone.builder()
+                .billDetailID(billDetails.getBillDetailID())
                 .billID(billDetails.getBill().getBillID())
                 .washName(billDetails.getWash().getWashName())
                 .description(billDetails.getDescription())

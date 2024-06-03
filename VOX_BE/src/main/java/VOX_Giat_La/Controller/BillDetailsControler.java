@@ -9,6 +9,7 @@ import VOX_Giat_La.Respones.BillDetailListRespone;
 import VOX_Giat_La.Respones.BillDetailRespone;
 import VOX_Giat_La.Respones.BillListRespone;
 import VOX_Giat_La.Respones.BillRespones;
+import VOX_Giat_La.Service.Bill.IBillService;
 import VOX_Giat_La.Service.BillDetails.IBillDetailsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -28,20 +30,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BillDetailsControler {
     private final IBillDetailsService billDetailsService;
+    private final IBillService billService;
 
-    @GetMapping("/list") // http://localhost:2330/VOX/bill_details/list?page=1&limit=10
-    public ResponseEntity<BillDetailListRespone> getAllBillDetails(
-            @RequestParam("page") int page,
-            @RequestParam("limit") int limit
-    ) {
-        PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("billCreateDate").descending());
-        Page<BillDetailRespone> billsPage = billDetailsService.getListBillDetails(pageRequest);
-        int totalPages = billsPage.getTotalPages();
-        List<BillDetailRespone> billDetail = billsPage.getContent();
-        return ResponseEntity.ok(BillDetailListRespone.builder()
-                .billDetail(billDetail)
-                .totalPages(totalPages)
-                .build());
+    @GetMapping("/list")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
+    public ResponseEntity<?> getAllBillDetails(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+        try {
+            PageRequest pageRequest = PageRequest.of(page, limit, Sort.by("billDetailID").descending());
+            Page<BillDetailRespone> billsPage = billDetailsService.getListBillDetails(pageRequest);
+            int totalPages = billsPage.getTotalPages();
+            List<BillDetailRespone> billDetail = billsPage.getContent();
+            return ResponseEntity.ok(BillDetailListRespone.builder()
+                    .billDetail(billDetail)
+                    .totalPages(totalPages)
+                    .build());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping("/{id}")  // http://localhost:2330/VOX/bill_details/{id}

@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface IBillService {
     Bill createBill(BillDTO billDTO) throws Exception;
+    BillRespones getBillResponesByID(int billID) throws Exception;
     Bill getBillByID(int billID) throws Exception;
     Bill updateBill(int id, BillDTO billDTO) throws  Exception;
     void deleteBill(int id);
