@@ -8,11 +8,12 @@ import VOX_Giat_La.Models.Storage;
 import VOX_Giat_La.Repositories.BillDetailsRepos;
 import VOX_Giat_La.Repositories.CustomerStorageRepos;
 import VOX_Giat_La.Repositories.StorageRepos;
-import VOX_Giat_La.Respones.BillRespones;
+import VOX_Giat_La.Respones.Storage.CustomerStorageRespone;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class CustomerStorageService implements ICustomerStorageService{
@@ -58,7 +59,15 @@ public class CustomerStorageService implements ICustomerStorageService{
     }
 
     @Override
-    public List<CustomerStorage> getListCustomerStorage() {
-        return customerStorageRepos.findAll();
+    public Page<CustomerStorageRespone> getListCustomerStorage(PageRequest pageRequest) {
+        return customerStorageRepos.findAll(pageRequest).map(customerStorage -> CustomerStorageRespone.fromCustomerStorage(customerStorage));
     }
+
+    @Override
+    public CustomerStorage getCustomerStoragebyBillDetail(int billDetailID) throws DataNotFoundException {
+        BillDetails billDetails =  billDetailsRepos.findById(billDetailID).orElseThrow(()->new DataNotFoundException("Không tìm thấy ID bill detail "));
+        return customerStorageRepos.findByBillDetail(billDetails);
+    }
+
+
 }

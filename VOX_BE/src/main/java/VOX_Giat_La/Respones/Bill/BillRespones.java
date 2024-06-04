@@ -1,4 +1,4 @@
-package VOX_Giat_La.Respones;
+package VOX_Giat_La.Respones.Bill;
 
 import VOX_Giat_La.Models.Bill;
 import lombok.*;

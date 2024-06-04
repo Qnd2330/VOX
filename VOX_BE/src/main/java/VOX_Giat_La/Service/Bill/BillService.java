@@ -6,13 +6,12 @@ import VOX_Giat_La.Models.Bill;
 import VOX_Giat_La.Models.User;
 import VOX_Giat_La.Repositories.BillRepos;
 import VOX_Giat_La.Repositories.UserRepos;
-import VOX_Giat_La.Respones.BillRespones;
+import VOX_Giat_La.Respones.Bill.BillRespones;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

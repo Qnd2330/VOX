@@ -1,4 +1,4 @@
-package VOX_Giat_La.Respones;
+package VOX_Giat_La.Respones.Bill;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,8 +10,7 @@ import java.util.List;
 @Data
 @Builder
 @NoArgsConstructor
-public class BillDetailListRespone {
-    private BillRespones billRespones;
-    private List<BillDetailRespone> billDetail;
+public class BillListRespone {
+    private List<BillRespones> bills;
     private int totalPages;
 }

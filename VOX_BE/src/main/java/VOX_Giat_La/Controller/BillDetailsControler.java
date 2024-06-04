@@ -1,22 +1,13 @@
 package VOX_Giat_La.Controller;
 
-import VOX_Giat_La.DTO.BillDTO;
 import VOX_Giat_La.DTO.BillDetailsDTO;
-import VOX_Giat_La.Models.Bill;
 import VOX_Giat_La.Models.BillDetails;
-import VOX_Giat_La.Repositories.BillDetailsRepos;
-import VOX_Giat_La.Respones.BillDetailListRespone;
-import VOX_Giat_La.Respones.BillDetailRespone;
-import VOX_Giat_La.Respones.BillListRespone;
-import VOX_Giat_La.Respones.BillRespones;
+import VOX_Giat_La.Respones.Bill.BillDetailListRespone;
+import VOX_Giat_La.Respones.Bill.BillDetailRespone;
 import VOX_Giat_La.Service.Bill.IBillService;
 import VOX_Giat_La.Service.BillDetails.IBillDetailsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;

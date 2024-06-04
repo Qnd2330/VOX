@@ -1,14 +1,10 @@
 package VOX_Giat_La.Service.Bill;
 
 import VOX_Giat_La.DTO.BillDTO;
-import VOX_Giat_La.Exeception.DataNotFoundException;
 import VOX_Giat_La.Models.Bill;
-import VOX_Giat_La.Models.User;
-import VOX_Giat_La.Respones.BillRespones;
+import VOX_Giat_La.Respones.Bill.BillRespones;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-
-import java.util.List;
 
 public interface IBillService {
     Bill createBill(BillDTO billDTO) throws Exception;

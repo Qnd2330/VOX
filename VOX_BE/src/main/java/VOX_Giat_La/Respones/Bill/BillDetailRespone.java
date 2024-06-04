@@ -1,11 +1,7 @@
-package VOX_Giat_La.Respones;
+package VOX_Giat_La.Respones.Bill;
 
-import VOX_Giat_La.Models.Bill;
 import VOX_Giat_La.Models.BillDetails;
-import VOX_Giat_La.Repositories.BillDetailsRepos;
 import lombok.*;
-
-import java.util.List;
 
 @Data
 @Getter

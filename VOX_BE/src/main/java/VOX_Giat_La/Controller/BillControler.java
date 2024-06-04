@@ -2,9 +2,8 @@ package VOX_Giat_La.Controller;
 
 import VOX_Giat_La.DTO.BillDTO;
 import VOX_Giat_La.Models.Bill;
-import VOX_Giat_La.Respones.BillListRespone;
-import VOX_Giat_La.Respones.BillRespones;
-import VOX_Giat_La.Service.Bill.BillService;
+import VOX_Giat_La.Respones.Bill.BillListRespone;
+import VOX_Giat_La.Respones.Bill.BillRespones;
 import VOX_Giat_La.Service.Bill.IBillService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
