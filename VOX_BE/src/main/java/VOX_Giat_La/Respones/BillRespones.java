@@ -1,13 +1,7 @@
 package VOX_Giat_La.Respones;
 
 import VOX_Giat_La.Models.Bill;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -19,24 +13,26 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class BillRespones {
+    private int billID;
     private int userID;
     private String userName;
-
+    private String image;
     private String billDescription;
 
     private float sumWeight;
-    private Boolean billStatus;
+
 
     private float cost;
 
-    private String image;
-
-    private Date billPayDate;
-
     private LocalDateTime billCreateDate;
 
+
+
+   private Date billPayDate;
+    private Boolean billStatus;
     public static BillRespones fromBill(Bill bill) {
         BillRespones billRespones =BillRespones.builder()
+                .billID(bill.getBillID())
                 .userID(bill.getUser().getUserID())
                 .userName(bill.getUser().getUsername())
                 .billDescription(bill.getBillDescription())

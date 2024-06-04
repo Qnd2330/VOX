@@ -4,14 +4,18 @@ import VOX_Giat_La.DTO.BillDetailsDTO;
 import VOX_Giat_La.Exeception.DataNotFoundException;
 import VOX_Giat_La.Models.*;
 import VOX_Giat_La.Repositories.*;
+import VOX_Giat_La.Respones.BillDetailListRespone;
 import VOX_Giat_La.Respones.BillDetailRespone;
+import VOX_Giat_La.Respones.BillRespones;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,9 +47,22 @@ public class BillDetailsService implements IBillDetailsService{
     }
 
     @Override
-    public  List<BillDetails> getBillDetailsByBill(int billID) {
-        Bill bill =  billRepos.findById(billID).orElseThrow(()->new RuntimeException("Không tìm thấy bill với ID: "+ billID));
-        return billDetailsRepos.findByBill(bill);
+    public BillDetailListRespone getBillDetailsByBill(int billID, int page, int size) {
+        Bill bill = billRepos.findById(billID).orElseThrow(() -> new RuntimeException("Không tìm thấy bill với ID: " + billID));
+        Pageable pageable = PageRequest.of(page, size);
+        Page<BillDetails> billDetailsPage = billDetailsRepos.findByBill(bill, pageable);
+
+        List<BillDetailRespone> billDetailResponses = billDetailsPage.getContent().stream()
+                .map(BillDetailRespone::fromBillDetail)
+                .collect(Collectors.toList());
+
+        BillRespones billRespones = new BillRespones(bill.getBillID(),bill.getUser().getUserID(), bill.getUser().getUsername(),bill.getImage(),bill.getBillDescription(),bill.getSumWeight(),bill.getCost(),bill.getBillCreateDate(),bill.getBillPayDate(), bill.getBillStatus());
+
+        return BillDetailListRespone.builder()
+                .billRespones(billRespones)
+                .billDetail(billDetailResponses)
+                .totalPages(billDetailsPage.getTotalPages())
+                .build();
     }
 
     @Override

@@ -32,21 +32,10 @@ public class BillDetailsControler {
     private final IBillDetailsService billDetailsService;
     private final IBillService billService;
 
-    @GetMapping("/list")
+    @GetMapping("/list/{billID}")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
-    public ResponseEntity<?> getAllBillDetails(@RequestParam("page") int page, @RequestParam("limit") int limit) {
-        try {
-            PageRequest pageRequest = PageRequest.of(page, limit, Sort.by("billDetailID").descending());
-            Page<BillDetailRespone> billsPage = billDetailsService.getListBillDetails(pageRequest);
-            int totalPages = billsPage.getTotalPages();
-            List<BillDetailRespone> billDetail = billsPage.getContent();
-            return ResponseEntity.ok(BillDetailListRespone.builder()
-                    .billDetail(billDetail)
-                    .totalPages(totalPages)
-                    .build());
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+    public BillDetailListRespone getBillDetailsByBill(@PathVariable int billID, @RequestParam int page, @RequestParam int limit) {
+        return billDetailsService.getBillDetailsByBill(billID, page, limit);
     }
 
     @GetMapping("/{id}")  // http://localhost:2330/VOX/bill_details/{id}
@@ -58,7 +47,7 @@ public class BillDetailsControler {
             return ResponseEntity.badRequest().body("Không tìm thấy bill detail với id trên");
         }
     }
-    @GetMapping("Bill/{billID}")  // http://localhost:2330/VOX/bill_details/Bill/{billID}
+    /*@GetMapping("Bill/{billID}")  // http://localhost:2330/VOX/bill_details/Bill/{billID}
     public ResponseEntity<?> findBillDetailsByBillID(@Valid @PathVariable int billID) {
         try{
             List<BillDetails> existingBillDetail = billDetailsService.getBillDetailsByBill(billID);
@@ -67,7 +56,7 @@ public class BillDetailsControler {
             return ResponseEntity.badRequest().body("Không tìm thấy bill với id trên");
         }
 
-    }
+    }*/
 
 
 

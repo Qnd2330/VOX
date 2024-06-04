@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 public class BillDetailListRespone {
+    private BillRespones billRespones;
     private List<BillDetailRespone> billDetail;
     private int totalPages;
 }
