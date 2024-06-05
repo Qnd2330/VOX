@@ -4,12 +4,20 @@ import VOX_Giat_La.DTO.SalaryDetailDTO;
 import VOX_Giat_La.DTO.StoreStorageDTO;
 import VOX_Giat_La.Models.Storage;
 import VOX_Giat_La.Models.StoreStorage;
+import VOX_Giat_La.Respones.Storage.StorageListRespone;
+import VOX_Giat_La.Respones.Storage.StorageRespone;
+import VOX_Giat_La.Respones.Storage.StoreStorageListRespone;
+import VOX_Giat_La.Respones.Storage.StoreStorageRespone;
 import VOX_Giat_La.Service.Storage.IStorageService;
 import VOX_Giat_La.Service.StoreStorage.IStoreStorageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +31,16 @@ public class StoreStorageController {
     private final IStoreStorageService storeStorageService;
     private final IStorageService storageService;
     @GetMapping("/list") // http://localhost:2330/VOX/storestorage/list
-    public ResponseEntity<?> getAllStoreStorage() {
-        List<StoreStorage> storeStorageList = storeStorageService.getListStoreStorage();
-        return ResponseEntity.ok(storeStorageList);
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
+    public ResponseEntity<?> getAllStoreStorage(@RequestParam("page")int page, @RequestParam("limit") int limit) {
+        PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("storeItemID").descending());
+        Page<StoreStorageRespone> storageRespones = storeStorageService.getListStoreStorage(pageRequest);
+        int totalPages = storageRespones.getTotalPages();
+        List<StoreStorageRespone> storageResponeList = storageRespones.getContent();
+        return ResponseEntity.ok(StoreStorageListRespone.builder()
+                .storageRespones(storageResponeList)
+                .totalPages(totalPages)
+                .build());
     }
 
     @GetMapping("/{id}")

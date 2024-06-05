@@ -3,8 +3,11 @@ package VOX_Giat_La.Service.Washing_Method;
 import VOX_Giat_La.DTO.Washing_MethodDTO;
 import VOX_Giat_La.Models.Washing_Method;
 import VOX_Giat_La.Repositories.Washing_MethodRepos;
+import VOX_Giat_La.Respones.Washing_Method.Washing_MethodRespone;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -44,7 +47,7 @@ public class Washing_MethodService implements IWashing_MethodService{
     }
 
     @Override
-    public List<Washing_Method> getListWashing_Method() {
-        return washingMethodRepos.findAll();
+    public Page<Washing_MethodRespone> getListWashing_Method(PageRequest pageRequest) {
+        return washingMethodRepos.findAll(pageRequest).map(washingMethod -> Washing_MethodRespone.fromWashing_MethodRespone(washingMethod));
     }
 }

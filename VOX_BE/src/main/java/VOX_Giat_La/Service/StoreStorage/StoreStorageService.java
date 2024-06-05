@@ -7,7 +7,10 @@ import VOX_Giat_La.Repositories.BillDetailsRepos;
 import VOX_Giat_La.Repositories.CustomerStorageRepos;
 import VOX_Giat_La.Repositories.StorageRepos;
 import VOX_Giat_La.Repositories.StoreStorageRepos;
+import VOX_Giat_La.Respones.Storage.StoreStorageRespone;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,7 +62,7 @@ public class StoreStorageService implements IStoreStorageService{
     }
 
     @Override
-    public List<StoreStorage> getListStoreStorage() {
-        return storeStorageRepos.findAll();
+    public Page<StoreStorageRespone> getListStoreStorage(PageRequest pageRequest) {
+        return storeStorageRepos.findAll(pageRequest).map(storeStorage -> StoreStorageRespone.fromStoreStorageRespone(storeStorage));
     }
 }

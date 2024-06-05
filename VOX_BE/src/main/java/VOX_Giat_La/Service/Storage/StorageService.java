@@ -3,8 +3,11 @@ package VOX_Giat_La.Service.Storage;
 import VOX_Giat_La.DTO.StorageDTO;
 import VOX_Giat_La.Models.Storage;
 import VOX_Giat_La.Repositories.StorageRepos;
+import VOX_Giat_La.Respones.Storage.StorageRespone;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,7 +48,7 @@ public class StorageService implements IStorageService{
     }
 
     @Override
-    public List<Storage> getListStorage() {
-        return storageRepos.findAll();
+    public Page<StorageRespone> getListStorage(PageRequest pageRequest) {
+        return storageRepos.findAll(pageRequest).map(storage -> StorageRespone.fromStorage(storage));
     }
 }
