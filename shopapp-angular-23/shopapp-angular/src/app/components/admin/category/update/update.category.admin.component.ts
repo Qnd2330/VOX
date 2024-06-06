@@ -39,7 +39,6 @@ export class UpdateCategoryAdminComponent implements OnInit {
       this.categoryId = Number(params.get('id'));
       this.getCategoryDetails();
     });
-    
   }
   
   getCategoryDetails(): void {

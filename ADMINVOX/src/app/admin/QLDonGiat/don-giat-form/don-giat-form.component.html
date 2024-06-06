@@ -1,1 +1,47 @@
-<p>don-giat-form works!</p>
+<div class="items">
+    <h1 class="subhead">Chi tiết đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+        (ngSubmit)="saveBill()">
+        <fieldset>
+
+            <label>ID</label>
+            <input class="pure-input-1" type="text" id="billID" name="billID" [(ngModel)]="billRespones.billID">
+
+            <label>UserID</label>
+            <input class="pure-input-1" type="text" id="userID" name="userID" [(ngModel)]="billRespones.userID"
+                disabled>
+
+            <label for="name">Name</label>
+            <input class="pure-input-1" type="text" id="userName" name="userName" [(ngModel)]="billRespones.userName">
+
+            <input type="hidden" name="id" value="1">
+            <button type="submit" class="pure-button button-success">Save</button>
+        </fieldset>
+    </form>
+    <h3>Order Details</h3>
+    <div *ngIf="billRespones.billDetail && billRespones.billDetail.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th>Detail ID</th>
+              <th>Wash</th>
+              <th>Weight</th>
+              <th>Price</th>
+              <th>Detail Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let billDetail of billRespones.billDetail">
+              <td>{{ billDetail.billDetailID }}</td>
+              <td>{{ billDetail.washName }}</td>
+              <td>{{ billDetail.weight }}</td>
+              <td>{{ billDetail.price }}</td>
+              <td>{{ billDetail.billDetailStatus ? 'Chưa xong' : 'Đã xong' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngIf="!billRespones.billDetail || billRespones.billDetail.length === 0">
+        <p>No bill details found.</p>
+      </div>
+</div>

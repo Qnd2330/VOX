@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class BillDetailsService implements IBillDetailsService{
 
         BillDetails newBillDetails = BillDetails.builder()
                 .bill(Exitingbill)
-                .wash(ExitingWash)
+                .wash(Collections.singletonList(ExitingWash))
 
                 .description(billDetailsDTO.getDescription())
                 .weight(billDetailsDTO.getWeight())
@@ -56,7 +57,7 @@ public class BillDetailsService implements IBillDetailsService{
                 .map(BillDetailRespone::fromBillDetail)
                 .collect(Collectors.toList());
 
-        BillRespones billRespones = new BillRespones(bill.getBillID(),bill.getUser().getUserID(), bill.getUser().getUsername(),bill.getImage(),bill.getBillDescription(),bill.getSumWeight(),bill.getCost(),bill.getBillCreateDate(),bill.getBillPayDate(), bill.getBillStatus());
+        BillRespones billRespones = new BillRespones(bill.getBillID(),bill.getUser().getUserID(), bill.getUser().getUsername(),bill.getBillDescription(),bill.getSumWeight(),bill.getCost(),bill.getBillCreateDate(),bill.getBillPayDate(), bill.getBillStatus());
 
         return BillDetailListRespone.builder()
                 .billRespones(billRespones)
@@ -72,7 +73,7 @@ public class BillDetailsService implements IBillDetailsService{
         Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(()->new DataNotFoundException("Không tìm thấy kiểu giặt với ID: "+billDetailsDTO.getWashID()));
 
             billDetailsUpdate.setBill(Exitingbill);
-            billDetailsUpdate.setWash(ExitingWash);
+            billDetailsUpdate.setWash(Collections.singletonList(ExitingWash));
 
             billDetailsUpdate.setDescription(billDetailsDTO.getDescription());
             billDetailsUpdate.setWeight(billDetailsDTO.getWeight());

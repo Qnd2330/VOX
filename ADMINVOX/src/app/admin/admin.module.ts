@@ -23,6 +23,7 @@ import { AdminSidebarComponent } from './static/admin-sidebar/admin-sidebar.comp
 import { AdminFooterComponent } from './static/admin-footer/admin-footer.component';
 import { UserService } from '../service/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -52,7 +53,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule 
   ],
   providers: [
     UserService,
