@@ -4,7 +4,14 @@ import {
     IsPhoneNumber,     
 } from 'class-validator';
 
-export class UpdateBillDTO {    
+export class UpdateBillDTO {  
+    @IsNotEmpty()
+    billID:number;
+
+    @IsString()
+    @IsNotEmpty()
+    userName:string;
+    
     @IsString()
     @IsNotEmpty()
     billDescription:string;
@@ -34,6 +41,8 @@ export class UpdateBillDTO {
     image:string;
             
     constructor(data: any) {
+        this.billID = data.billID;
+        this.userName = data.userName; 
         this.billDescription = data.billDescription; 
         this.sumWeight = data.sumWeight;
         this.cost = data.cost;

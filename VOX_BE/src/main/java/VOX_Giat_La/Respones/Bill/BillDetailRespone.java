@@ -24,10 +24,11 @@ public class BillDetailRespone {
     private Boolean billDetailStatus;
 
     public static BillDetailRespone fromBillDetail(BillDetails billDetails) {
+        String washName = billDetails.getWash().get(0).getWashName();
         BillDetailRespone billDetailRespone =BillDetailRespone.builder()
                 .billDetailID(billDetails.getBillDetailID())
                 .billID(billDetails.getBill().getBillID())
-                .washName(billDetails.getWash().getWashName())
+                .washName(washName)
                 .description(billDetails.getDescription())
                 .weight(billDetails.getWeight())
                 .price(billDetails.getPrice())

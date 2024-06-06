@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "BillDetails")
 @Data
@@ -21,9 +23,9 @@ public class BillDetails {
     @ManyToOne
     @JoinColumn(name = "billID")
     private Bill bill;
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "washID")
-    private Washing_Method wash;
+    private List<Washing_Method> wash;
     @Column(name = "description")
     private String description;
     @Column(name = "weight")

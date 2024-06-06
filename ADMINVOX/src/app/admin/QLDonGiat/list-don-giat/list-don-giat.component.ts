@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Bill } from '../../../models/storage';
 import { BillService } from '../../../service/bill.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user';
+import { Bill } from '../../../models/bill';
 
 @Component({
   selector: 'app-list-don-giat',
@@ -34,7 +34,7 @@ export class ListDonGiatComponent implements OnInit {
   getBill(page: number, limit: number) {
     this.billService.getBill(page, limit).subscribe({
       next: (apiResponse: any) => {
-        this.bills = apiResponse.data;
+        this.bills = apiResponse.bills;
         this.totalPages = apiResponse.totalPages;
         // this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
       },
@@ -82,5 +82,10 @@ export class ListDonGiatComponent implements OnInit {
 
     return new Array(endPage - startPage + 1).fill(0)
       .map((_, index) => startPage + index);
+  }
+
+  getDetailBill(bill: Bill) {
+    debugger
+    this.router.navigate(['/admin/qldg', bill.billID]);
   }
 }

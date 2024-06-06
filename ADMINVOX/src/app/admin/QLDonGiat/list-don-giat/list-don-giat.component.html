@@ -20,7 +20,7 @@
                     <td>{{ bill.billStatus }}</td>
                     <td>{{ bill.cost }}</td>
                     <td>
-                        <a class="pure-button button-small button-secondary" href="#">View</a>
+                        <a class="pure-button button-small button-secondary" (click)="getDetailBill(bill)">View</a>
                         <a class="pure-button button-small button-success" (click)="updateBill(bill.billID)">Edit</a>
                         <a class="pure-button button-small button-error" (click)="deleteBill(bill)"
                             onclick="return confirm('Are you sure?');">Delete</a>

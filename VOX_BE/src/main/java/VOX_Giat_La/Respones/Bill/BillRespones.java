@@ -16,7 +16,7 @@ public class BillRespones {
     private int billID;
     private int userID;
     private String userName;
-    private String image;
+
     private String billDescription;
 
     private float sumWeight;
@@ -39,7 +39,7 @@ public class BillRespones {
                 .sumWeight(bill.getSumWeight())
                 .cost(bill.getCost())
                 .billStatus(bill.getBillStatus())
-                .image(bill.getImage())
+//                .image(bill.getImage())
                 .billPayDate(bill.getBillPayDate())
                 .build();
         billRespones.setBillCreateDate(bill.getBillCreateDate());
