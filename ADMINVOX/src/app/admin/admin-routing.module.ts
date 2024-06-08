@@ -9,6 +9,7 @@ import { ListTTKHComponent } from './QLThongTinKH/list-ttkh/list-ttkh.component'
 import { ListKhoComponent } from './QLKho/list-kho/list-kho.component';
 import { ListGiatLaComponent } from './QLGiatLa/list-giat-la/list-giat-la.component';
 import { DonGiatFormComponent } from './QLDonGiat/don-giat-form/don-giat-form.component';
+import { ChiTietDonGiatFormComponent } from './QLDonGiat/chi-tiet-don-giat-form/chi-tiet-don-giat-form.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
       { path: 'qlnv', component: ListNhanVienComponent, title: "QL Nhân Viên" },
       { path: 'qlvl', component: ListLichLamComponent, title: "QL Lịch Làm" },
       { path: 'qldg', component: ListDonGiatComponent, title: "QL Đơn Giặt" },
-      { path: 'qldg/:id', component: DonGiatFormComponent, title: "Đơn Giặt" },
+      { path: 'qldg/view/:id', component: DonGiatFormComponent, title: "Chi Tiết Đơn Giặt" },
+      { path: 'qldg/them', component: ChiTietDonGiatFormComponent, title: "Thêm mới Đơn Giặt" },
       { path: 'qlttkh', component: ListTTKHComponent, title: "QL Thông Tin KH" },
       { path: 'qlk', component: ListKhoComponent, title: "QL Kho" },
       { path: 'qlgl', component: ListGiatLaComponent, title: "QL Giặt Là" },

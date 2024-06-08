@@ -5,7 +5,8 @@ import {
 } from 'class-validator';
 
 export class InsertBillDTO { 
-    
+    @IsNotEmpty()
+    userID: number;
     
     @IsString()
     @IsNotEmpty()
@@ -18,11 +19,6 @@ export class InsertBillDTO {
     
     @IsNotEmpty()
     cost:number;
-
-    
-    @IsNotEmpty()
-    billCreateDate:Date;
-
     
     @IsNotEmpty()
     billStatus:boolean;
@@ -36,10 +32,10 @@ export class InsertBillDTO {
     image:string;
             
     constructor(data: any) {
+        this.userID = data.userID; 
         this.billDescription = data.billDescription; 
         this.sumWeight = data.sumWeight;
         this.cost = data.cost;
-        this.billCreateDate = data.billCreateDate;
         this.billStatus = data.billStatus;
         this.billPayDate = data.billPayDate;
         this.image = data.image;   

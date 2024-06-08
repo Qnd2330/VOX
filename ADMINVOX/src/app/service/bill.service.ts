@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UpdateBillDTO } from '../dtos/bill/update.bill.dtos';
 import { ApiResponse } from '../responses/api.response';
+import { InsertBillDTO } from '../dtos/bill/insert.bill.dtos';
 
 
 @Injectable({
@@ -32,7 +33,11 @@ export class BillService {
   }
 
   updateBill(id: number, updateBill: UpdateBillDTO): Observable<any> {
-    return this.http.put<any>(`${this.apiBaseUrl}/qldg/${id}`, updateBill);
+    return this.http.put<any>(`${this.apiBaseUrl}/bill/update/${id}`, updateBill);
   }
-  
+
+  insertBill(insertBillDTO: InsertBillDTO): Observable<ApiResponse> {
+ 
+    return this.http.post<ApiResponse>(`${environment.apiBaseUrl}/bill/insert`, insertBillDTO);
+  }
 }
