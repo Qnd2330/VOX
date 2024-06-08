@@ -28,8 +28,6 @@ public class Washing_Method {
     private Boolean washAvailability;
     @Column(name = "washDescription")
     private String washDescription;
-    /*@ManyToOne
-    private BillDetails billDetails;*/
     @Column(name = "washCreateDate")
     private Date washCreateDate;
 }

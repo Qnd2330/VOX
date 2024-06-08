@@ -32,8 +32,7 @@ public class BillDetailsService implements IBillDetailsService{
 
         BillDetails newBillDetails = BillDetails.builder()
                 .bill(Exitingbill)
-                .wash(Collections.singletonList(ExitingWash))
-
+                .wash(ExitingWash)
                 .description(billDetailsDTO.getDescription())
                 .weight(billDetailsDTO.getWeight())
                 .billDetailStatus(false)
@@ -73,7 +72,7 @@ public class BillDetailsService implements IBillDetailsService{
         Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(()->new DataNotFoundException("Không tìm thấy kiểu giặt với ID: "+billDetailsDTO.getWashID()));
 
             billDetailsUpdate.setBill(Exitingbill);
-            billDetailsUpdate.setWash(Collections.singletonList(ExitingWash));
+            billDetailsUpdate.setWash(ExitingWash);
 
             billDetailsUpdate.setDescription(billDetailsDTO.getDescription());
             billDetailsUpdate.setWeight(billDetailsDTO.getWeight());

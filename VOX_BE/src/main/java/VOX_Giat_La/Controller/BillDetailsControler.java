@@ -67,6 +67,7 @@ public class BillDetailsControler {
     }
 
     @PutMapping("/update/{id}") //   http://localhost:2330/VOX/bill_details/update
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> updateBillDetails(@Valid @PathVariable int id , @RequestBody BillDetailsDTO newBillDetailsDTO) {
         try{
             return ResponseEntity.ok(billDetailsService.updateBillDetails(id,newBillDetailsDTO));
