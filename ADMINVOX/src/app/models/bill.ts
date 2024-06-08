@@ -3,7 +3,7 @@ import { User } from "./user";
 
 export interface Bill {
     billID:number;
-    user:User;
+    userName:string;
     billDescription:string;
     sumWeight:number;
     cost:number;

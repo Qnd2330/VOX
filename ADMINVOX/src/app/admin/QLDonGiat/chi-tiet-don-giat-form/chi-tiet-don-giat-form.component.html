@@ -1,1 +1,47 @@
-<p>chi-tiet-don-giat-form works!</p>
+<div class="items">
+    <h1 class="subhead">Chi tiết đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+        (ngSubmit)="insertBill()" enctype="multipart/form-data">
+        <fieldset>
+
+            <label>UserID</label>
+            <input class="pure-input-1" type="text" id="userID" name="userID" 
+                [(ngModel)]="insertBillDTO.userID">
+
+            <label>Ghi chú</label>
+            <input class="pure-input-1" type="text" id="billDescription" name="billDescription"
+                [(ngModel)]="insertBillDTO.billDescription">
+
+            <label for="name">Tổng khối lượng</label>
+            <input class="pure-input-1" type="number" id="sumWeight" name="sumWeight" 
+                [(ngModel)]="insertBillDTO.sumWeight">
+
+            <label for="name">Giá</label>
+            <input class="pure-input-1" type="number" id="cost" name="cost" 
+                [(ngModel)]="insertBillDTO.cost">
+
+            <!-- <label for="name">Ngày tạo</label>
+            <input class="pure-input-1" type="date" id="billCreateDate" name="billCreateDate"
+                [(ngModel)]="insertBillDTO.billCreateDate"> -->
+
+            <label for="name">Tình trạng</label>
+            <select class="pure-input-1" type="" id="billStatus" name="billStatus"
+                [(ngModel)]="insertBillDTO.billStatus">
+                <option [ngValue]="true">Hoàn thành</option>
+                <option [ngValue]="false">Chưa hoàn thành</option>
+            </select>
+
+            <label for="name">Ngày thanh toán</label>
+            <input class="pure-input-1" type="date" id="billPayDate" name="billPayDate"
+                [(ngModel)]="insertBillDTO.billPayDate">
+
+            <div class="form-group mb-3">
+                <label for="images">Ảnh</label>
+                <!-- <input type="file" id="images" name="images" multiple (change)="onFileChange($event)" accept="image/*"> -->
+                <input class="pure-input-1" type="text" id="billPayDate" name="billPayDate"
+                [(ngModel)]="insertBillDTO.image">
+            </div>
+            <button type="submit" class="pure-button button-success">Lưu</button>
+        </fieldset>
+    </form>
+</div>

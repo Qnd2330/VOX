@@ -86,6 +86,10 @@ export class ListDonGiatComponent implements OnInit {
 
   getDetailBill(bill: Bill) {
     debugger
-    this.router.navigate(['/admin/qldg', bill.billID]);
+    this.router.navigate(['/admin/qldg/view', bill.billID]);
+  }
+
+  insertBill(){
+    this.router.navigate(['/admin/qldg/them']);
   }
 }
