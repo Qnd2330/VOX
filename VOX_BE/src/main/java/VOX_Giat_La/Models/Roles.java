@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

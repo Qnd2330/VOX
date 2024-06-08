@@ -25,7 +25,8 @@ public class User implements UserDetails {
     private int userID;
     @Column(name = "userName")
     private String userName;
-    @ManyToOne
+    @ManyToOne()
+    @ToString.Exclude
     @JoinColumn(name = "roleID")
     private Roles role;
     @Column(name = "userPassword")

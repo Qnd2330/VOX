@@ -7,6 +7,7 @@ import VOX_Giat_La.Models.User;
 import VOX_Giat_La.Repositories.BillRepos;
 import VOX_Giat_La.Repositories.UserRepos;
 import VOX_Giat_La.Respones.Bill.BillRespones;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,7 @@ public class BillService implements IBillService {
     private final BillRepos billRepos;
 
     @Override
+    @Transactional
     public Bill createBill(BillDTO billDTO) throws DataNotFoundException {
         User user =  userRepos.findById(billDTO.getUserID()).orElseThrow(()->new DataNotFoundException("Không tìm thấy user với ID: "+billDTO.getUserID()));
         Bill newBill = Bill.builder()
