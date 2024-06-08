@@ -23,9 +23,9 @@ public class BillDetails {
     @ManyToOne
     @JoinColumn(name = "billID")
     private Bill bill;
-    @OneToMany
+    @ManyToOne // Sửa lại quan hệ thành ManyToOne
     @JoinColumn(name = "washID")
-    private List<Washing_Method> wash;
+    private Washing_Method wash;
     @Column(name = "description")
     private String description;
     @Column(name = "weight")
