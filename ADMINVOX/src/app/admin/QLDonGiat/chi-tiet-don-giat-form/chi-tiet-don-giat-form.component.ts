@@ -12,12 +12,12 @@ import { ApiResponse } from '../../../responses/api.response';
 })
 export class ChiTietDonGiatFormComponent implements OnInit {
   insertBillDTO: InsertBillDTO = {
-    userID: 0,
-    billDescription: '',
+    userID: 1,
+    billDescription: 'Hãy viết những ghi chú',
     sumWeight: 0,
     cost: 0,
     billStatus: false,
-    image: '',
+    image: null,
     billPayDate: new Date(),
   };
   constructor(    
@@ -30,15 +30,19 @@ export class ChiTietDonGiatFormComponent implements OnInit {
     
   } 
   insertBill() {    
-    debugger
+    debugger;
+  
+    // Gọi service để gửi yêu cầu HTTP với insertBillDTO
     this.billService.insertBill(this.insertBillDTO).subscribe({
-      next: (apiResponse: ApiResponse) => {
-        debugger
+      next: (response) => {
+        debugger;
         this.router.navigate(['/admin/qldg']);        
       },
-      error: (error: HttpErrorResponse) => {
+      error: (error) => {
         debugger;
-        console.error(error?.error?.message ?? 'Loi rui');
+        console.error(error);
+        this.router.navigate(['/admin/qldg']); 
+        // alert(error);
       }        
     });    
   }
