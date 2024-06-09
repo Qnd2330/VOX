@@ -1,7 +1,6 @@
 import {
     IsString, 
     IsNotEmpty, 
-    IsPhoneNumber,     
 } from 'class-validator';
 
 export class InsertBillDTO { 
@@ -10,34 +9,29 @@ export class InsertBillDTO {
     
     @IsString()
     @IsNotEmpty()
-    billDescription:string;
+    billDescription: string;
 
+    @IsNotEmpty()
+    sumWeight: number;
+
+    @IsNotEmpty()
+    cost: number;
     
     @IsNotEmpty()
-    sumWeight:number;
+    billStatus: boolean;
 
-    
-    @IsNotEmpty()
-    cost:number;
-    
-    @IsNotEmpty()
-    billStatus:boolean;
+    image: string | null;
 
-    
     @IsNotEmpty()
-    billPayDate:Date;
+    billPayDate: Date;
 
-    @IsString()
-    @IsNotEmpty()
-    image:string;
-            
     constructor(data: any) {
         this.userID = data.userID; 
         this.billDescription = data.billDescription; 
         this.sumWeight = data.sumWeight;
         this.cost = data.cost;
         this.billStatus = data.billStatus;
-        this.billPayDate = data.billPayDate;
-        this.image = data.image;   
+        this.image = data.image;  
+        this.billPayDate = data.billPayDate; 
     }
 }

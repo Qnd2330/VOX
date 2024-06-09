@@ -8,6 +8,9 @@ export class UpdateBillDTO {
     @IsNotEmpty()
     billID:number;
 
+
+    userID: number;
+
     @IsString()
     @IsNotEmpty()
     userName:string;
@@ -42,6 +45,7 @@ export class UpdateBillDTO {
             
     constructor(data: any) {
         this.billID = data.billID;
+        this.userID = data.userID;
         this.userName = data.userName; 
         this.billDescription = data.billDescription; 
         this.sumWeight = data.sumWeight;

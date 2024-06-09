@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th>#</th>
+                <th>Tên khách hàng</th>
                 <th>Ngày tạo đơn</th>
                 <th>Trạng thái</th>
                 <th>Đơn giá</th>
@@ -16,14 +17,13 @@
             @for(bill of bills; track bill.billID){
                 <tr>
                     <td>{{ bill.billID }}</td>
-                    <td>{{ bill.billCreateDate }}</td>
+                    <td>{{ bill.userName}}</td>
+                    <td>{{ bill.billCreateDate | date :"dd/MM/yyyy" }}</td>
                     <td>{{ bill.billStatus }}</td>
-                    <td>{{ bill.cost }}</td>
+                    <td>{{ formatCost(bill.cost) }}</td>
                     <td>
-                        <a class="pure-button button-small button-secondary" (click)="getDetailBill(bill)">View</a>
-                        <a class="pure-button button-small button-success" (click)="updateBill(bill.billID)">Edit</a>
-                        <a class="pure-button button-small button-error" (click)="deleteBill(bill)"
-                            onclick="return confirm('Are you sure?');">Delete</a>
+                        <a class="pure-button button-small button-secondary" (click)="getDetailBill(bill)">Edit</a>
+                        <a class="pure-button button-small button-error" (click)="deleteBill(bill)">Delete</a>
                     </td>
                 </tr>
             }

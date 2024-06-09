@@ -87,7 +87,10 @@ pre {
 /*Content*/
 .content {
     padding: 2em 1em 0;
+    overflow: auto; /* Adds scroll bar if content overflows */
+    max-height: 100vh; /* Ensures the content div doesn't exceed the viewport height */
 }
+
 .column-block {
     margin: 0 0.5em 2em;
     padding: 0;

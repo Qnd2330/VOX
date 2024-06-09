@@ -3,11 +3,8 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { AdminRoutingModule } from './admin/admin-routing.module';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import { JwtModule } from '@auth0/angular-jwt/lib/angular-jwt.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +22,7 @@ import { JwtModule } from '@auth0/angular-jwt/lib/angular-jwt.module';
       useClass: TokenInterceptor, 
       multi: true 
     },
-    provideClientHydration()
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

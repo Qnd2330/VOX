@@ -21,38 +21,56 @@ export class DonGiatFormComponent implements OnInit{
   pages: number[] = [];
   totalPages: number = 0;
   visiblePages: number[] = [];
-  bill:number = 0;
-  billRespones: BillRespones = {
-    billID: 0, // Hoặc bất kỳ giá trị số nào bạn muốn
-    userID: 0,
-    userName: '',
-    billDescription: '',
-    sumWeight: 0,
-    cost: 0,
-    billCreateDate: new Date(),
-    billStatus: true,
-    billPayDate: new Date(),
-    image: '', 
-    billDetail: [],
-  };  
+  billID :number = 0;
+  bill: Bill;
+  updatedBill: Bill;
+  // billRespones: BillRespones = {
+  //   billID: 0, // Hoặc bất kỳ giá trị số nào bạn muốn
+  //   userID: 0,
+  //   userName: '',
+  //   billDescription: '',
+  //   sumWeight: 0,
+  //   cost: 0,
+  //   billCreateDate: new Date(),
+  //   billStatus: true,
+  //   billPayDate: new Date(),
+  //   image: '', 
+  //   billDetail: [],
+  // };  
   private billService = inject(BillService);
   constructor(    
     private route: ActivatedRoute,
     private router: Router
-    ) {}
+    ) {
+      this.bill = {} as Bill;
+      this.updatedBill = {} as Bill;
+    }
 
   ngOnInit() {
     this.getBillDetails(this.currentPage, this.itemsPerPage);
+    
   }
   
   getBillDetails(page: number, limit: number) {
     debugger
-    this.bill = Number(this.route.snapshot.paramMap.get('id'));
-    this.billService.getBillById(this.bill, page, limit).subscribe({
-      next: (apiResponse: any) => {              
-        const response = apiResponse
-        if (response) {
-          this.billRespones = response.billRespones;
+    this.billID = Number(this.route.snapshot.paramMap.get('id'));
+    this.billService.getBillById(this.billID, page, limit).subscribe({
+      next: (apiResponse: any) => {  
+        this.bill = apiResponse.billRespones;
+        this.updatedBill = { ...apiResponse.billRespones };                
+        // this.updatedBill.product_images.forEach((product_image:ProductImage) => {
+        //   product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
+        // });
+      },
+      complete: () => {
+        
+      },
+      error: (error: HttpErrorResponse) => {
+        debugger;
+        console.error(error?.error?.message ?? '');
+        // const response = apiResponse
+        // if (response) {
+        //   this.bill = response.billRespones;
         // this.billRespones.billID = response.billID;
         // this.billRespones.userID = response.userID;
         // this.billRespones.userName = response.userName;
@@ -73,8 +91,8 @@ export class DonGiatFormComponent implements OnInit{
         //     response.billPayDate[2]
         //   );        
         // }   
-        debugger;      
-        this.billRespones.billDetail = response.billDetail
+        // debugger;      
+        // this.bill.billDetail = response.billDetail
         // .map((billDetails:any) => {
         //   return {
         //     billDetailID: billDetails.billDetailID,
@@ -90,44 +108,50 @@ export class DonGiatFormComponent implements OnInit{
         // this.billRespones.image = response.image;
         // this.billRespones.billStatus = response.billStatus;   
         // console.log('Bill detail:', response.billDetail);
-        debugger
-      } else {
-          console.error("Response data is undefined or null.");
-          // Handle the error or set default values
-      }
+    //     debugger
+    //   } else {
+    //       console.error("Response data is undefined or null.");
+    //       // Handle the error or set default values
+    //   }
            
-      },      
+    //   },      
+    //   complete: () => {
+    //     debugger;        
+    //   },
+    //   error: (error: HttpErrorResponse) => {
+    //     debugger;
+    //     console.error(error?.error?.message ?? '');
+      } 
+    });
+  }    
+  
+  saveBill(): void {   
+    
+    const updateBillDTO: UpdateBillDTO = {
+      billID: this.updatedBill.billID,
+      userID: this.updatedBill.userID,
+      userName: this.updatedBill.userName,
+      billDescription: this.updatedBill.billDescription,
+      sumWeight: this.updatedBill.sumWeight,
+      cost: this.updatedBill.cost,
+      billCreateDate: this.updatedBill.billCreateDate,
+      billStatus: this.updatedBill.billStatus,
+      billPayDate: this.updatedBill.billPayDate,
+      image: this.updatedBill.image,
+    }; 
+    debugger        
+    this.billService.updateBill(this.bill.billID, updateBillDTO).subscribe({
+      next: (apiResponse: ApiResponse) => {  
+        debugger        
+      },
       complete: () => {
-        debugger;        
+        debugger;
+        this.router.navigate(['/admin/qldg']);        
       },
       error: (error: HttpErrorResponse) => {
         debugger;
         console.error(error?.error?.message ?? '');
       } 
-    });
-  }    
-  
-  saveBill(): void {    
-    debugger        
-    this.billService
-      .updateBill(this.bill, new BillDTO(this.billRespones))
-      .subscribe({
-      next: (response: ApiResponse) => {
-        debugger
-        // Handle the successful update
-        //console.log('Order updated successfully:', response);
-        // Navigate back to the previous page
-        //this.router.navigate(['/admin/orders']);       
-        this.router.navigate(['../'], { relativeTo: this.route });
-      },
-      complete: () => {
-        debugger;        
-      },
-      error: (error: HttpErrorResponse) => {
-        debugger;
-        console.error(error?.error?.message ?? '');
-        this.router.navigate(['../'], { relativeTo: this.route });
-      }       
-    });   
-  } 
+    });  
+  }
 }
