@@ -4,11 +4,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user';
 import { Bill } from '../../../models/bill';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-list-don-giat',
   templateUrl: './list-don-giat.component.html',
-  styleUrl: './list-don-giat.component.css'
+  styleUrl: './list-don-giat.component.css',
+  providers: [CurrencyPipe]
 })
 export class ListDonGiatComponent implements OnInit {
   bills: Bill[] = [];
@@ -22,6 +24,7 @@ export class ListDonGiatComponent implements OnInit {
   constructor(
     private billService: BillService,
     private router: Router,
+    private currencyPipe: CurrencyPipe,
   ) { }
 
   ngOnInit() {
@@ -30,7 +33,7 @@ export class ListDonGiatComponent implements OnInit {
     }
     this.getBill(this.currentPage, this.itemsPerPage);
   }
-
+  
   getBill(page: number, limit: number) {
     this.billService.getBill(page, limit).subscribe({
       next: (apiResponse: any) => {
@@ -54,12 +57,15 @@ export class ListDonGiatComponent implements OnInit {
     if (confirmation) {
       this.billService.deleteBill(bill.billID).subscribe({
         next: () => {
+          console.log('Bill deleted successfully.');
           this.getBill(this.currentPage, this.itemsPerPage);
         },
         error: (error: HttpErrorResponse) => {
           console.error(error?.error?.message ?? '');
+          this.getBill(this.currentPage, this.itemsPerPage);
         }
       });
+      this.getBill(this.currentPage, this.itemsPerPage);
     }
   }
 
@@ -91,5 +97,9 @@ export class ListDonGiatComponent implements OnInit {
 
   insertBill(){
     this.router.navigate(['/admin/qldg/them']);
+  }
+
+  formatCost(cost: number): string {
+    return this.currencyPipe.transform(cost, 'VND', 'symbol', '1.0-0') || 'N/A';;
   }
 }

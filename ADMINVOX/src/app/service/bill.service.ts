@@ -29,7 +29,7 @@ export class BillService {
   }
   deleteBill(id: number): Observable<any> {
     debugger
-    return this.http.delete<any>(`${this.apiBaseUrl}/bill/${id}`);
+    return this.http.delete<any>(`${this.apiBaseUrl}/bill/delete/${id}`);
   }
 
   updateBill(id: number, updateBill: UpdateBillDTO): Observable<any> {
