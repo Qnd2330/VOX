@@ -56,8 +56,8 @@ public class BillDetailsService implements IBillDetailsService{
                 .map(BillDetailRespone::fromBillDetail)
                 .collect(Collectors.toList());
 
-        BillRespones billRespones = new BillRespones(bill.getBillID(),bill.getUser().getUserID(), bill.getUser().getUsername(),bill.getBillDescription(),bill.getSumWeight(),bill.getCost(),bill.getBillCreateDate(),bill.getBillPayDate(), bill.getBillStatus());
-
+        //BillRespones billRespones = new BillRespones.(bill.getBillID(),bill.getUser().getUserID(), bill.getUser().getUsername(),bill.getBillDescription(),bill.getSumWeight(),bill.getCost(),bill.getBillCreateDate(),bill.getBillPayDate(), bill.getBillStatus());
+        BillRespones billRespones = BillRespones.fromBill(bill);
         return BillDetailListRespone.builder()
                 .billRespones(billRespones)
                 .billDetail(billDetailResponses)
