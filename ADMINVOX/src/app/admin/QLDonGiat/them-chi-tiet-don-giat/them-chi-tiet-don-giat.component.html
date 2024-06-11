@@ -1,0 +1,41 @@
+<div class="items">
+    <h1 class="subhead">Thêm chi tiết đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+        (ngSubmit)="insertBillDetail()" enctype="multipart/form-data">
+        <fieldset>
+
+            <label>Kiểu giặt</label>
+            <select class="pure-input-1" id="washID" name="washID" [(ngModel)]="insertBillDetailDTO.washID">
+                <!-- Display list of categories -->
+              @for(washName of washes; track washName.washID) {
+                <option 
+                [value]="washName.washID">{{ washName.washName }}</option>
+              }   
+            </select>
+
+            <label>Ghi chú</label>
+            <input class="pure-input-1" type="text" id="billDescription" name="billDescription"
+                [(ngModel)]="insertBillDetailDTO.description">
+
+            <label for="name">Khối lượng</label>
+            <input class="pure-input-1" type="number" id="sumWeight" name="sumWeight" 
+                [(ngModel)]="insertBillDetailDTO.price">
+
+            <label for="name">Giá</label>
+            <input class="pure-input-1" type="number" id="cost" name="cost" 
+                [(ngModel)]="insertBillDetailDTO.weight">
+
+            <!-- <label for="name">Ngày tạo</label>
+            <input class="pure-input-1" type="date" id="billCreateDate" name="billCreateDate"
+                [(ngModel)]="insertBillDTO.billCreateDate"> -->
+
+            <label for="name">Tình trạng</label>
+            <select class="pure-input-1" type="" id="billStatus" name="billStatus"
+                [(ngModel)]="insertBillDetailDTO.billDetailStatus">
+                <option [ngValue]="true">Hoàn thành</option>
+                <option [ngValue]="false">Chưa hoàn thành</option>
+            </select>
+            <button type="submit" class="pure-button button-success">Lưu</button>
+        </fieldset>
+    </form>
+</div>

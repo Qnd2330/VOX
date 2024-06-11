@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
-import { ChiTietDonGiatFormComponent } from './QLDonGiat/chi-tiet-don-giat-form/chi-tiet-don-giat-form.component';
-import { DonGiatFormComponent } from './QLDonGiat/don-giat-form/don-giat-form.component';
-import { ListChiTietDonGiatComponent } from './QLDonGiat/list-chi-tiet-don-giat/list-chi-tiet-don-giat.component';
 import { ListDonGiatComponent } from './QLDonGiat/list-don-giat/list-don-giat.component';
 import { FormGiatLaComponent } from './QLGiatLa/form-giat-la/form-giat-la.component';
 import { ListGiatLaComponent } from './QLGiatLa/list-giat-la/list-giat-la.component';
@@ -24,6 +21,10 @@ import { AdminFooterComponent } from './static/admin-footer/admin-footer.compone
 import { UserService } from '../service/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ThemDonGiatComponent } from './QLDonGiat/them-don-giat/them-don-giat.component';
+import { CapNhatDonGiatComponent } from './QLDonGiat/cap-nhat-don-giat/cap-nhat-don-giat.component';
+import { CapNhatChiTietDonGiatComponent } from './QLDonGiat/cap-nhat-chi-tiet-don-giat/cap-nhat-chi-tiet-don-giat.component';
+import { ThemChiTietDonGiatComponent } from './QLDonGiat/them-chi-tiet-don-giat/them-chi-tiet-don-giat.component';
 
 
 
@@ -31,9 +32,10 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AdminHomeComponent,
     ListDonGiatComponent,
-    DonGiatFormComponent,
-    ListChiTietDonGiatComponent,
-    ChiTietDonGiatFormComponent,
+    ThemDonGiatComponent,
+    CapNhatDonGiatComponent,
+    ThemChiTietDonGiatComponent,
+    CapNhatChiTietDonGiatComponent,
     ListGiatLaComponent,
     FormGiatLaComponent,
     ListKhoComponent,

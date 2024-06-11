@@ -6,6 +6,7 @@ export interface BillDetail {
     bill: Bill;
     billDetailID:number;
     washName: string;
+    wash: Wash;
     description:string;
     weight:number;
     price:number;

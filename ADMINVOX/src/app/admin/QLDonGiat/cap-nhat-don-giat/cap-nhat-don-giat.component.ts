@@ -9,13 +9,15 @@ import { ApiResponse } from '../../../responses/api.response';
 import { environment } from '../../../../environments/environment';
 import { BillRespones} from '../../../responses/bill/bill.response';
 import { BillDTO } from '../../../dtos/bill/bill.dtos';
+import { BillDetail } from '../../../models/billdetail';
+import { log } from 'console';
 
 @Component({
-  selector: 'app-don-giat-form',
-  templateUrl: './don-giat-form.component.html',
-  styleUrl: './don-giat-form.component.css',
+  selector: 'app-cap-nhat-don-giat',
+  templateUrl: './cap-nhat-don-giat.component.html',
+  styleUrl: './cap-nhat-don-giat.component.css'
 })
-export class DonGiatFormComponent implements OnInit{
+export class CapNhatDonGiatComponent implements OnInit{
   currentPage: number = 0;
   itemsPerPage: number = 12;
   pages: number[] = [];
@@ -23,6 +25,7 @@ export class DonGiatFormComponent implements OnInit{
   visiblePages: number[] = [];
   billID :number = 0;
   bill: Bill;
+  billDetail: BillDetail[] = [];
   updatedBill: Bill;
   // billRespones: BillRespones = {
   //   billID: 0, // Hoặc bất kỳ giá trị số nào bạn muốn
@@ -40,7 +43,7 @@ export class DonGiatFormComponent implements OnInit{
   private billService = inject(BillService);
   constructor(    
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
     ) {
       this.bill = {} as Bill;
       this.updatedBill = {} as Bill;
@@ -57,7 +60,10 @@ export class DonGiatFormComponent implements OnInit{
     this.billService.getBillById(this.billID, page, limit).subscribe({
       next: (apiResponse: any) => {  
         this.bill = apiResponse.billRespones;
-        this.updatedBill = { ...apiResponse.billRespones };                
+        this.billDetail = apiResponse.billDetail;
+        this.totalPages = apiResponse.totalPages;
+        this.updatedBill = { ...apiResponse.billRespones }; 
+        console.log(this.billDetail);              
         // this.updatedBill.product_images.forEach((product_image:ProductImage) => {
         //   product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
         // });
@@ -153,5 +159,14 @@ export class DonGiatFormComponent implements OnInit{
         console.error(error?.error?.message ?? '');
       } 
     });  
+  }
+  insertBillDetail() {
+    debugger
+    const billId = this.billID;
+    if (billId) {
+    this.router.navigate([`/admin/qldg/view/${billId}/them`]); // Chuyển hướng với id của Bill
+  } else {
+    console.error('Bill ID is not available');
+  }
   }
 }
