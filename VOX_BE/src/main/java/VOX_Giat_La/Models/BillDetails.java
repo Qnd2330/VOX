@@ -22,6 +22,7 @@ public class BillDetails {
     private int billDetailID;
     @ManyToOne
     @JoinColumn(name = "billID")
+    @ToString.Exclude
     private Bill bill;
     @ManyToOne // Sửa lại quan hệ thành ManyToOne
     @JoinColumn(name = "washID")
@@ -40,6 +41,13 @@ public class BillDetails {
     private void calculatePrice() {
         if (wash != null && weight > 0) {
             this.price = wash.getWashCost() * weight;
+        }
+    }
+    @PostPersist
+    @PostUpdate
+    private void updateBillCost() {
+        if (bill != null) {
+            bill.updateCost();
         }
     }
 }

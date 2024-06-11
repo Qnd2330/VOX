@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Bill")
@@ -39,8 +40,18 @@ public class Bill {
     @Column(name = "image")
     private String image;
 
+    @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    private List<BillDetails> billDetails;
+
     @PrePersist
     protected void onCreate() {
         billCreateDate = LocalDateTime.now();
+    }
+
+    public void updateCost() {
+        this.cost = billDetails.stream()
+                .map(BillDetails::getPrice)
+                .reduce(0.0f, Float::sum);
     }
 }
