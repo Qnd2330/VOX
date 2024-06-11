@@ -19,7 +19,7 @@
                     <td>{{ bill.billID }}</td>
                     <td>{{ bill.userName}}</td>
                     <td>{{ bill.billCreateDate | date :"dd/MM/yyyy" }}</td>
-                    <td>{{ bill.billStatus }}</td>
+                    <td>{{ bill.billStatus ? 'Hoàn Thành' : 'Chưa hoàn thành' }}</td>
                     <td>{{ formatCost(bill.cost) }}</td>
                     <td>
                         <a class="pure-button button-small button-secondary" (click)="getDetailBill(bill)">Edit</a>

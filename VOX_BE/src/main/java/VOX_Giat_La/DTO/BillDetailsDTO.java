@@ -14,7 +14,6 @@ import lombok.*;
 public class BillDetailsDTO {
     @NotNull(message = "Phải có Id Bill")
     private int billID;
-
     @NotNull(message = "Phải có Id kiểu giặt")
     private int washID;
     @Size(min = 10, message = "Phần giới thiệu ít nhất phải có 10 chữ cái")

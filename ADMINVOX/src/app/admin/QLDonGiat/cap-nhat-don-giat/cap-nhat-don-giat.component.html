@@ -53,6 +53,7 @@
             <th>Weight</th>
             <th>Price</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -61,7 +62,11 @@
             <td>{{ detail.washName }}</td>
             <td>{{ detail.weight }}</td>
             <td>{{ detail.price }}</td>
-            <td>{{ detail.billDetailStatus ? 'Chưa xong' : 'Đã xong' }}</td>
+            <td>{{ detail.billDetailStatus ? 'Hoàn Thành' : 'Chưa hoàn thành' }}</td>
+            <td>
+              <a class="pure-button button-small button-secondary" (click)="updateBillDetail(detail)" >Edit</a>
+              <a class="pure-button button-small button-error" (click)="deleteBillDetail(detail)">Delete</a>
+          </td>
           </tr>
         </tbody>
       </table>

@@ -31,7 +31,7 @@ public class BillDetailRespone {
                 .description(billDetails.getDescription())
                 .weight(billDetails.getWeight())
                 .price(billDetails.getPrice())
-                .billDetailStatus(billDetails.getBillDetailStatus())
+                .billDetailStatus(billDetails.isBillDetailStatus())
                 .build();
         return billDetailRespone;
     }

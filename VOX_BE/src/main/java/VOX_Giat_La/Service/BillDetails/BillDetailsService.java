@@ -76,6 +76,7 @@ public class BillDetailsService implements IBillDetailsService {
         billDetailsUpdate.setBill(Exitingbill);
         billDetailsUpdate.setWash(ExitingWash);
 
+
         billDetailsUpdate.setDescription(billDetailsDTO.getDescription());
         billDetailsUpdate.setWeight(billDetailsDTO.getWeight());
         billDetailsUpdate.setBillDetailStatus(billDetailsDTO.getBillDetailStatus());

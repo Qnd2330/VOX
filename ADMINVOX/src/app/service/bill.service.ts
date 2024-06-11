@@ -40,12 +40,13 @@ export class BillService {
 
   insertBill(insertBillDTO: InsertBillDTO): Observable<any> {
     return this.http.post<any>(`${this.apiBaseUrl}/bill/insert`, insertBillDTO, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      responseType: 'json'
-    }).pipe(
-      catchError(this.handleError)
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      // responseType: 'json'
+    }
+  // ).pipe(
+  //     catchError(this.handleError)
     );
   }
 
