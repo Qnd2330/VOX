@@ -19,7 +19,7 @@ export class InsertBillDTO {
     cost: number;
     
     @IsNotEmpty()
-    billStatus: boolean;
+    billStatus:boolean;
 
     image: string | null;
 

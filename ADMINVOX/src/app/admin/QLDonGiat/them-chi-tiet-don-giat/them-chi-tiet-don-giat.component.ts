@@ -21,7 +21,7 @@ export class ThemChiTietDonGiatComponent implements OnInit {
     description: 'Hãy viết những ghi chú',
     weight: 0,
     price: 0,
-    billDetailStatus: false,
+    billDetailStatus: true,
   };
   washes: Wash[] = [];
 

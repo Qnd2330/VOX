@@ -11,6 +11,8 @@ export class UpdateBillDetailDTO {
     @IsNotEmpty()
     billID: number;
 
+
+
     @IsNotEmpty()
     washID: number;
 
@@ -29,6 +31,7 @@ export class UpdateBillDetailDTO {
     constructor(data: any) {
         this.billDetailID = data.billDetailID;
         this.billID = data.billID;
+
         this.washID = data.washID;
         this.description = data.description;
         this.weight = data.weight;

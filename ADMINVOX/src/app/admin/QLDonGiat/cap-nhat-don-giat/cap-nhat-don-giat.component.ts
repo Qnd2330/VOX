@@ -11,6 +11,7 @@ import { BillRespones} from '../../../responses/bill/bill.response';
 import { BillDTO } from '../../../dtos/bill/bill.dtos';
 import { BillDetail } from '../../../models/billdetail';
 import { log } from 'console';
+import { BilldetailsService } from '../../../service/billdetails.service';
 
 @Component({
   selector: 'app-cap-nhat-don-giat',
@@ -42,6 +43,7 @@ export class CapNhatDonGiatComponent implements OnInit{
   // };  
   private billService = inject(BillService);
   constructor(    
+    private billDetailService: BilldetailsService,
     private route: ActivatedRoute,
     private router: Router,
     ) {
@@ -168,5 +170,30 @@ export class CapNhatDonGiatComponent implements OnInit{
   } else {
     console.error('Bill ID is not available');
   }
+  }
+  deleteBillDetail(billDetail: BillDetail) {
+    const confirmation = window.confirm('Bạn có muốn xóa chi mục đơn này?');
+    if (confirmation) {
+      this.billDetailService.deleteBillDetail(billDetail.billDetailID).subscribe({
+        next: () => {
+          console.log('Bill deleted successfully.');
+          this.getBillDetails(this.currentPage, this.itemsPerPage);
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error(error?.error?.message ?? '');
+          this.getBillDetails(this.currentPage, this.itemsPerPage);
+        }
+      });
+      this.getBillDetails(this.currentPage, this.itemsPerPage);
+    }
+  }
+  updateBillDetail(billDetail: BillDetail) {
+    debugger     
+    const billId = this.billID; 
+    if (billId) {
+      this.router.navigate([`/admin/qldg/view/${billId}/update/`, billDetail.billDetailID]); // Chuyển hướng với id của Bill
+    } else {
+      console.error('Bill ID is not available');
+    }
   }
 }

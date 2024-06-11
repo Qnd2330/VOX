@@ -6,34 +6,34 @@
 
             <label>UserID</label>
             <input class="pure-input-1" type="text" id="userID" name="userID" 
-                [(ngModel)]="insertBillDTO.userID">
+                [(ngModel)]="addBillDTO.userID">
 
             <label>Ghi chú</label>
             <input class="pure-input-1" type="text" id="billDescription" name="billDescription"
-                [(ngModel)]="insertBillDTO.billDescription">
+                [(ngModel)]="addBillDTO.billDescription">
 
             <label for="name">Tổng khối lượng</label>
             <input class="pure-input-1" type="number" id="sumWeight" name="sumWeight" 
-                [(ngModel)]="insertBillDTO.sumWeight">
+                [(ngModel)]="addBillDTO.sumWeight">
 
             <label for="name">Giá</label>
             <input class="pure-input-1" type="number" id="cost" name="cost" 
-                [(ngModel)]="insertBillDTO.cost">
+                [(ngModel)]="addBillDTO.cost">
 
             <!-- <label for="name">Ngày tạo</label>
             <input class="pure-input-1" type="date" id="billCreateDate" name="billCreateDate"
                 [(ngModel)]="insertBillDTO.billCreateDate"> -->
 
-            <label for="name">Tình trạng</label>
-            <select class="pure-input-1" type="" id="billStatus" name="billStatus"
-                [(ngModel)]="insertBillDTO.billStatus">
+            <label for="billStatus">Tình trạng</label>
+            <select class="pure-input-1"id="billStatus" name="billStatus"
+                [(ngModel)]="addBillDTO.billStatus">
                 <option [ngValue]="true">Hoàn thành</option>
                 <option [ngValue]="false">Chưa hoàn thành</option>
             </select>
 
             <label for="name">Ngày thanh toán</label>
             <input class="pure-input-1" type="date" id="billPayDate" name="billPayDate"
-                [(ngModel)]="insertBillDTO.billPayDate">
+                [(ngModel)]="addBillDTO.billPayDate">
 
             <div class="form-group mb-3">
                 <label for="images">Ảnh</label>

@@ -27,7 +27,7 @@ const routes: Routes = [
       { path: 'qldg/view/:id', component: CapNhatDonGiatComponent, title: "Chi Tiết Đơn Giặt" },
       { path: 'qldg/them', component: ThemDonGiatComponent, title: "Thêm mới Đơn Giặt" },
       { path: 'qldg/view/:id/them', component: ThemChiTietDonGiatComponent, title: "Thêm mới Chi tiết Đơn Giặt" },
-      { path: 'qldg/view/:id/capnhat', component: CapNhatChiTietDonGiatComponent, title: "Cập Nhật Chi Tiết Đơn Giặt" },
+      { path: 'qldg/view/:billID/update/:id', component: CapNhatChiTietDonGiatComponent, title: "Cập Nhật Chi Tiết Đơn Giặt" },
       { path: 'qlttkh', component: ListTTKHComponent, title: "QL Thông Tin KH" },
       { path: 'qlk', component: ListKhoComponent, title: "QL Kho" },
       { path: 'qlgl', component: ListGiatLaComponent, title: "QL Giặt Là" },

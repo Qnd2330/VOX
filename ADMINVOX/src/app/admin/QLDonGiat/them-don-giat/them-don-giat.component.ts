@@ -11,12 +11,12 @@ import { ApiResponse } from '../../../responses/api.response';
   styleUrl: './them-don-giat.component.css'
 })
 export class ThemDonGiatComponent implements OnInit {
-  insertBillDTO: InsertBillDTO = {
+  addBillDTO: InsertBillDTO = {
     userID: 1,
     billDescription: 'Hãy viết những ghi chú',
     sumWeight: 0,
     cost: 0,
-    billStatus: false,
+    billStatus: true,
     image: null,
     billPayDate: new Date(),
   };
@@ -33,8 +33,8 @@ export class ThemDonGiatComponent implements OnInit {
     debugger;
   
     // Gọi service để gửi yêu cầu HTTP với insertBillDTO
-    this.billService.insertBill(this.insertBillDTO).subscribe({
-      next: (response) => {
+    this.billService.insertBill(this.addBillDTO).subscribe({
+      next: () => {
         debugger;
         this.router.navigate(['/admin/qldg']);        
       },
@@ -55,6 +55,6 @@ export class ThemDonGiatComponent implements OnInit {
       return;
     }
     // Store the selected files in the newProduct object
-    this.insertBillDTO.image = files;
+    this.addBillDTO.image = files;
   }
 }

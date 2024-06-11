@@ -33,5 +33,5 @@ public class BillDetails {
     @Column(name = "price")
     private float price;
     @Column(name = "billDetailStatus")
-    private Boolean billDetailStatus;
+    private boolean billDetailStatus;
 }
