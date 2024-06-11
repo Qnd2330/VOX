@@ -6,11 +6,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ApiResponse } from '../../../responses/api.response';
 
 @Component({
-  selector: 'app-chi-tiet-don-giat-form',
-  templateUrl: './chi-tiet-don-giat-form.component.html',
-  styleUrl: './chi-tiet-don-giat-form.component.css'
+  selector: 'app-them-don-giat',
+  templateUrl: './them-don-giat.component.html',
+  styleUrl: './them-don-giat.component.css'
 })
-export class ChiTietDonGiatFormComponent implements OnInit {
+export class ThemDonGiatComponent implements OnInit {
   insertBillDTO: InsertBillDTO = {
     userID: 1,
     billDescription: 'Hãy viết những ghi chú',

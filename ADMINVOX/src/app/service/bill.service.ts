@@ -5,6 +5,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { UpdateBillDTO } from '../dtos/bill/update.bill.dtos';
 import { ApiResponse } from '../responses/api.response';
 import { InsertBillDTO } from '../dtos/bill/insert.bill.dtos';
+import { BillRespones } from '../responses/bill/bill.response';
+import { Bill } from '../models/bill';
 
 
 @Injectable({
@@ -21,11 +23,11 @@ export class BillService {
     .set('limit', limit.toString());
     return this.http.get<any>(`${environment.apiBaseUrl}/bill/list`, { params });   
   }
-  getBillById(id: number, page: number, limit: number): Observable<ApiResponse> {
+  getBillById(id: number, page: number, limit: number): Observable<any> {
     const params = new HttpParams()
     .set('page', page.toString())
     .set('limit', limit.toString());
-    return this.http.get<ApiResponse>(`${environment.apiBaseUrl}/bill_details/list/${id}`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/bill_details/list/${id}`, { params });
   }
   deleteBill(id: number): Observable<any> {
     debugger

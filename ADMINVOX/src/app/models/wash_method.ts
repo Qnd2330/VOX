@@ -1,6 +1,6 @@
 export interface Wash {
     washID:number;
-    wasName: string;
+    washName: string;
     washCost: number;
     washAvailability: boolean;
     washDescription: string;
