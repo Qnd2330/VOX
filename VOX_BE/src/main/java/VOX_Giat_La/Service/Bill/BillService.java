@@ -29,7 +29,6 @@ public class BillService implements IBillService {
                 .user(user)
                 .billDescription(billDTO.getBillDescription())
                 .sumWeight(billDTO.getSumWeight())
-                .cost(billDTO.getCost())
                 .billStatus(false)
                 .build();
         return billRepos.save(newBill);
@@ -70,7 +69,6 @@ public class BillService implements IBillService {
         billUpdate.setUser(user);
         billUpdate.setBillDescription(billDTO.getBillDescription());
         billUpdate.setSumWeight(billDTO.getSumWeight());
-        billUpdate.setCost(billDTO.getCost());
         billUpdate.setBillPayDate(billDTO.getBillPayDate());
         billUpdate.setBillStatus(billDTO.getBillStatus());
         return billRepos.saveAndFlush(billUpdate);

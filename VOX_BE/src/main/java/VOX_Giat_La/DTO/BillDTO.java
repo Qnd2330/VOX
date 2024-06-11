@@ -24,8 +24,6 @@ public class BillDTO {
     private String billDescription;
     @Min(0)
     private float sumWeight;
-    @Min(0)
-    private float cost;
 
     private Boolean billStatus;
 

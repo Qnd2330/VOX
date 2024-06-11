@@ -21,8 +21,7 @@ public class BillDetailsDTO {
     private String description;
     @Min(0)
     private float weight;
-    @Min(0)
-    private float price;
-    private boolean billDetailStatus;
+
+    private Boolean billDetailStatus;
 
 }

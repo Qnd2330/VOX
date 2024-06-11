@@ -20,15 +20,16 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class BillDetailsService implements IBillDetailsService{
+public class BillDetailsService implements IBillDetailsService {
     private final BillRepos billRepos;
     private final BillDetailsRepos billDetailsRepos;
 
     private final Washing_MethodRepos washing_methodRepos;
+
     @Override
-    public BillDetails createBillDetails( int billID, BillDetailsDTO billDetailsDTO) throws DataNotFoundException {
-        Bill Exitingbill =  billRepos.findById(billID).orElseThrow(()->new DataNotFoundException("Không tìm thấy bill với ID: "+billDetailsDTO.getBillID()));
-        Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(()->new DataNotFoundException("Không tìm thấy kiểu giặt với ID: "+billDetailsDTO.getWashID()));
+    public BillDetails createBillDetails(int billID, BillDetailsDTO billDetailsDTO) throws DataNotFoundException {
+        Bill Exitingbill = billRepos.findById(billID).orElseThrow(() -> new DataNotFoundException("Không tìm thấy bill với ID: " + billDetailsDTO.getBillID()));
+        Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy kiểu giặt với ID: " + billDetailsDTO.getWashID()));
 
         BillDetails newBillDetails = BillDetails.builder()
                 .bill(Exitingbill)
@@ -36,14 +37,15 @@ public class BillDetailsService implements IBillDetailsService{
                 .description(billDetailsDTO.getDescription())
                 .weight(billDetailsDTO.getWeight())
                 .billDetailStatus(false)
-                .price(ExitingWash.getWashCost())
                 .build();
+        Exitingbill.updateCost();
+        billRepos.save(Exitingbill);
         return billDetailsRepos.save(newBillDetails);
     }
 
     @Override
     public BillDetails getBillDetailsByID(int billDetailsID) {
-        return billDetailsRepos.findById(billDetailsID).orElseThrow(()-> new RuntimeException("Không tìm thấy bill"));
+        return billDetailsRepos.findById(billDetailsID).orElseThrow(() -> new RuntimeException("Không tìm thấy bill"));
     }
 
     @Override
@@ -68,16 +70,18 @@ public class BillDetailsService implements IBillDetailsService{
     @Override
     public BillDetails updateBillDetails(int id, BillDetailsDTO billDetailsDTO) throws DataNotFoundException {
         BillDetails billDetailsUpdate = getBillDetailsByID(id);
-        Bill Exitingbill =  billRepos.findById(billDetailsDTO.getBillID()).orElseThrow(()->new DataNotFoundException("Không tìm thấy bill với ID: "+billDetailsDTO.getBillID()));
-        Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(()->new DataNotFoundException("Không tìm thấy kiểu giặt với ID: "+billDetailsDTO.getWashID()));
+        Bill Exitingbill = billRepos.findById(billDetailsDTO.getBillID()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy bill với ID: " + billDetailsDTO.getBillID()));
+        Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy kiểu giặt với ID: " + billDetailsDTO.getWashID()));
 
-            billDetailsUpdate.setBill(Exitingbill);
-            billDetailsUpdate.setWash(ExitingWash);
+        billDetailsUpdate.setBill(Exitingbill);
+        billDetailsUpdate.setWash(ExitingWash);
 
-            billDetailsUpdate.setDescription(billDetailsDTO.getDescription());
-            billDetailsUpdate.setWeight(billDetailsDTO.getWeight());
-            billDetailsUpdate.setPrice(billDetailsDTO.getPrice());
-            billDetailsUpdate.setBillDetailStatus(billDetailsDTO.isBillDetailStatus());
+
+        billDetailsUpdate.setDescription(billDetailsDTO.getDescription());
+        billDetailsUpdate.setWeight(billDetailsDTO.getWeight());
+        billDetailsUpdate.setBillDetailStatus(billDetailsDTO.getBillDetailStatus());
+        Exitingbill.updateCost();
+        billRepos.save(Exitingbill);
         return billDetailsRepos.saveAndFlush(billDetailsUpdate);
     }
 
