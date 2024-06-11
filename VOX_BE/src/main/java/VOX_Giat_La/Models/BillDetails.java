@@ -34,4 +34,12 @@ public class BillDetails {
     private float price;
     @Column(name = "billDetailStatus")
     private Boolean billDetailStatus;
+
+    @PrePersist
+    @PreUpdate
+    private void calculatePrice() {
+        if (wash != null && weight > 0) {
+            this.price = wash.getWashCost() * weight;
+        }
+    }
 }

@@ -36,7 +36,6 @@ public class BillDetailsService implements IBillDetailsService{
                 .description(billDetailsDTO.getDescription())
                 .weight(billDetailsDTO.getWeight())
                 .billDetailStatus(false)
-                .price(ExitingWash.getWashCost())
                 .build();
         return billDetailsRepos.save(newBillDetails);
     }
@@ -76,7 +75,6 @@ public class BillDetailsService implements IBillDetailsService{
 
             billDetailsUpdate.setDescription(billDetailsDTO.getDescription());
             billDetailsUpdate.setWeight(billDetailsDTO.getWeight());
-            billDetailsUpdate.setPrice(billDetailsDTO.getPrice());
             billDetailsUpdate.setBillDetailStatus(billDetailsDTO.getBillDetailStatus());
         return billDetailsRepos.saveAndFlush(billDetailsUpdate);
     }
