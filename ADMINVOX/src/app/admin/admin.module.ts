@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { ListDonGiatComponent } from './QLDonGiat/list-don-giat/list-don-giat.component';
-import { FormGiatLaComponent } from './QLGiatLa/form-giat-la/form-giat-la.component';
 import { ListGiatLaComponent } from './QLGiatLa/list-giat-la/list-giat-la.component';
 import { FormKhoComponent } from './QLKho/form-kho/form-kho.component';
 import { ListKhoComponent } from './QLKho/list-kho/list-kho.component';
@@ -25,6 +24,8 @@ import { ThemDonGiatComponent } from './QLDonGiat/them-don-giat/them-don-giat.co
 import { CapNhatDonGiatComponent } from './QLDonGiat/cap-nhat-don-giat/cap-nhat-don-giat.component';
 import { CapNhatChiTietDonGiatComponent } from './QLDonGiat/cap-nhat-chi-tiet-don-giat/cap-nhat-chi-tiet-don-giat.component';
 import { ThemChiTietDonGiatComponent } from './QLDonGiat/them-chi-tiet-don-giat/them-chi-tiet-don-giat.component';
+import { ThemGiatLaComponent } from './QLGiatLa/them-giat-la/them-giat-la.component';
+import { CapNhatGiatLaComponent } from './QLGiatLa/cap-nhat-giat-la/cap-nhat-giat-la.component';
 
 
 
@@ -37,7 +38,8 @@ import { ThemChiTietDonGiatComponent } from './QLDonGiat/them-chi-tiet-don-giat/
     ThemChiTietDonGiatComponent,
     CapNhatChiTietDonGiatComponent,
     ListGiatLaComponent,
-    FormGiatLaComponent,
+    ThemGiatLaComponent,
+    CapNhatGiatLaComponent,
     ListKhoComponent,
     FormKhoComponent,
     ListNhanVienComponent,

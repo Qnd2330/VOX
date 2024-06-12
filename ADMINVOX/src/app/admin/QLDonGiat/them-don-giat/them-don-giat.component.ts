@@ -14,9 +14,6 @@ export class ThemDonGiatComponent implements OnInit {
   addBillDTO: InsertBillDTO = {
     userID: 1,
     billDescription: 'Hãy viết những ghi chú',
-    sumWeight: 0,
-    cost: 0,
-    billStatus: true,
     image: null,
     billPayDate: new Date(),
   };

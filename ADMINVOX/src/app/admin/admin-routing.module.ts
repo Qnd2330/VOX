@@ -12,6 +12,8 @@ import { CapNhatDonGiatComponent } from './QLDonGiat/cap-nhat-don-giat/cap-nhat-
 import { ThemDonGiatComponent } from './QLDonGiat/them-don-giat/them-don-giat.component';
 import { ThemChiTietDonGiatComponent } from './QLDonGiat/them-chi-tiet-don-giat/them-chi-tiet-don-giat.component';
 import { CapNhatChiTietDonGiatComponent } from './QLDonGiat/cap-nhat-chi-tiet-don-giat/cap-nhat-chi-tiet-don-giat.component';
+import { CapNhatGiatLaComponent } from './QLGiatLa/cap-nhat-giat-la/cap-nhat-giat-la.component';
+import { ThemGiatLaComponent } from './QLGiatLa/them-giat-la/them-giat-la.component';
 
 
 const routes: Routes = [
@@ -31,6 +33,8 @@ const routes: Routes = [
       { path: 'qlttkh', component: ListTTKHComponent, title: "QL Thông Tin KH" },
       { path: 'qlk', component: ListKhoComponent, title: "QL Kho" },
       { path: 'qlgl', component: ListGiatLaComponent, title: "QL Giặt Là" },
+      { path: 'qlgl/update/:id', component: CapNhatGiatLaComponent, title: "Cập Nhật Kiểu Giặt" },
+      { path: 'qlgl/insert', component: ThemGiatLaComponent, title: "Thêm Mới Kiểu Giặt" },
     ]
   },
 ];

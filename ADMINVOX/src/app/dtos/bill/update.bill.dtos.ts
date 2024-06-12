@@ -20,12 +20,12 @@ export class UpdateBillDTO {
     billDescription:string;
 
     
-    @IsNotEmpty()
-    sumWeight:number;
+    // @IsNotEmpty()
+    // sumWeight:number;
 
     
-    @IsNotEmpty()
-    cost:number;
+    // @IsNotEmpty()
+    // cost:number;
 
     
     @IsNotEmpty()
@@ -48,8 +48,8 @@ export class UpdateBillDTO {
         this.userID = data.userID;
         this.userName = data.userName; 
         this.billDescription = data.billDescription; 
-        this.sumWeight = data.sumWeight;
-        this.cost = data.cost;
+        // this.sumWeight = data.sumWeight;
+        // this.cost = data.cost;
         this.billCreateDate = data.billCreateDate;
         this.billStatus = data.billStatus;
         this.billPayDate = data.billPayDate;

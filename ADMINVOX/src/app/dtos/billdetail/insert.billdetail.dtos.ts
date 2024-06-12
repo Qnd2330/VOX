@@ -16,8 +16,8 @@ export class InsertBillDetailDTO {
     @IsNotEmpty()
     weight: number;
 
-    @IsNotEmpty()
-    price: number;
+    // @IsNotEmpty()
+    // price: number;
 
     @IsNotEmpty()
     billDetailStatus: boolean;
@@ -27,7 +27,7 @@ export class InsertBillDetailDTO {
         this.washID = data.washID;
         this.description = data.description;
         this.weight = data.weight;
-        this.price = data.price;
+        // this.price = data.price;
         this.billDetailStatus = data.billDetailStatus;
     }
 }

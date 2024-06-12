@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { InsertBillDetailDTO } from '../dtos/billdetail/insert.billdetail.dtos';
 import { Observable, catchError, throwError } from 'rxjs';
 import { UpdateBillDetailDTO } from '../dtos/billdetail/update.billdetail.dtos';
+import { BillDetail } from '../models/billdetail';
+import { UpdateBillDTO } from '../dtos/bill/update.bill.dtos';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +51,7 @@ export class BilldetailsService {
     return this.http.get<any>(`${environment.apiBaseUrl}/bill_details/${id}`);
   }
 
-  updateBillDetail(id: number, updateBillDetail: UpdateBillDetailDTO): Observable<any> {
-    return this.http.put<any>(`${this.apiBaseUrl}/bill_details/update/${id}`, updateBillDetail);
+  updateBillDetail(id: number, updatedBillDetail: UpdateBillDetailDTO): Observable<any> {
+    return this.http.put<any>(`${this.apiBaseUrl}/bill_details/update/${id}`, updatedBillDetail);
   }
 }

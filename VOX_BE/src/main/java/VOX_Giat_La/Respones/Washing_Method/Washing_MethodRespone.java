@@ -23,6 +23,7 @@ public class Washing_MethodRespone {
         Washing_MethodRespone washingMethodRespone = Washing_MethodRespone.builder()
                 .washID(washingMethod.getWashID())
                 .washName(washingMethod.getWashName())
+                .washCost(washingMethod.getWashCost())
                 .washAvailability(washingMethod.getWashAvailability())
                 .washDescription(washingMethod.getWashDescription())
                 .washCreateDate(washingMethod.getWashCreateDate())

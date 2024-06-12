@@ -1,34 +1,28 @@
-<div class="items">
-    <h1 class="subhead">Cập nhật đơn giặt</h1>
-    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
-    (ngSubmit)="saveBillDetail()">
-      <fieldset>
-  
-        <label>BillDetailID</label>
-        <input class="pure-input-1" type="text" id="billDetailID" name="billDetailID" [(ngModel)]="updatedBillDetail.billDetailID" disabled>
-  
-        <label>Kiểu giặt</label>
-        <select class="pure-input-1" id="washID" name="washID" [(ngModel)]="updatedBillDetail.washName">
-        <option *ngFor="let wash of washes" [value]="wash.washName">{{ wash.washName }}</option>
-        </select>
+<div *ngIf="dataLoaded" class="items">
+  <h1 class="subhead">Cập nhật đơn giặt</h1>
+  <form novalidate autocomplete="off" class="pure-form pure-form-stacked">
+    <fieldset>
+      <label>BillDetailID</label>
+      <input class="pure-input-1" type="text" id="billDetailID" name="billDetailID" [(ngModel)]="updatedBillDetail.billDetailID" disabled>
 
-        <label for="description">Ghi chú</label>
-        <input class="pure-input-1" type="text" id="description" name="description" [(ngModel)]="updatedBillDetail.description">
-  
-        <label for="weight">Cân năng chú</label>
-        <input class="pure-input-1" type="text" id="weight" name="weight" [(ngModel)]="updatedBillDetail.weight">
-  
-        <label for="price">Giá</label>
-        <input class="pure-input-1" type="number" id="price" name="price" [(ngModel)]="updatedBillDetail.price" disabled>
-  
-        <label for="billStatus">Tình trạng</label>
-              <select class="pure-input-1" type="" id="billStatus" name="billStatus"
-                  [(ngModel)]="updatedBillDetail.billDetailStatus">
-                  <option [ngValue]="true">Hoàn thành</option>
-                  <option [ngValue]="false">Chưa hoàn thành</option>
-              </select>
-        <input type="hidden" name="id" value="1">
-        <button type="submit" class="pure-button button-success">Save</button>
-      </fieldset>
-    </form>
-  </div>
+      <label>Kiểu giặt</label>
+      <select class="pure-input-1" id="wash" name="wash" [(ngModel)]="updatedBillDetail.washName" (ngModelChange)="onWashChange($event)">
+        <option *ngFor="let wash of washes" [value]="wash.washName">{{ wash.washName }}</option>
+      </select>
+
+      <label for="description">Ghi chú</label>
+      <input class="pure-input-1" type="text" id="description" name="description" [(ngModel)]="updatedBillDetail.description">
+
+      <label for="weight">Cân nặng</label>
+      <input class="pure-input-1" type="number" id="weight" name="weight" [(ngModel)]="updatedBillDetail.weight">
+
+      <label for="billStatus">Tình trạng</label>
+      <select class="pure-input-1" id="billStatus" name="billStatus" [(ngModel)]="updatedBillDetail.billDetailStatus">
+        <option [ngValue]="true">Hoàn thành</option>
+        <option [ngValue]="false">Chưa hoàn thành</option>
+      </select>
+
+      <button type="submit" class="pure-button button-success" (click)="saveBillDetail()">Save</button>
+    </fieldset>
+  </form>
+</div>
