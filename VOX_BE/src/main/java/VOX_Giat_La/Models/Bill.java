@@ -40,7 +40,7 @@ public class Bill {
     @Column(name = "image")
     private String image;
 
-    @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
     private List<BillDetails> billDetails;
 
@@ -58,5 +58,19 @@ public class Bill {
         this.sumWeight = billDetails.stream()
                 .map(BillDetails::getWeight)
                 .reduce(0.0f, Float::sum);
+    }
+
+    public void addBillDetails(BillDetails details) {
+        billDetails.add(details);
+        details.setBill(this);
+        updateCost();
+        updateSumWeight();
+    }
+
+    public void removeBillDetails(BillDetails details) {
+        billDetails.remove(details);
+        details.setBill(null);
+        updateCost();
+        updateSumWeight();
     }
 }

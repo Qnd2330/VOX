@@ -28,7 +28,7 @@ public class BillDetailsService implements IBillDetailsService {
     private final Washing_MethodRepos washing_methodRepos;
 
     @Override
-
+    @Transactional
     public BillDetails createBillDetails(int billID, BillDetailsDTO billDetailsDTO) throws DataNotFoundException {
         Bill Exitingbill = billRepos.findById(billID).orElseThrow(() -> new DataNotFoundException("Không tìm thấy bill với ID: " + billDetailsDTO.getBillID()));
         Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy kiểu giặt với ID: " + billDetailsDTO.getWashID()));
@@ -40,8 +40,7 @@ public class BillDetailsService implements IBillDetailsService {
                 .weight(billDetailsDTO.getWeight())
                 .billDetailStatus(false)
                 .build();
-        Exitingbill.updateCost();
-        Exitingbill.updateSumWeight();
+        Exitingbill.addBillDetails(newBillDetails);
         billRepos.save(Exitingbill);
         return billDetailsRepos.save(newBillDetails);
     }
@@ -84,8 +83,7 @@ public class BillDetailsService implements IBillDetailsService {
         billDetailsUpdate.setDescription(billDetailsDTO.getDescription());
         billDetailsUpdate.setWeight(billDetailsDTO.getWeight());
         billDetailsUpdate.setBillDetailStatus(billDetailsDTO.getBillDetailStatus());
-        Exitingbill.updateCost();
-        Exitingbill.updateSumWeight();
+        Exitingbill.addBillDetails(billDetailsUpdate);
         billRepos.save(Exitingbill);
         return billDetailsRepos.saveAndFlush(billDetailsUpdate);
     }
@@ -94,7 +92,13 @@ public class BillDetailsService implements IBillDetailsService {
     @Transactional
     public void deleteBillDetails(int id) {
         Optional<BillDetails> optionalBillDetails = billDetailsRepos.findById(id);
-        optionalBillDetails.ifPresent(billDetailsRepos::delete);
+        if (optionalBillDetails.isPresent()) {
+            BillDetails billDetails = optionalBillDetails.get();
+            Bill bill = billDetails.getBill();
+            bill.removeBillDetails(billDetails);
+            billDetailsRepos.delete(billDetails);
+            billRepos.save(bill); // Lưu lại Bill sau khi cập nhật
+        }
     }
 
     @Override

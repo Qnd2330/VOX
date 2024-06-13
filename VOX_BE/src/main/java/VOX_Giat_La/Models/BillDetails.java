@@ -41,6 +41,8 @@ public class BillDetails {
     private void calculatePrice() {
         if (wash != null && weight > 0) {
             this.price = wash.getWashCost() * weight;
+            bill.updateCost();
+            bill.updateSumWeight();
         }
     }
     @PostPersist
