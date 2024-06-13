@@ -5,6 +5,7 @@ import { BilldetailsService } from '../../../service/billdetails.service';
 import { WashingmethodService } from '../../../service/washingmethod.service';
 import { Wash } from '../../../models/wash_method';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UpdateBillDetailDTO } from '../../../dtos/billdetail/update.billdetail.dtos';
 
 @Component({
   selector: 'app-cap-nhat-chi-tiet-don-giat',
@@ -56,7 +57,14 @@ export class CapNhatChiTietDonGiatComponent implements OnInit {
   }
 
   saveBillDetail() {
-    this.billDetailService.updateBillDetail(this.billDetailID, this.updatedBillDetail).subscribe({
+    const updateBillDetailDTO: UpdateBillDetailDTO = {
+      billID: this.updatedBillDetail.billID,
+      washID: this.updatedBillDetail.washID,
+      description: this.updatedBillDetail.description,
+      weight: this.updatedBillDetail.weight,
+      billDetailStatus: this.updatedBillDetail.billDetailStatus,
+    }; 
+    this.billDetailService.updateBillDetail(this.billDetailID, updateBillDetailDTO).subscribe({
       next: () => {
         this.router.navigate([`/admin/qldg/view/${this.updatedBillDetail.billID}`]);
       },

@@ -16,14 +16,17 @@ export class BilldetailsService {
   constructor(private http: HttpClient) { }
 
   insertBillDetail(billID: number, insertBillDetailDTO: InsertBillDetailDTO): Observable<any> {
-    return this.http.post<any>(`${this.apiBaseUrl}/bill_details/insert/${billID}`, insertBillDetailDTO, {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      responseType: 'json'
-    }).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.post<any>(`${this.apiBaseUrl}/bill_details/insert/${billID}`, insertBillDetailDTO
+    //   , {
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   responseType: 'json'
+    // }
+  )
+    // .pipe(
+    //   catchError(this.handleError)
+    // );
   }
 
   private handleError(error: HttpErrorResponse) {

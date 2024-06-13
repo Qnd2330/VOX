@@ -143,7 +143,7 @@ export class CapNhatDonGiatComponent implements OnInit{
       userID: this.updatedBill.userID,
       userName: this.updatedBill.userName,
       billDescription: this.updatedBill.billDescription,
-      // sumWeight: this.updatedBill.sumWeight,
+      sumWeight: this.updatedBill.sumWeight,
       // cost: this.updatedBill.cost,
       billCreateDate: this.updatedBill.billCreateDate,
       billStatus: this.updatedBill.billStatus,
@@ -151,7 +151,7 @@ export class CapNhatDonGiatComponent implements OnInit{
       image: this.updatedBill.image,
     }; 
     debugger        
-    this.billService.updateBill(this.bill.billID, updateBillDTO).subscribe({
+    this.billService.updateBill(this.updatedBill.billID, updateBillDTO).subscribe({
       next: (apiResponse: ApiResponse) => {  
         debugger        
       },
@@ -162,6 +162,7 @@ export class CapNhatDonGiatComponent implements OnInit{
       error: (error: HttpErrorResponse) => {
         debugger;
         console.error(error?.error?.message ?? '');
+        this.router.navigate(['/admin/qldg']); 
       } 
     });  
   }

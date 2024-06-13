@@ -5,11 +5,12 @@ import { BilldetailsService } from '../../../service/billdetails.service';
 import { Wash } from '../../../models/wash_method';
 import { WashingmethodService } from '../../../service/washingmethod.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { BillDetail } from '../../../models/billdetail';
 
 @Component({
   selector: 'app-them-chi-tiet-don-giat',
   templateUrl: './them-chi-tiet-don-giat.component.html',
-  styleUrl: './them-chi-tiet-don-giat.component.css'
+  styleUrl: './them-chi-tiet-don-giat.component.css',
 })
 export class ThemChiTietDonGiatComponent implements OnInit {
   currentPage: number = 0;
@@ -20,9 +21,9 @@ export class ThemChiTietDonGiatComponent implements OnInit {
     washID: 1,
     description: 'Hãy viết những ghi chú',
     weight: 0,
-    // price: 0,
-    billDetailStatus: true,
+    billDetailStatus: false,
   };
+  billDetail: BillDetail[] = [];
   washes: Wash[] = [];
 
   constructor(
@@ -39,27 +40,24 @@ export class ThemChiTietDonGiatComponent implements OnInit {
     }
     this.getWashes(this.currentPage, this.itemsPerPage); // Gọi hàm loadWashes khi component được khởi tạo
   }
-  insertBillDetail() {
+  insertBillDetail(): void {
     debugger;
     this.billID = Number(this.route.snapshot.paramMap.get('id'));
     debugger;
 
     // Gọi service để gửi yêu cầu HTTP với insertBillDTO
     this.billDetailService.insertBillDetail(this.billID, this.insertBillDetailDTO).subscribe({
-      next: (response) => {
-        debugger
-
+      next: () => {
+        debugger;
+        this.router.navigate([`/admin/qldg/view/${this.billID}`]);
       },
       error: (error) => {
         debugger;
         console.error(error);
-        const billId = this.billID;
-        this.router.navigate([`/admin/qldg/view/${billId}`]);
+        this.router.navigate([`/admin/qldg/view/${this.billID}`]);
         // alert(error);
       }
     });
-    const billId = this.billID;
-    this.router.navigate([`/admin/qldg/view/${billId}`]);
   }
 
   getWashes(page: number, limit: number) {
