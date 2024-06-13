@@ -45,17 +45,11 @@ public class BillDetails {
     }
     @PostPersist
     @PostUpdate
-    private void updateBillCost() {
+    private void updateBillCostAndSumWeight() {
         if (bill != null) {
             bill.updateCost();
-        }
-    }
-
-    @PostPersist
-    @PostUpdate
-    private void updateSumWeight() {
-        if (bill != null) {
             bill.updateSumWeight();
         }
     }
+
 }
