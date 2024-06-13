@@ -19,9 +19,7 @@ $(document).ready(function () {
 ======================================*/
 jQuery(window).on("load", function () {
     "use strict";
-    
-
-    // $("#loader").fadeOut(100);
+    $("#loader").fadeOut(100);
 
 });
 

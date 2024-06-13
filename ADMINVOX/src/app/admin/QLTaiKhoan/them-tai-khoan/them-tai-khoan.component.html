@@ -1,7 +1,7 @@
 <div class="items">
     <h1 class="subhead">Thêm đơn giặt</h1>
     <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
-        (ngSubmit)="insertBill()" enctype="multipart/form-data" #userForm="ngForm">
+        (ngSubmit)="insertUser()" enctype="multipart/form-data" #userForm="ngForm">
         <fieldset>
 
             <label for="userName">Tên người dùng</label>
@@ -43,20 +43,22 @@
 
             <label for="userPassword">Mật khẩu</label>
             <input class="pure-input-1" type="password" id="userPassword" name="userPassword"
-                [(ngModel)]="userPasswordModel" required autocomplete="new-password" #userPasswordInput="ngModel">
+                [(ngModel)]="addUser.userPassword" required autocomplete="new-password" #userPasswordInput="ngModel">
             <div *ngIf="userPasswordInput.invalid && (userPasswordInput.dirty || userPasswordInput.touched)">
                 <div *ngIf="userPasswordInput.errors?.['required']">Bạn chưa điền mật khẩu.</div>
             </div>
 
             <label for="retypePassword">Nhập Lại Mật khẩu</label>
             <input class="pure-input-1" type="password" id="retypePassword" name="retypePassword"
-                [(ngModel)]="retypePasswordModel" required autocomplete="new-password" #retypePasswordInput="ngModel">
+                [(ngModel)]="addUser.retypePassword" required autocomplete="new-password"
+                #retypePasswordInput="ngModel">
             <div *ngIf="retypePasswordInput.invalid && (retypePasswordInput.dirty || retypePasswordInput.touched)">
                 <div *ngIf="retypePasswordInput.errors?.['required']">Bạn chưa điền mật khẩu xác thực.</div>
             </div>
-            <div *ngIf="retypePasswordInput.touched && !retypePasswordInput.errors?.['required']">
-                <div *ngIf="userPasswordModel !== retypePasswordModel">Mật khẩu xác thực không khớp.</div>
+            <div *ngIf="retypePasswordInput.valid && retypePasswordInput.touched">
+                <div *ngIf="addUser.userPassword !== addUser.retypePassword">Mật khẩu xác thực không khớp.</div>
             </div>
+
 
 
 

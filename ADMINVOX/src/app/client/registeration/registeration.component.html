@@ -16,51 +16,112 @@
         <div class="offset-lg-3 col-lg-6 col-md-12 col-sm-12 pr-lg-0 whitebox">
             <div class="widget logincontainer">
                 <h3 class="bottom35 text-center text-md-left">Create Your Account </h3>
-                <form class="getin_form border-form" id="register">
+                <form class="getin_form border-form" id="register" (ngSubmit)="insertUser()"
+                    enctype="multipart/form-data" #userForm="ngForm">
                     <div class="row">
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group bottom35">
                                 <label for="registerName" class="d-none"></label>
-                                <input class="form-control" type="text" placeholder="Full Name:" required=""
-                                    id="registerName">
+                                <input class="form-control" type="text" id="userName" name="userName"
+                                    placeholder="Họ Và Tên: " [(ngModel)]="addUser.userName" required
+                                    #userName="ngModel">
+                                <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                                    <div *ngIf="userName.errors?.['required']">Bạn chưa điền tên người dùng.</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group bottom35">
-                                <label for="registerEmail" class="d-none"></label>
-                                <input class="form-control" type="email" placeholder="Email:" required=""
-                                    id="registerEmail">
+                                <label for="phoneNumber" class="d-none"></label>
+                                <input class="form-control" type="tel" id="phoneNumber" name="phoneNumber"
+                                    placeholder="Số điện thoại" [(ngModel)]="addUser.phoneNumber"
+                                    pattern="^[0-9]{5,11}$" required #phoneNumber="ngModel">
+                                <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">
+                                    <div *ngIf="phoneNumber.errors?.['required']">Bạn chưa điền số điện thoại.</div>
+                                    <div *ngIf="phoneNumber.errors?.['pattern'] && !phoneNumber.errors?.['required']">Số
+                                        điện thoại phải từ 5 đến 11 chữ số.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="userAddress" class="d-none"></label>
+                                <input class="form-control" type="text" id="userAddress" name="userAddress"
+                                    placeholder="Địa chỉ" [(ngModel)]="addUser.userAddress" required
+                                    #userAddress="ngModel">
+                                <div *ngIf="userAddress.invalid && (userAddress.dirty || userAddress.touched)">
+                                    <div *ngIf="userAddress.errors?.['required']">Bạn chưa điền địa chỉ.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group" style="display: flex;">
+                                <a for="userBirthDate" class="input-label"
+                                    style="width: 100px; padding-top: 9px; color: gray;">Ngày sinh: </a>
+                                <input class="form-control" type="date" id="userBirthDate" name="userBirthDate"
+                                    placeholder="Ngày sinh" [(ngModel)]="addUser.userBirthDate">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group" style="display: flex;">
+                                <a for="userGender" style="width: 100px; padding-top: 9px; color: gray;">Giới tính</a>
+                                <select class="form-control" id="userGender" name="userGender"
+                                    [(ngModel)]="addUser.userGender" required #userGender="ngModel">
+                                    <option value="Nam" selected>Nam</option>
+                                    <option value="Nữ">Nữ</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                                <div *ngIf="userGender.invalid && (userGender.dirty || userGender.touched)">
+                                    <div *ngIf="userGender.errors?.['required']">Bạn chưa chọn giới tính.</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group bottom35">
-                                <label for="registerPass" class="d-none"></label>
-                                <input class="form-control" type="password" placeholder="Password:" required=""
-                                    id="registerPass">
+                                <!-- <label for="userPassword">Nhập Lại Mật khẩu</label> -->
+                                <!-- Thêm [(ngModel)] để thực hiện 2-way data binding -->
+                                <input class="form-control" type="password" id="userPassword" name="userPassword"
+                                    placeholder="Nhập mật khẩu" [(ngModel)]="addUser.userPassword" required
+                                    autocomplete="new-password" #userPasswordInput="ngModel">
+                                <div
+                                    *ngIf="userPasswordInput.invalid && (userPasswordInput.dirty || userPasswordInput.touched)">
+                                    <div *ngIf="userPasswordInput.errors?.['required']">Bạn chưa điền mật khẩu.</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group bottom35">
-                                <label for="registerPassConfirm" class="d-none"></label>
-                                <input class="form-control" type="password" placeholder="Confirm Password:" required=""
-                                    id="registerPassConfirm">
+                                <!-- <label for="retypePassword">Nhập Lại Mật khẩu</label> -->
+                                <input class="form-control" type="password" id="retypePassword" name="retypePassword"
+                                    placeholder="Nhập lại mật khẩu" [(ngModel)]="addUser.retypePassword" required
+                                    autocomplete="new-password" #retypePasswordInput="ngModel">
+                                <div
+                                    *ngIf="retypePasswordInput.invalid && (retypePasswordInput.dirty || retypePasswordInput.touched)">
+                                    <div *ngIf="retypePasswordInput.errors?.['required']">Bạn chưa điền mật khẩu xác
+                                        thực.</div>
+                                </div>
+                                <div *ngIf="retypePasswordInput.valid && retypePasswordInput.touched">
+                                    <div *ngIf="addUser.userPassword !== addUser.retypePassword">Mật khẩu xác thực không
+                                        khớp.</div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group bottom35">
                                 <div class="form-check text-left">
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                        <label class="custom-control-label" for="defaultUnchecked">Remember me on this
-                                            device</label>
+                                        <input type="checkbox" [(ngModel)]="isAccepted" name="isAccepted"
+                                            class="form-check-input" id="agree">
+                                        <label class="form-check-label text-start" for="agree">
+                                            Tôi đồng ý với các điều khoản và điều kiện</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <button type="submit"
-                                class="button btn btn-gradient w-100 rounded-pill register-btn ">Register</button>
-                            <p class="top20"> Already have an account? &nbsp;<a href="login.html"
+                            <button type="submit" class="button btn btn-gradient w-100 rounded-pill register-btn"
+                                [disabled]="!userForm.valid || !isAccepted">Register</button>
+                            <p class="top20"> Already have an account? &nbsp;<a [routerLink]="['/login']"
                                     class="defaultcolor">Sign In</a> </p>
                         </div>
                     </div>

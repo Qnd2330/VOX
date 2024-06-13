@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import $ from "jquery";
+import { DynamicScriptLoaderService } from '../../service/dynamicscriptloader.service';
 
 
 @Component({
@@ -8,10 +8,42 @@ import $ from "jquery";
   templateUrl: './index-layout.component.html',
   styleUrl: './index-layout.component.css',
 })
-export class IndexLayoutComponent {
+export class IndexLayoutComponent implements AfterViewInit {
   showHeader: boolean = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dynamicScriptLoader: DynamicScriptLoaderService) { }
+
+  ngAfterViewInit(): void {
+    const styles = [
+      'assets/vendor/css/bundle.min.css',
+      'assets/vendor/css/jquery.fancybox.min.css',
+      'assets/vendor/css/owl.carousel.min.css',
+      'assets/vendor/css/swiper.min.css',
+      'assets/vendor/css/cubeportfolio.min.css',
+      'assets/vendor/css/wow.css',
+      'assets/vendor/css/LineIcons.min.css',
+      'assets/css/style.css'
+    ];
+
+    const scripts = [
+      'https://code.jquery.com/jquery-3.6.0.min.js', // Đảm bảo jQuery được tải trước
+      'assets/vendor/js/owl.carousel.min.js', // Owl Carousel cần được tải sau jQuery
+      'assets/vendor/js/jquery.fancybox.min.js', // FancyBox cần được tải sau jQuery
+      'assets/js/script.js',
+      'assets/js/over-laymenu.js',
+      'assets/vendor/js/swiper.min.js',
+      'assets/vendor/js/jquery.cubeportfolio.min.js',
+      'assets/vendor/js/parallaxie.min.js',
+      'assets/vendor/js/wow.min.js',
+      'assets/vendor/js/bundle.min.js',
+    ];
+
+    this.dynamicScriptLoader.loadStyles(styles);
+    this.dynamicScriptLoader.loadScriptsSequentially(scripts).then(() => {
+      console.log('All scripts loaded');
+      // this.initializeExternalScripts();
+    }).catch(error => console.error(error));
+  }
 
   ngOnInit() {
     this.checkHeaderVisibility();
@@ -21,130 +53,7 @@ export class IndexLayoutComponent {
         this.checkHeaderVisibility(); // Kiểm tra lại tính hiển thị của header khi URL thay đổi
       }
     });
-
-    $("#loader").fadeOut(1000);
-
-    /*===================================
-//Side Menu
-======================================*/
-$("#sidemenu_toggle").on("click", function () {
-
-  $(".side-menu-nav").removeClass('opacity-control');
-  $(".side-bar").removeClass("remove_side_bar");
-  $(".side-menu-nav").addClass("open-side-menu");
-  $(".side-menu-nav nav").addClass("nav-styling");
-
-});
-
-/*===================================
-//Side Menu on Mobile
-======================================*/
-$("#sidemenu_toggle1").on("click", function () {
-  $(".side-menu-nav").removeClass('opacity-control');
-  $(".side-bar").removeClass("remove_side_bar");
-  $(".side-menu-nav").addClass("open-side-menu");
-  $(".side-menu-nav nav").addClass("nav-styling");
-
-});
-
-
-
-/*===================================
-//Side Menu Close
-======================================*/
-$("#close-side-menu-nav").on("click", function () {
-
-  $(".open-side-menu").addClass('opacity-control');
-  setTimeout(function () {
-      $(".side-bar").addClass("remove_side_bar");
-      $(".side-menu-nav").removeClass("open-side-menu");
-      // remove class of visability hidden of main menu
-      $(".nav-appear").removeClass("main-nav-hide");
-
-  }, 100);
-
-  //animation remove sub menu
-  $(".sub-menu-nav-appear").removeClass("submenu-disappear");
-
-  //remove class of visiabilty of sub menu
-  $(".submenu-overlay").removeClass("Demo-submenu-visible");
-
-
-});
-
-/*===================================
-//Đóng overlay menu khi người dùng click vào một đường link trong menu
-======================================*/
-$(".side-bar .nav-item .nav-link").on("click", function (event) {
-  // Đóng overlay menu
-  $(".open-side-menu").addClass('opacity-control');
-  setTimeout(function () {
-      $(".side-bar").addClass("remove_side_bar");
-      $(".side-menu-nav").removeClass("open-side-menu");
-      // remove class of visability hidden of main menu
-      $(".nav-appear").removeClass("main-nav-hide");
-
-  }, 100);
-
-  //animation remove sub menu
-  $(".sub-menu-nav-appear").removeClass("submenu-disappear");
-
-  //remove class of visiabilty of sub menu
-  $(".submenu-overlay").removeClass("Demo-submenu-visible");
-});
-
-
-
-/*===================================
-//Sub Menu Open
-======================================*/
-$(".side-bar .nav-item .nav-link").on("click", function (event) {
-
-  var x = event.target.id;
-
-  if (x == "") {
-
-  }
-  else {
-      $(".side-menu-nav nav").removeClass("nav-styling");
-      $(".nav-appear").addClass("nav-disappear");
-      setTimeout(function () {
-          $(".nav-appear").addClass("main-nav-hide");
-          $("#" + x + " " + "~div.submenu-overlay").addClass("Demo-submenu-visible");
-      }, 200);
-      setTimeout(function () {
-          $(".nav-appear").removeClass("nav-disappear");
-      }, 1000);
-
-  }
-
-});
-
-/*===================================
-// GO back on Sub Menu
-======================================*/
-$('.go-back-btn').on('click', function () {
-
-
-  setTimeout(function () {
-      $(".nav-appear").removeClass("main-nav-hide"); // main nav show
-      $(".side-menu-nav nav").addClass("nav-styling");
-  }, 300);
-
-  $(".Demo-submenu-visible .sub-menu-nav-appear").addClass("submenu-disappear"); // animation sub menu zoom out .6 sec
-
-  $(".submenu-overlay").removeClass("Demo-submenu-visible");  // sub menu hidden
-
-  setTimeout(function () {
-      $(".sub-menu-nav-appear").removeClass("submenu-disappear");
-  }, 700);
-
-});
-
-
-
-
-
+    
   }
 
 

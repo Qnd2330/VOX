@@ -36,28 +36,13 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/app/client/client-assets/vendor/css/bundle.min.css",
-              "src/app/client/client-assets/vendor/css/jquery.fancybox.min.css",
-              "src/app/client/client-assets/vendor/css/owl.carousel.min.css",
-              "src/app/client/client-assets/vendor/css/swiper.min.css",
-              "src/app/client/client-assets/vendor/css/cubeportfolio.min.css",
-              "src/app/client/client-assets/vendor/css/wow.css",
-              "src/app/client/client-assets/vendor/css/LineIcons.min.css",
-              "src/app/client/client-assets/css/style.css",
+              
               "src/app/admin/admin-css/pure-min.css",
               "src/app/admin/admin-css/pure-responsive-min.css",
               "src/app/admin/admin-css/style.css"
             ],
             "scripts": [
-              "src/app/client/client-assets/vendor/js/bundle.min.js",
-              "src/app/client/client-assets/vendor/js/jquery.fancybox.min.js",
-              "src/app/client/client-assets/vendor/js/owl.carousel.min.js",
-              "src/app/client/client-assets/vendor/js/swiper.min.js",
-              "src/app/client/client-assets/vendor/js/jquery.cubeportfolio.min.js",
-              "src/app/client/client-assets/vendor/js/parallaxie.min.js",
-              "src/app/client/client-assets/vendor/js/wow.min.js",
-             
-              "src/app/client/client-assets/js/over-laymenu.js"
+              
             ],
             "server": "src/main.server.ts",
             "prerender": true,

@@ -18,6 +18,7 @@ const routes: Routes = [
       { path: 'registeration', component: RegisterationComponent, data: { title: 'Đăng ký' } },
       { path: 'about-us', component: AboutUsComponent, data: { title: 'Thông tin' } },
       { path: 'bill-checkout', component: BillCheckoutComponent, data: { title: 'Đặt đơn' } },
+      // { path: '**', redirectTo: '/login' } // Chuyển hướng mặc định cho các URL không hợp lệ
     ]
   }
 ];
