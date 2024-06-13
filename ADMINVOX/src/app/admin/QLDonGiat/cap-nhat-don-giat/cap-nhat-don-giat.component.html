@@ -11,19 +11,19 @@
         <input class="pure-input-1" type="text" id="userID" name="userID" [(ngModel)]="updatedBill.userID">
   
         <label for="userName">Tên khách hàng</label>
-        <input class="pure-input-1" type="text" id="userName" name="userName" [(ngModel)]="updatedBill.userName" disabled>
+        <input class="pure-input-1" type="text" id="userName" name="userName" [(ngModel)]="updatedBill.userName" readonly>
   
         <label for="billDescription">Ghi chú</label>
         <input class="pure-input-1" type="text" id="billDescription" name="billDescription" [(ngModel)]="updatedBill.billDescription">
   
         <label for="sumWeight">Tổng khối lượng</label>
-        <input class="pure-input-1" type="number" id="sumWeight" name="sumWeight" [(ngModel)]="updatedBill.sumWeight" disabled>
+        <input class="pure-input-1" type="number" id="sumWeight" name="sumWeight" [(ngModel)]="updatedBill.sumWeight" readonly>
   
         <label for="cost">Đơn giá</label>
-        <input class="pure-input-1" type="number" id="cost" name="cost" [(ngModel)]="updatedBill.cost" disabled>
+        <input class="pure-input-1" type="number" id="cost" name="cost" [(ngModel)]="updatedBill.cost" readonly>
   
         <label for="billCreateDate">Ngày tạo</label>
-        <input class="pure-input-1" type="datetime" id="billCreateDate" name="billCreateDate" [ngModel]="bill.billCreateDate | date: 'dd/MM/yyyy'" disabled>
+        <input class="pure-input-1" type="datetime" id="billCreateDate" name="billCreateDate" [ngModel]="bill.billCreateDate | date: 'dd/MM/yyyy'" readonly>
   
         <label for="billStatus">Tình trạng</label>
               <select class="pure-input-1" type="" id="billStatus" name="billStatus"
@@ -61,7 +61,7 @@
             <td>{{ detail.billDetailID }}</td>
             <td>{{ detail.washName }}</td>
             <td>{{ detail.weight }}</td>
-            <td>{{ detail.price }}</td>
+            <td>{{ formatCost(detail.price) }}</td>
             <td>{{ detail.billDetailStatus ? 'Hoàn Thành' : 'Chưa hoàn thành' }}</td>
             <td>
               <a class="pure-button button-small button-secondary" (click)="updateBillDetail(detail)" >Edit</a>

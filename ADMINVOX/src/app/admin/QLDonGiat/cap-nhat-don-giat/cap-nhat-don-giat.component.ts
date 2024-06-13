@@ -12,11 +12,13 @@ import { BillDTO } from '../../../dtos/bill/bill.dtos';
 import { BillDetail } from '../../../models/billdetail';
 import { log } from 'console';
 import { BilldetailsService } from '../../../service/billdetails.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-cap-nhat-don-giat',
   templateUrl: './cap-nhat-don-giat.component.html',
-  styleUrl: './cap-nhat-don-giat.component.css'
+  styleUrl: './cap-nhat-don-giat.component.css',
+  providers: [CurrencyPipe]
 })
 export class CapNhatDonGiatComponent implements OnInit{
   currentPage: number = 0;
@@ -46,6 +48,7 @@ export class CapNhatDonGiatComponent implements OnInit{
     private billDetailService: BilldetailsService,
     private route: ActivatedRoute,
     private router: Router,
+    private currencyPipe: CurrencyPipe,
     ) {
       this.bill = {} as Bill;
       this.updatedBill = {} as Bill;
@@ -195,5 +198,8 @@ export class CapNhatDonGiatComponent implements OnInit{
     } else {
       console.error('Bill ID is not available');
     }
+  }
+  formatCost(cost: number): string {
+    return this.currencyPipe.transform(cost, 'VND', 'symbol', '1.0-0') || 'N/A';;
   }
 }
