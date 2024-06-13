@@ -46,6 +46,15 @@ export class ListTaiKhoanComponent implements OnInit {
     });
   }
 
+  insertUser(){
+    this.router.navigate(['/admin/qltk/insert']);
+  }
+
+  updateUser(user: User) {
+    debugger      
+    this.router.navigate(['/admin/qltk/update', user.userID]);
+  } 
+
   deleteUser(user: User) {
     const confirmation = window.confirm('Are you sure you want to delete this user?');
     if (confirmation) {
@@ -73,18 +82,31 @@ export class ListTaiKhoanComponent implements OnInit {
     this.getUser(this.keyword, this.currentPage, this.itemsPerPage);
   }
 
-  // generateVisiblePageArray(currentPage: number, totalPages: number): number[] {
-  //   const maxVisiblePages = 5;
-  //   const halfVisiblePages = Math.floor(maxVisiblePages / 2);
+  generateVisiblePageArray(currentPage: number, totalPages: number): number[] {
+    const maxVisiblePages = 5;
+    const halfVisiblePages = Math.floor(maxVisiblePages / 2);
 
-  //   let startPage = Math.max(currentPage - halfVisiblePages, 1);
-  //   let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
+    let startPage = Math.max(currentPage - halfVisiblePages, 1);
+    let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages);
 
-  //   if (endPage - startPage + 1 < maxVisiblePages) {
-  //     startPage = Math.max(endPage - maxVisiblePages + 1, 1);
-  //   }
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(endPage - maxVisiblePages + 1, 1);
+    }
 
-  //   return new Array(endPage - startPage + 1).fill(0)
-  //     .map((_, index) => startPage + index);
-  // }
+    return new Array(endPage - startPage + 1).fill(0)
+      .map((_, index) => startPage + index);
+  }
+
+  getRoleName(roleID: string): string {
+    switch (roleID) {
+      case 'ROLE_ADMIN':
+        return 'Quản trị viên';
+      case 'ROLE_USER':
+        return 'Khách Hàng';
+      case 'ROLE_EMPLOYEE':
+        return 'Nhân viên';
+      default:
+        return 'Không xác định';
+    }
+  }
 }

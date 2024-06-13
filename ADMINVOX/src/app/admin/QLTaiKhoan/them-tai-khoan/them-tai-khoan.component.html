@@ -1,0 +1,78 @@
+<div class="items">
+    <h1 class="subhead">Thêm đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+        (ngSubmit)="insertBill()" enctype="multipart/form-data" #userForm="ngForm">
+        <fieldset>
+
+            <label for="userName">Tên người dùng</label>
+            <input class="pure-input-1" type="text" id="userName" name="userName" [(ngModel)]="addUser.userName"
+                required #userName="ngModel">
+            <div *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                <div *ngIf="userName.errors?.['required']">Bạn chưa điền tên người dùng.</div>
+            </div>
+
+            <label for="phoneNumber">Số điện thoại</label>
+            <input class="pure-input-1" type="tel" id="phoneNumber" name="phoneNumber" [(ngModel)]="addUser.phoneNumber"
+                pattern="^[0-9]{5,11}$" required #phoneNumber="ngModel">
+            <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">
+                <div *ngIf="phoneNumber.errors?.['required']">Bạn chưa điền số điện thoại.</div>
+                <div *ngIf="phoneNumber.errors?.['pattern']">Số điện thoại phải từ 5 đến 11 chữ số.</div>
+            </div>
+
+            <label for="userAddress">Địa chỉ</label>
+            <input class="pure-input-1" type="text" id="userAddress" name="userAddress"
+                [(ngModel)]="addUser.userAddress" required #userAddress="ngModel">
+            <div *ngIf="userAddress.invalid && (userAddress.dirty || userAddress.touched)">
+                <div *ngIf="userAddress.errors?.['required']">Bạn chưa điền địa chỉ.</div>
+            </div>
+
+            <label for="userBirthDate">Ngày sinh</label>
+            <input class="pure-input-1" type="date" id="userBirthDate" name="userBirthDate"
+                [(ngModel)]="addUser.userBirthDate">
+
+            <label for="userGender">Giới Tính</label>
+            <select class="pure-input-1" id="userGender" name="userGender" [(ngModel)]="addUser.userGender" required
+                #userGender="ngModel">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+            <div *ngIf="userGender.invalid && (userGender.dirty || userGender.touched)">
+                <div *ngIf="userGender.errors?.['required']">Bạn chưa chọn giới tính.</div>
+            </div>
+
+            <label for="userPassword">Mật khẩu</label>
+            <input class="pure-input-1" type="password" id="userPassword" name="userPassword"
+                [(ngModel)]="userPasswordModel" required autocomplete="new-password" #userPasswordInput="ngModel">
+            <div *ngIf="userPasswordInput.invalid && (userPasswordInput.dirty || userPasswordInput.touched)">
+                <div *ngIf="userPasswordInput.errors?.['required']">Bạn chưa điền mật khẩu.</div>
+            </div>
+
+            <label for="retypePassword">Nhập Lại Mật khẩu</label>
+            <input class="pure-input-1" type="password" id="retypePassword" name="retypePassword"
+                [(ngModel)]="retypePasswordModel" required autocomplete="new-password" #retypePasswordInput="ngModel">
+            <div *ngIf="retypePasswordInput.invalid && (retypePasswordInput.dirty || retypePasswordInput.touched)">
+                <div *ngIf="retypePasswordInput.errors?.['required']">Bạn chưa điền mật khẩu xác thực.</div>
+            </div>
+            <div *ngIf="retypePasswordInput.touched && !retypePasswordInput.errors?.['required']">
+                <div *ngIf="userPasswordModel !== retypePasswordModel">Mật khẩu xác thực không khớp.</div>
+            </div>
+
+
+
+
+            <label for="roleID">Phân Quyền</label>
+            <select class="pure-input-1" id="roleID" name="roleID" [(ngModel)]="addUser.roleID" required
+                #roleID="ngModel">
+                <option [ngValue]="1">Quản trị viên</option>
+                <option [ngValue]="2">Khách hàng</option>
+                <option [ngValue]="3">Nhân viên</option>
+            </select>
+            <div *ngIf="roleID.invalid && (roleID.dirty || roleID.touched)">
+                <div *ngIf="roleID.errors?.['required']">Bạn chưa chọn phân quyền.</div>
+            </div>
+
+            <button type="submit" class="pure-button button-success" [disabled]="userForm.invalid">Lưu</button>
+        </fieldset>
+    </form>
+</div>

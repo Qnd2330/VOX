@@ -1,0 +1,41 @@
+<div class="items">
+    <h1 class="subhead">Cập nhật đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+        (ngSubmit)="saveUser()">
+        <fieldset>
+
+            <label>ID</label>
+            <input class="pure-input-1" type="text" id="billID" name="billID" [(ngModel)]="user.userID" disabled>
+
+            <label>Tên Người Dùng</label>
+            <input class="pure-input-1" type="text" id="userID" name="userID" [(ngModel)]="user.userName">
+
+            <label for="userName">Số Điện Thoại</label>
+            <input class="pure-input-1" type="text" id="userName" name="userName" [(ngModel)]="user.phoneNumber">
+
+            <label for="billDescription">Địa Chỉ</label>
+            <input class="pure-input-1" type="text" id="billDescription" name="billDescription"
+                [(ngModel)]="user.userAddress">
+
+            <label for="cost">Ngày Sinh</label>
+            <input class="pure-input-1" type="date" id="cost" name="cost" [(ngModel)]="user.userBirthDate">
+
+            <label for="billStatus">Giới Tính</label>
+            <select class="pure-input-1" id="billStatus" name="billStatus" [(ngModel)]="user.userGender">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+
+            <label for="billStatus">Phân Quyền</label>
+            <select class="pure-input-1" type="" id="billStatus" name="billStatus" [(ngModel)]="user.roleID">
+                <option [ngValue]="1">Quản trị viên</option>
+                <option [ngValue]="2">Khách hàng</option>
+                <option [ngValue]="3">Nhân viên</option>
+            </select>
+
+            <input type="hidden" name="id" value="1">
+            <button type="submit" class="pure-button button-success">Save</button>
+        </fieldset>
+    </form>
+</div>

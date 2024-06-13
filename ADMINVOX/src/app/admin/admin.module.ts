@@ -25,6 +25,8 @@ import { CapNhatChiTietDonGiatComponent } from './QLDonGiat/cap-nhat-chi-tiet-do
 import { ThemChiTietDonGiatComponent } from './QLDonGiat/them-chi-tiet-don-giat/them-chi-tiet-don-giat.component';
 import { ThemGiatLaComponent } from './QLGiatLa/them-giat-la/them-giat-la.component';
 import { CapNhatGiatLaComponent } from './QLGiatLa/cap-nhat-giat-la/cap-nhat-giat-la.component';
+import { ThemTaiKhoanComponent } from './QLTaiKhoan/them-tai-khoan/them-tai-khoan.component';
+import { CapNhatTaiKhoanComponent } from './QLTaiKhoan/cap-nhat-tai-khoan/cap-nhat-tai-khoan.component';
 
 
 
@@ -50,7 +52,9 @@ import { CapNhatGiatLaComponent } from './QLGiatLa/cap-nhat-giat-la/cap-nhat-gia
     AdminHeaderComponent,
     AdminPreloaderComponent,
     AdminSidebarComponent,
-    AdminFooterComponent
+    AdminFooterComponent,
+    ThemTaiKhoanComponent,
+    CapNhatTaiKhoanComponent
   ],
   imports: [
     CommonModule,
