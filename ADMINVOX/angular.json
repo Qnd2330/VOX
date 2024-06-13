@@ -56,7 +56,7 @@
               "src/app/client/client-assets/vendor/js/jquery.cubeportfolio.min.js",
               "src/app/client/client-assets/vendor/js/parallaxie.min.js",
               "src/app/client/client-assets/vendor/js/wow.min.js",
-              "src/app/client/client-assets/js/script.js",
+             
               "src/app/client/client-assets/js/over-laymenu.js"
             ],
             "server": "src/main.server.ts",

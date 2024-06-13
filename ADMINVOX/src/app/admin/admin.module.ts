@@ -7,7 +7,6 @@ import { FormKhoComponent } from './QLKho/form-kho/form-kho.component';
 import { ListKhoComponent } from './QLKho/list-kho/list-kho.component';
 import { FormNhanVienComponent } from './QLNhanVien/form-nhan-vien/form-nhan-vien.component';
 import { ListNhanVienComponent } from './QLNhanVien/list-nhan-vien/list-nhan-vien.component';
-import { FormTaiKhoanComponent } from './QLTaiKhoan/form-tai-khoan/form-tai-khoan.component';
 import { ListTaiKhoanComponent } from './QLTaiKhoan/list-tai-khoan/list-tai-khoan.component';
 import { FormTTKHComponent } from './QLThongTinKH/form-ttkh/form-ttkh.component';
 import { ListTTKHComponent } from './QLThongTinKH/list-ttkh/list-ttkh.component';
@@ -45,7 +44,6 @@ import { CapNhatGiatLaComponent } from './QLGiatLa/cap-nhat-giat-la/cap-nhat-gia
     ListNhanVienComponent,
     FormNhanVienComponent,
     ListTaiKhoanComponent,
-    FormTaiKhoanComponent,
     ListTTKHComponent,
     FormTTKHComponent,
     ListLichLamComponent,

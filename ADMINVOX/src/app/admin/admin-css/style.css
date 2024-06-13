@@ -65,7 +65,9 @@ pre {
 }
 .nav ul li {
     display: inline-block;
-    *display: inline;
+    * {
+        display: inline;
+    }
     zoom: 1;
 }
 .nav ul li a {
@@ -118,7 +120,7 @@ pre {
     padding-bottom: 2em;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.5);
-    *color: #fff;
+    * {color: #fff;}
 }
 .column-block-list li {
     padding: 1em;

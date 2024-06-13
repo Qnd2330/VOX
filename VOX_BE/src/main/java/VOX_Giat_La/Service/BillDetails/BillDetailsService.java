@@ -28,7 +28,7 @@ public class BillDetailsService implements IBillDetailsService {
     private final Washing_MethodRepos washing_methodRepos;
 
     @Override
-    @Transactional
+
     public BillDetails createBillDetails(int billID, BillDetailsDTO billDetailsDTO) throws DataNotFoundException {
         Bill Exitingbill = billRepos.findById(billID).orElseThrow(() -> new DataNotFoundException("Không tìm thấy bill với ID: " + billDetailsDTO.getBillID()));
         Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy kiểu giặt với ID: " + billDetailsDTO.getWashID()));

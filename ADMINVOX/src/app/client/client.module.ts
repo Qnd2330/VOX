@@ -12,6 +12,7 @@ import { OverlayMenuComponent } from './static/overlay-menu/overlay-menu.compone
 import { SlidebarComponent } from './static/slidebar/slidebar.component';
 import { ClientRoutingModule } from './client-routing.module';
 import { IndexLayoutComponent } from './index-layout/index-layout.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -31,7 +32,8 @@ import { IndexLayoutComponent } from './index-layout/index-layout.component';
   ],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
+    HttpClientModule,
   ]
 })
 export class ClientModule { }
