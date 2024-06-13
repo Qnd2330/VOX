@@ -50,4 +50,12 @@ public class BillDetails {
             bill.updateCost();
         }
     }
+
+    @PostPersist
+    @PostUpdate
+    private void updateSumWeight() {
+        if (bill != null) {
+            bill.updateSumWeight();
+        }
+    }
 }

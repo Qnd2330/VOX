@@ -54,4 +54,9 @@ public class Bill {
                 .map(BillDetails::getPrice)
                 .reduce(0.0f, Float::sum);
     }
+    public void updateSumWeight() {
+        this.sumWeight = billDetails.stream()
+                .map(BillDetails::getWeight)
+                .reduce(0.0f, Float::sum);
+    }
 }

@@ -7,6 +7,7 @@ import VOX_Giat_La.Repositories.*;
 import VOX_Giat_La.Respones.Bill.BillDetailListRespone;
 import VOX_Giat_La.Respones.Bill.BillDetailRespone;
 import VOX_Giat_La.Respones.Bill.BillRespones;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +28,7 @@ public class BillDetailsService implements IBillDetailsService {
     private final Washing_MethodRepos washing_methodRepos;
 
     @Override
+    @Transactional
     public BillDetails createBillDetails(int billID, BillDetailsDTO billDetailsDTO) throws DataNotFoundException {
         Bill Exitingbill = billRepos.findById(billID).orElseThrow(() -> new DataNotFoundException("Không tìm thấy bill với ID: " + billDetailsDTO.getBillID()));
         Washing_Method ExitingWash = washing_methodRepos.findById(billDetailsDTO.getWashID()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy kiểu giặt với ID: " + billDetailsDTO.getWashID()));
@@ -39,6 +41,7 @@ public class BillDetailsService implements IBillDetailsService {
                 .billDetailStatus(false)
                 .build();
         Exitingbill.updateCost();
+        Exitingbill.updateSumWeight();
         billRepos.save(Exitingbill);
         return billDetailsRepos.save(newBillDetails);
     }
@@ -68,6 +71,7 @@ public class BillDetailsService implements IBillDetailsService {
     }
 
     @Override
+    @Transactional
     public BillDetails updateBillDetails(int id, BillDetailsDTO billDetailsDTO) throws DataNotFoundException {
         BillDetails billDetailsUpdate = getBillDetailsByID(id);
         Bill Exitingbill = billRepos.findById(billDetailsDTO.getBillID()).orElseThrow(() -> new DataNotFoundException("Không tìm thấy bill với ID: " + billDetailsDTO.getBillID()));
@@ -81,11 +85,13 @@ public class BillDetailsService implements IBillDetailsService {
         billDetailsUpdate.setWeight(billDetailsDTO.getWeight());
         billDetailsUpdate.setBillDetailStatus(billDetailsDTO.getBillDetailStatus());
         Exitingbill.updateCost();
+        Exitingbill.updateSumWeight();
         billRepos.save(Exitingbill);
         return billDetailsRepos.saveAndFlush(billDetailsUpdate);
     }
 
     @Override
+    @Transactional
     public void deleteBillDetails(int id) {
         Optional<BillDetails> optionalBillDetails = billDetailsRepos.findById(id);
         optionalBillDetails.ifPresent(billDetailsRepos::delete);

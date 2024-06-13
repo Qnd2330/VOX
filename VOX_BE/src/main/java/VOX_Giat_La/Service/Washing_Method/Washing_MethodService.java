@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +28,8 @@ public class Washing_MethodService implements IWashing_MethodService{
     }
 
     @Override
-    public Washing_Method getWashing_MethodbyID(int id) {
-        return washingMethodRepos.findById(id).orElseThrow(()-> new RuntimeException("Không tìm thấy kiểu giặt"));
+    public Washing_MethodRespone getWashing_MethodbyID(int id) {
+        return washingMethodRepos.findById(id).map(washingMethod -> Washing_MethodRespone.fromWashing_MethodRespone(washingMethod)).orElseThrow(()-> new RuntimeException("Không tìm thấy kiểu giặt"));
     }
 
     @Override

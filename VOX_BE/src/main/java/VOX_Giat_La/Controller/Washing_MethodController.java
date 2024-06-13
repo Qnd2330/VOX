@@ -41,8 +41,8 @@ public class Washing_MethodController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<String> findWashingMethodByID(@PathVariable int id) {
-        Washing_Method washingMethod = washingMethodService.getWashing_MethodbyID(id);
+    public ResponseEntity<?> findWashingMethodByID(@PathVariable int id) {
+        Washing_MethodRespone washingMethod = washingMethodService.getWashing_MethodbyID(id);
         return ResponseEntity.ok("Washing Method "+ washingMethod);
     }
 
