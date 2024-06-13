@@ -3,7 +3,7 @@ import { Wash } from "./wash_method";
 
 export interface BillDetail {
     billID: number;
-    bill: Bill;
+    // bill: Bill;
     billDetailID:number;
     washName: string;
     washID: number;

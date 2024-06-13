@@ -15,8 +15,27 @@ export class WashingmethodService {
 
   getAllWashes(page: number, limit: number): Observable<any> {
     const params = new HttpParams()
-    .set('page', page.toString())
-    .set('limit', limit.toString());
-    return this.http.get<any>(`${this.apiBaseUrl}/washing_method/list`, { params });
+      .set('page', page.toString())
+      .set('limit', limit.toString());
+    return this.http.get<any>(`${environment.apiBaseUrl}/washing_method/list`, { params });
+  }
+
+  getWashByID(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/washing_method/${id}`);
+  }
+
+  deleteWash(id: number): Observable<any> {
+    debugger
+    return this.http.delete<any>(`${this.apiBaseUrl}/washing_method/delete/${id}`);
+  }
+
+  updateWash(id: number, updateWash: Wash): Observable<any> {
+    return this.http.put<any>(`${this.apiBaseUrl}/washing_method/update/${id}`, updateWash);
+  }
+
+  insertWash(insertWashDTO: Wash): Observable<any> {
+    return this.http.post<any>(`${this.apiBaseUrl}/washing_method/insert`, insertWashDTO, {
+    }
+    );
   }
 }

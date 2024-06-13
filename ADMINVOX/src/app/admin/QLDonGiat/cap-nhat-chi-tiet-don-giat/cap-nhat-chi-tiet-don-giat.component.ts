@@ -1,111 +1,84 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BillDetail } from '../../../models/billdetail';
 import { BilldetailsService } from '../../../service/billdetails.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Bill } from '../../../models/bill';
-import { HttpErrorResponse } from '@angular/common/http';
 import { WashingmethodService } from '../../../service/washingmethod.service';
 import { Wash } from '../../../models/wash_method';
-import { UpdateBillDetailDTO } from '../../../dtos/billdetail/update.billdetail.dtos';
-import { ApiResponse } from '../../../responses/api.response';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cap-nhat-chi-tiet-don-giat',
   templateUrl: './cap-nhat-chi-tiet-don-giat.component.html',
-  styleUrl: './cap-nhat-chi-tiet-don-giat.component.css'
+  styleUrls: ['./cap-nhat-chi-tiet-don-giat.component.css']
 })
-export class CapNhatChiTietDonGiatComponent {
+export class CapNhatChiTietDonGiatComponent implements OnInit {
   currentPage: number = 0;
   itemsPerPage: number = 12;
-  pages: number[] = [];
-  totalPages: number = 0;
-  visiblePages: number[] = [];
-  
   billDetailID: number = 0;
-  billDetail: BillDetail;
-  updatedBillDetail: BillDetail;
+  updatedBillDetail: BillDetail = {} as BillDetail;
   washes: Wash[] = [];
+  dataLoaded: boolean = false; // Add a flag to track data loading
 
-  private billDetailsService = inject(BilldetailsService);
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private washService: WashingmethodService,
-  ) {
-    this.billDetail = {} as BillDetail;
-    this.updatedBillDetail = {} as BillDetail;
-  }
+    private billDetailService: BilldetailsService,
+    private washService: WashingmethodService
+  ) {}
 
   ngOnInit() {
-    this.getBillDetails();
+    this.route.paramMap.subscribe(params => {
+      this.billDetailID = Number(params.get('id'));
+      this.getBillDetails();
+    });
     this.getWashes(this.currentPage, this.itemsPerPage);
   }
 
   getBillDetails() {
-    debugger
-    this.billDetailID = Number(this.route.snapshot.paramMap.get('id'));
-    this.billDetailsService.getBillDetailByID(this.billDetailID).subscribe({
-      next: (apiResponse: any) => {  
-        this.billDetail = apiResponse;
-        this.updatedBillDetail = { ...apiResponse }; 
-        console.log(this.billDetail);              
-        // this.updatedBill.product_images.forEach((product_image:ProductImage) => {
-        //   product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
-        // });
-      },
-      complete: () => {
-        
+    this.billDetailService.getBillDetailByID(this.billDetailID).subscribe({
+      next: (data: BillDetail) => {
+        this.updatedBillDetail = data;
+        this.dataLoaded = true; // Set the flag to true when data is loaded
+        this.updateWashID();
       },
       error: (error: HttpErrorResponse) => {
-        debugger;
-        console.error(error?.error?.message ?? '');
-      } 
+        console.error('Error fetching bill details:', error.message);
+      }
     });
-  }   
+  }
 
-  saveBillDetail(): void {   
-    
-    const updateBillDetailDTO: UpdateBillDetailDTO = {
-      billDetailID: this.updatedBillDetail.billDetailID,
-      billID: this.updatedBillDetail.billID,
-      washID: this.updatedBillDetail.washID,
+  updateWashID() {
+    // Find the corresponding Wash object based on washName
+    const correspondingWash = this.washes.find(wash => wash.washName === this.updatedBillDetail.washName);
+    if (correspondingWash) {
+      this.updatedBillDetail.washID = correspondingWash.washID;
+    }
+  }
 
-      description: this.updatedBillDetail.description,
-      weight: this.updatedBillDetail.weight,
-      price: this.updatedBillDetail.price,
-      billDetailStatus: this.updatedBillDetail.billDetailStatus,
-    }; 
-    debugger        
-    this.billDetailsService.updateBillDetail(this.billDetail.billDetailID, updateBillDetailDTO).subscribe({
-      next: (apiResponse: ApiResponse) => {  
-        debugger        
-      },
-      complete: () => {
-        debugger;
-        this.router.navigate([`/admin/qldg/view/${this.updatedBillDetail.billID}`]);        
+  saveBillDetail() {
+    this.billDetailService.updateBillDetail(this.billDetailID, this.updatedBillDetail).subscribe({
+      next: () => {
+        this.router.navigate([`/admin/qldg/view/${this.updatedBillDetail.billID}`]);
       },
       error: (error: HttpErrorResponse) => {
-        debugger;
-        console.error(error?.error?.message ?? '');
+        console.error('Error updating bill detail:', error.message);
         this.router.navigate([`/admin/qldg/view/${this.updatedBillDetail.billID}`]);
-      } 
-    });  
+      }
+    });
   }
 
   getWashes(page: number, limit: number) {
-    debugger
     this.washService.getAllWashes(page, limit).subscribe({
       next: (apiResponse: any) => {
-        debugger;
         this.washes = apiResponse.washingMethodResponeList;
       },
-      complete: () => {
-        debugger;
-      },
       error: (error: HttpErrorResponse) => {
-        debugger;
-        console.error(error?.error?.message ?? '');
+        console.error('Error fetching washes:', error.message);
       }
     });
-  } 
+  }
+
+  onWashChange(washID: number): void {
+    this.updatedBillDetail.washID = washID;
+  }
 }

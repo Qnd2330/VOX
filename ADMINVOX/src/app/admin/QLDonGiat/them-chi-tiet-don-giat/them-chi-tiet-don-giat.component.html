@@ -16,21 +16,21 @@
             <label>Ghi chú</label>
             <input class="pure-input-1" type="text" id="billDescription" name="billDescription"
                 [(ngModel)]="insertBillDetailDTO.description">
-
+<!-- 
             <label for="name">Khối lượng</label>
             <input class="pure-input-1" type="number" id="sumWeight" name="sumWeight" 
-                [(ngModel)]="insertBillDetailDTO.price">
+                [(ngModel)]="insertBillDetailDTO.price"> -->
 
-            <label for="name">Giá</label>
-            <input class="pure-input-1" type="number" id="cost" name="cost" 
+            <label for="weight">Cân nặng</label>
+            <input class="pure-input-1" type="number" id="weight" name="weight" 
                 [(ngModel)]="insertBillDetailDTO.weight">
 
             <!-- <label for="name">Ngày tạo</label>
             <input class="pure-input-1" type="date" id="billCreateDate" name="billCreateDate"
                 [(ngModel)]="insertBillDTO.billCreateDate"> -->
 
-            <label for="name">Tình trạng</label>
-            <select class="pure-input-1" type="" id="billStatus" name="billStatus"
+            <label for="billDetailStatus">Tình trạng</label>
+            <select class="pure-input-1" type="" id="billDetailStatus" name="billDetailStatus"
                 [(ngModel)]="insertBillDetailDTO.billDetailStatus">
                 <option [ngValue]="true">Hoàn thành</option>
                 <option [ngValue]="false">Chưa hoàn thành</option>

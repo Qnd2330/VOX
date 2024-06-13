@@ -20,7 +20,7 @@ export class ThemChiTietDonGiatComponent implements OnInit {
     washID: 1,
     description: 'Hãy viết những ghi chú',
     weight: 0,
-    price: 0,
+    // price: 0,
     billDetailStatus: true,
   };
   washes: Wash[] = [];

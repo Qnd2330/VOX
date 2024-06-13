@@ -17,16 +17,16 @@ export class BillService {
 
   constructor(private http: HttpClient) { }
 
-  getBill(page: number, limit: number):Observable<any>{
+  getBill(page: number, limit: number): Observable<any> {
     const params = new HttpParams()
-    .set('page', page.toString())
-    .set('limit', limit.toString());
-    return this.http.get<any>(`${environment.apiBaseUrl}/bill/list`, { params });   
+      .set('page', page.toString())
+      .set('limit', limit.toString());
+    return this.http.get<any>(`${environment.apiBaseUrl}/bill/list`, { params });
   }
   getBillById(id: number, page: number, limit: number): Observable<any> {
     const params = new HttpParams()
-    .set('page', page.toString())
-    .set('limit', limit.toString());
+      .set('page', page.toString())
+      .set('limit', limit.toString());
     return this.http.get<any>(`${environment.apiBaseUrl}/bill_details/list/${id}`, { params });
   }
   deleteBill(id: number): Observable<any> {
@@ -45,8 +45,8 @@ export class BillService {
       // },
       // responseType: 'json'
     }
-  // ).pipe(
-  //     catchError(this.handleError)
+      // ).pipe(
+      //     catchError(this.handleError)
     );
   }
 

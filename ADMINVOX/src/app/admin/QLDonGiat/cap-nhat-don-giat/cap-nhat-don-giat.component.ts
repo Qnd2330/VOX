@@ -65,7 +65,7 @@ export class CapNhatDonGiatComponent implements OnInit{
         this.billDetail = apiResponse.billDetail;
         this.totalPages = apiResponse.totalPages;
         this.updatedBill = { ...apiResponse.billRespones }; 
-        console.log(this.billDetail);              
+        // console.log(this.billDetail);              
         // this.updatedBill.product_images.forEach((product_image:ProductImage) => {
         //   product_image.image_url = `${environment.apiBaseUrl}/products/images/${product_image.image_url}`;
         // });
@@ -140,8 +140,8 @@ export class CapNhatDonGiatComponent implements OnInit{
       userID: this.updatedBill.userID,
       userName: this.updatedBill.userName,
       billDescription: this.updatedBill.billDescription,
-      sumWeight: this.updatedBill.sumWeight,
-      cost: this.updatedBill.cost,
+      // sumWeight: this.updatedBill.sumWeight,
+      // cost: this.updatedBill.cost,
       billCreateDate: this.updatedBill.billCreateDate,
       billStatus: this.updatedBill.billStatus,
       billPayDate: this.updatedBill.billPayDate,

@@ -1,0 +1,25 @@
+<div class="items">
+    <h1 class="subhead">Thêm đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+        (ngSubmit)="insertBill()" enctype="multipart/form-data">
+        <fieldset>
+
+            <label>Tên kiểu giặt</label>
+            <input class="pure-input-1" type="text" id="washName" name="washName" [(ngModel)]="addWash.washName" required>
+
+            <label>Giá thành</label>
+            <input class="pure-input-1" type="number" id="washCost" name="washCost"
+                [(ngModel)]="addWash.washCost" required>
+
+            <label for="name">Ghi chú</label>
+            <input class="pure-input-1" type="number" id="washDescription" name="washDescription"
+                [(ngModel)]="addWash.washDescription">
+            <label for="name">Trạng thái</label>
+            <select class="pure-input-1" id="billStatus" name="billStatus" [(ngModel)]="addWash.washAvailability">
+                <option [ngValue]="true">Hoạt động</option>
+                <option [ngValue]="false">Ngưng hoạt động</option>
+            </select>
+            <button type="submit" class="pure-button button-success">Lưu</button>
+        </fieldset>
+    </form>
+</div>

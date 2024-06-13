@@ -12,14 +12,14 @@ export class InsertBillDTO {
     @IsNotEmpty()
     billDescription: string;
 
-    @IsNotEmpty()
-    sumWeight: number;
+    // @IsNotEmpty()
+    // sumWeight: number;
 
-    @IsNotEmpty()
-    cost: number;
+    // @IsNotEmpty()
+    // cost: number;
     
-    @IsNotEmpty()
-    billStatus:boolean;
+    // @IsNotEmpty()
+    // billStatus:boolean;
 
     image: string | null;
 
@@ -29,9 +29,9 @@ export class InsertBillDTO {
     constructor(data: any) {
         this.userID = data.userID; 
         this.billDescription = data.billDescription; 
-        this.sumWeight = data.sumWeight;
-        this.cost = data.cost;
-        this.billStatus = data.billStatus;
+        // this.sumWeight = data.sumWeight;
+        // this.cost = data.cost;
+        // this.billStatus = data.billStatus;
         this.image = data.image;  
         this.billPayDate = data.billPayDate; 
     }
