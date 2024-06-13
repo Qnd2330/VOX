@@ -3,7 +3,8 @@ export interface User {
     userName: string;
     roleID: string;
     userPassword: string;
-    phoneNumber: number;
+    retypePassword: string;
+    phoneNumber: string;
     userGender: string;
     userAddress: string;
     userBirthDate: Date;
