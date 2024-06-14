@@ -1,7 +1,7 @@
 <div class="items">
     <h1 class="subhead">Thêm đơn giặt</h1>
     <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
-        (ngSubmit)="insertBill()" enctype="multipart/form-data">
+        (ngSubmit)="onSubmit()" enctype="multipart/form-data">
         <fieldset>
 
             <label>UserID</label>
@@ -37,9 +37,7 @@
 
             <div class="form-group mb-3">
                 <label for="images">Ảnh</label>
-                <input type="file" id="images" name="images" multiple (change)="onFileChange($event)" accept="image/*">
-                <input class="pure-input-1" type="text" id="billPayDate" name="billPayDate"
-                [(ngModel)]="addBillDTO.image">
+                <input type="file" id="image" (change)="onFileSelected($event)">
             </div>
             <button type="submit" class="pure-button button-success">Lưu</button>
         </fieldset>

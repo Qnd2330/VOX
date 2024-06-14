@@ -25,7 +25,7 @@ export class CapNhatTaiKhoanComponent implements OnInit {
     ngOnInit() {
       this.getUserDetail();
     }
-    
+
     getUserDetail() {
       debugger
       this.userID = Number(this.route.snapshot.paramMap.get('id'));
@@ -42,7 +42,7 @@ export class CapNhatTaiKhoanComponent implements OnInit {
         } 
       });
     }    
-    
+
     saveUser(): void {   
       debugger        
       this.userService.updateUser(this.userID, this.user).subscribe({

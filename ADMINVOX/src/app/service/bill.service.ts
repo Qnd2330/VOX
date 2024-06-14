@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { UpdateBillDTO } from '../dtos/bill/update.bill.dtos';
 import { ApiResponse } from '../responses/api.response';
@@ -40,6 +40,10 @@ export class BillService {
 
   insertBill(insertBillDTO: InsertBillDTO): Observable<any> {
     return this.http.post<any>(`${this.apiBaseUrl}/bill/insert`, insertBillDTO, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    
       // headers: {
       //   'Content-Type': 'application/json'
       // },
@@ -50,14 +54,17 @@ export class BillService {
     );
   }
 
-  uploadImages(billID: number, files: File[]): Observable<ApiResponse> {
-    const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formData.append('files', files[i]);
-    }
-    // Upload images for the specified product id
-    return this.http.post<ApiResponse>(`${this.apiBaseUrl}/bill/uploads/${billID}`, formData);
+  uploadImages(id: number, image: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('image', image);
+
+    return this.http.post(`${this.apiBaseUrl}/bill/uploads/${id}`, formData, {
+      headers: new HttpHeaders({
+        'Accept': 'application/json'
+      })
+    });
   }
+
   deleteBillImage(id: number): Observable<any> {
     debugger
     return this.http.delete<string>(`${this.apiBaseUrl}/bill/image/${id}`);
