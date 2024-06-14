@@ -20,6 +20,7 @@ export class ListDonGiatComponent implements OnInit {
   totalPages: number = 0;
   visiblePages: number[] = [];
   keyword: string = "";
+  localStorage?:Storage;
 
   constructor(
     private billService: BillService,

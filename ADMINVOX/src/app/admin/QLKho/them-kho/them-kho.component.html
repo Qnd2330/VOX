@@ -1,0 +1,24 @@
+<div class="items">
+    <h1 class="subhead">Thêm đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+        (ngSubmit)="insertStorage()" enctype="multipart/form-data">
+        <fieldset>
+
+            <label>StorageID</label>
+            <input class="pure-input-1" type="text" id="washName" name="washName" [(ngModel)]="addStorage.storageID" readonly>
+
+            <label for="name">Vị trí</label>
+            <input class="pure-input-1" type="number" id="washDescription" name="washDescription"
+                [(ngModel)]="addStorage.storagePosition">
+            <label for="name">Trạng thái</label>
+            <select class="pure-input-1" id="billStatus" name="billStatus" [(ngModel)]="addStorage.storageStatus">
+                <option [ngValue]="true">Hoạt động</option>
+                <option [ngValue]="false">Ngưng hoạt động</option>
+            </select>
+            <label for="name">Ngày tạo</label>
+            <input class="pure-input-1" type="text" id="washDescription" name="washDescription"
+                [(ngModel)]="addStorage.storageCreateDate" readonly>
+            <button type="submit" class="pure-button button-success">Lưu</button>
+        </fieldset>
+    </form>
+</div>

@@ -16,6 +16,11 @@ import { CapNhatGiatLaComponent } from './QLGiatLa/cap-nhat-giat-la/cap-nhat-gia
 import { ThemGiatLaComponent } from './QLGiatLa/them-giat-la/them-giat-la.component';
 import { ThemTaiKhoanComponent } from './QLTaiKhoan/them-tai-khoan/them-tai-khoan.component';
 import { CapNhatTaiKhoanComponent } from './QLTaiKhoan/cap-nhat-tai-khoan/cap-nhat-tai-khoan.component';
+import { ThemKhoComponent } from './QLKho/them-kho/them-kho.component';
+import { SuaKhoComponent } from './QLKho/sua-kho/sua-kho.component';
+import { ListKhoKHComponent } from './QLKhoKhachHang/list-kho-kh/list-kho-kh.component';
+import { ThemKhoKHComponent } from './QLKhoKhachHang/them-kho-kh/them-kho-kh.component';
+import { CapNhatKhoKhComponent } from './QLKhoKhachHang/cap-nhat-kho-kh/cap-nhat-kho-kh.component';
 
 
 const routes: Routes = [
@@ -42,6 +47,12 @@ const routes: Routes = [
       { path: 'qlttkh', component: ListTTKHComponent, title: "QL Thông Tin KH" },
       //Kho
       { path: 'qlk', component: ListKhoComponent, title: "QL Kho" },
+      { path: 'qlk/insert', component: ThemKhoComponent, title: "Thêm Kho" },
+      { path: 'qlk/update/:id', component: SuaKhoComponent, title: "Sửa Kho" },
+      //Kho Khách Hàng
+      { path: 'qlkkh', component: ListKhoKHComponent, title: "QL Kho Khách Hàng" },
+      { path: 'qlkkh/them', component: ThemKhoKHComponent, title: "Thêm Kho Khách Hàng" },
+      { path: 'qlkk/update/:id', component: CapNhatKhoKhComponent, title: "Sửa Kho Khách Hàng" },
       //Kiểu giặt
       { path: 'qlgl', component: ListGiatLaComponent, title: "QL Giặt Là" },
       { path: 'qlgl/update/:id', component: CapNhatGiatLaComponent, title: "Cập Nhật Kiểu Giặt" },

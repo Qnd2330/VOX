@@ -1,0 +1,26 @@
+<div class="items">
+    <h1 class="subhead">Cập nhật đơn giặt</h1>
+    <form action="#" method="post" novalidate autocomplete="off" class="pure-form pure-form-stacked"
+      (ngSubmit)="saveStorage()">
+      <fieldset>
+  
+        <label>ID</label>
+        <input class="pure-input-1" type="text" id="billID" name="billID" [(ngModel)]="storage.storageID" disabled>
+  
+        <label>Vị trí</label>
+        <input class="pure-input-1" type="text" id="userID" name="userID" [(ngModel)]="storage.storagePosition">
+
+        <label for="billStatus">Trạng thái</label>
+        <select class="pure-input-1" type="" id="billStatus" name="billStatus"
+            [(ngModel)]="storage.storageStatus">
+            <option [ngValue]="true">Hoạt động</option>
+            <option [ngValue]="false">Chưa hoạt động</option>
+        </select>
+        <label for="cost">Ngày tạo</label>
+        <input class="pure-input-1" type="number" id="cost" name="cost" [(ngModel)]="storage.storageCreateDate" disabled>
+
+        <input type="hidden" name="id" value="1">
+        <button type="submit" class="pure-button button-success">Save</button>
+      </fieldset>
+    </form>
+  </div>
