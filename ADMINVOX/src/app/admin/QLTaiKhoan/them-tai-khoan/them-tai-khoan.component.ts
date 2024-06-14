@@ -31,7 +31,7 @@ export class ThemTaiKhoanComponent implements OnInit{
   ngOnInit() {
     console.log(this.userPasswordModel, this.retypePasswordModel)
   } 
-  insertBill() {    
+  insertUser() {    
     debugger;
   
     // Gọi service để gửi yêu cầu HTTP với insertBillDTO

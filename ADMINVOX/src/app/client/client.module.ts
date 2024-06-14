@@ -13,6 +13,8 @@ import { SlidebarComponent } from './static/slidebar/slidebar.component';
 import { ClientRoutingModule } from './client-routing.module';
 import { IndexLayoutComponent } from './index-layout/index-layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { UserService } from '../service/user.service';
 
 
 
@@ -32,8 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     ClientRoutingModule,
     HttpClientModule,
-  ]
+  ],
+  providers: [
+    UserService,
+    // Các nhà cung cấp khác của bạn
+  ],
 })
 export class ClientModule { }

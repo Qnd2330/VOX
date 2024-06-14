@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { ListDonGiatComponent } from './QLDonGiat/list-don-giat/list-don-giat.component';
 import { ListGiatLaComponent } from './QLGiatLa/list-giat-la/list-giat-la.component';
-import { FormKhoComponent } from './QLKho/form-kho/form-kho.component';
 import { ListKhoComponent } from './QLKho/list-kho/list-kho.component';
 import { FormNhanVienComponent } from './QLNhanVien/form-nhan-vien/form-nhan-vien.component';
 import { ListNhanVienComponent } from './QLNhanVien/list-nhan-vien/list-nhan-vien.component';
@@ -42,7 +41,6 @@ import { CapNhatTaiKhoanComponent } from './QLTaiKhoan/cap-nhat-tai-khoan/cap-nh
     ThemGiatLaComponent,
     CapNhatGiatLaComponent,
     ListKhoComponent,
-    FormKhoComponent,
     ListNhanVienComponent,
     FormNhanVienComponent,
     ListTaiKhoanComponent,
