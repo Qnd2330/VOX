@@ -50,6 +50,19 @@ export class BillService {
     );
   }
 
+  uploadImages(billID: number, files: File[]): Observable<ApiResponse> {
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+    }
+    // Upload images for the specified product id
+    return this.http.post<ApiResponse>(`${this.apiBaseUrl}/bill/uploads/${billID}`, formData);
+  }
+  deleteBillImage(id: number): Observable<any> {
+    debugger
+    return this.http.delete<string>(`${this.apiBaseUrl}/bill/image/${id}`);
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
     if (error.error instanceof ErrorEvent) {
