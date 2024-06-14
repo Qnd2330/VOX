@@ -16,6 +16,7 @@ public interface IUserService {
         String login(String phoneNumber, String password) throws Exception;
 
         Optional<User> getByPhoneNumber(String phoneNumber) throws Exception;
+        User updateUser(int id, UserDTO userDTO) throws Exception;
 
         UserDetailRespone getUser(int id)throws Exception;
 

@@ -14,11 +14,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("${api.prefix}/user")
@@ -44,13 +47,18 @@ private final IUserService userService;
     }
 
     @PostMapping("/login") //http://localhost:2330/VOX/user/login
-    public ResponseEntity<String> login(@Valid @RequestBody UserLoginDTO userLoginDTO){
+    public ResponseEntity<Map<String, String>> login(@Valid @RequestBody UserLoginDTO userLoginDTO){
         try {
             String token = userService.login(userLoginDTO.getPhoneNumber(),userLoginDTO.getUserPassword());
+            Map<String, String> response = new HashMap<>();
+            response.put("token", token);
 
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", e.getMessage());
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
 
@@ -77,6 +85,17 @@ private final IUserService userService;
         try {
             UserDetailRespone userDetailRespone = userService.getUser(id);
             return ResponseEntity.ok(userDetailRespone);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Không tìm thấy user");
+        }
+    }
+
+    @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
+    public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UserDTO userDTO) throws Exception{
+        try{
+            User user = userService.updateUser(id, userDTO);
+            return ResponseEntity.ok(user);
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Không tìm thấy user");
         }

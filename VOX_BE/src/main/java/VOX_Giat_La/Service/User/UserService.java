@@ -76,6 +76,19 @@ public class UserService implements IUserService{
     }
 
     @Override
+    public User updateUser(int id, UserDTO userDTO) throws Exception {
+        User user = userRepos.findById(id).orElseThrow(() -> new DataNotFoundException("Không tìm thấy User theo ID trên"));
+        String password = userDTO.getUserPassword();
+        String encodedPassword = passwordEncoder.encode(password);
+        user.setUserName(userDTO.getUserName());
+        user.setPhoneNumber(userDTO.getPhoneNumber());
+        user.setUserAddress(userDTO.getUserAddress());
+        user.setUserGender(userDTO.getUserGender());
+        user.setUserPassword(encodedPassword);
+        return userRepos.save(user);
+    }
+
+    @Override
     public UserDetailRespone getUser(int id) throws Exception {
         return UserDetailRespone.fromUser(userRepos.findById(id).orElseThrow(() -> new DataNotFoundException("Không tìm thấy User theo ID trên")));
     }
