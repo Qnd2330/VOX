@@ -1,1 +1,66 @@
-<p>list-ttkh works!</p>
+<div class="items">
+    <h1 class="subhead">Tài khoản
+         <!-- <a class="pure-button button-small button-secondary" (click)="insertUser()">Add New</a> -->
+    </h1>
+    <table class="pure-table pure-table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên</th>
+                <th>Quyền</th>
+                <th>Giới tính</th>
+                <th>Ngày sinh</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for(user of users; track user.userID){
+                <tr>
+                    <td>{{ user.userID }}</td>
+                    <td>{{ user.userName }}</td>
+                    <td>{{ getRoleName(user.roleID) }}</td>
+                    <td>{{ user.userGender }}</td>
+                    <!-- <td>
+                        <a class="pure-button button-small button-success" (click)="updateUser(user)">Edit</a>
+                        <a class="pure-button button-small button-error" (click)="deleteUser(user)">Delete</a>
+                    </td> -->
+                    <td>{{ user.userBirthDate | date :"dd/MM/yyyy"  }}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+          <ul class="pagination">
+            @if(currentPage > 0) {
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(0)">First</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage - 1)">
+                  <i class="fa fa-chevron-left"></i>
+                </a>
+              </li>
+            }          
+            @for(page of visiblePages; track page) {
+              <ng-container>
+                <li class="page-item" [ngClass]="{'active': page === currentPage + 1}">
+                  <a class="page-link" (click)="onPageChange(page - 1)">{{ page }}</a>
+                </li>
+              </ng-container>
+            }          
+            @if(currentPage < totalPages - 1)   {
+              <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage + 1)">
+                  <i class="fa fa-chevron-right"></i>
+                </a>
+              </li>
+              <li class="page-item" >
+                <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
+              </li>
+            }          
+          </ul>
+        </nav>
+      </div>
+</div>
+

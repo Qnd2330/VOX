@@ -7,7 +7,6 @@ import { ListKhoComponent } from './QLKho/list-kho/list-kho.component';
 import { FormNhanVienComponent } from './QLNhanVien/form-nhan-vien/form-nhan-vien.component';
 import { ListNhanVienComponent } from './QLNhanVien/list-nhan-vien/list-nhan-vien.component';
 import { ListTaiKhoanComponent } from './QLTaiKhoan/list-tai-khoan/list-tai-khoan.component';
-import { FormTTKHComponent } from './QLThongTinKH/form-ttkh/form-ttkh.component';
 import { ListTTKHComponent } from './QLThongTinKH/list-ttkh/list-ttkh.component';
 import { ListLichLamComponent } from './QLViecLam/list-lich-lam/list-lich-lam.component';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -26,6 +25,11 @@ import { ThemGiatLaComponent } from './QLGiatLa/them-giat-la/them-giat-la.compon
 import { CapNhatGiatLaComponent } from './QLGiatLa/cap-nhat-giat-la/cap-nhat-giat-la.component';
 import { ThemTaiKhoanComponent } from './QLTaiKhoan/them-tai-khoan/them-tai-khoan.component';
 import { CapNhatTaiKhoanComponent } from './QLTaiKhoan/cap-nhat-tai-khoan/cap-nhat-tai-khoan.component';
+import { ThemKhoComponent } from './QLKho/them-kho/them-kho.component';
+import { SuaKhoComponent } from './QLKho/sua-kho/sua-kho.component';
+import { ListKhoKHComponent } from './QLKhoKhachHang/list-kho-kh/list-kho-kh.component';
+import { ThemKhoKHComponent } from './QLKhoKhachHang/them-kho-kh/them-kho-kh.component';
+import { CapNhatKhoKhComponent } from './QLKhoKhachHang/cap-nhat-kho-kh/cap-nhat-kho-kh.component';
 
 
 
@@ -45,14 +49,18 @@ import { CapNhatTaiKhoanComponent } from './QLTaiKhoan/cap-nhat-tai-khoan/cap-nh
     FormNhanVienComponent,
     ListTaiKhoanComponent,
     ListTTKHComponent,
-    FormTTKHComponent,
     ListLichLamComponent,
     AdminHeaderComponent,
     AdminPreloaderComponent,
     AdminSidebarComponent,
     AdminFooterComponent,
     ThemTaiKhoanComponent,
-    CapNhatTaiKhoanComponent
+    CapNhatTaiKhoanComponent,
+    ThemKhoComponent,
+    SuaKhoComponent,
+    ListKhoKHComponent,
+    ThemKhoKHComponent,
+    CapNhatKhoKhComponent
   ],
   imports: [
     CommonModule,
