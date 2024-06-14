@@ -74,10 +74,10 @@ export class InsertProductAdminComponent implements OnInit {
         if (this.insertProductDTO.images.length > 0) {
           const productId = apiResponse.data.id; // Assuming the response contains the newly created product's ID
           this.productService.uploadImages(productId, this.insertProductDTO.images).subscribe({
-            next: (imageResponse:ApiResponse) => {
+            next: (imageResponse:any) => {
               debugger
               // Handle the uploaded images response if needed              
-              console.log('Images uploaded successfully:', imageResponse.data);
+              console.log('Images uploaded successfully:', imageResponse);
               // Navigate back to the previous page
               this.router.navigate(['../'], { relativeTo: this.route });
             },

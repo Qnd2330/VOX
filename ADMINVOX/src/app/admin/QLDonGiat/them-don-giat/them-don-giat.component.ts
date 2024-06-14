@@ -14,7 +14,7 @@ export class ThemDonGiatComponent implements OnInit {
   addBillDTO: InsertBillDTO = {
     userID: 1,
     billDescription: 'Hãy viết những ghi chú',
-    image: null,
+    image: [],
     billPayDate: new Date(),
   };
   constructor(    
@@ -31,9 +31,24 @@ export class ThemDonGiatComponent implements OnInit {
   
     // Gọi service để gửi yêu cầu HTTP với insertBillDTO
     this.billService.insertBill(this.addBillDTO).subscribe({
-      next: () => {
-        debugger;
-        this.router.navigate(['/admin/qldg']);        
+      next: (apiResponse: ApiResponse) => {
+        debugger
+        if (this.addBillDTO.image.length > 0) {
+          const billID = apiResponse.data.id; // Assuming the response contains the newly created product's ID
+          this.billService.uploadImages(billID, this.addBillDTO.image).subscribe({
+            next: (imageResponse: ApiResponse) => {
+              debugger
+              // Handle the uploaded images response if needed              
+              console.log('Images uploaded successfully:', imageResponse.data);
+              // Navigate back to the previous page
+              this.router.navigate(['../'], { relativeTo: this.route });
+            },
+            error: (error: HttpErrorResponse) => {
+              debugger;
+              console.error(error?.error?.message ?? '');
+            }
+          })          
+        }      
       },
       error: (error) => {
         debugger;
