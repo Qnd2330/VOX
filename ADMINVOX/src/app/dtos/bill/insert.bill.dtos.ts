@@ -21,7 +21,7 @@ export class InsertBillDTO {
     // @IsNotEmpty()
     // billStatus:boolean;
 
-    image: File[] = [];
+    image: string;
 
     @IsNotEmpty()
     billPayDate: Date;

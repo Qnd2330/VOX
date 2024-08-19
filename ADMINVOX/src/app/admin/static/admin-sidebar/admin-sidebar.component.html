@@ -3,7 +3,7 @@
         <div class="pure-menu">
             <p class="pure-menu-heading">
                 VOX ADMIN
-                <a href="login.html" class="pure-button button-xxsmall">OUT &raquo;</a>
+                <a (click)="logout()" class="pure-button button-xxsmall">OUT &raquo;</a>
             </p>
             <ul class="pure-menu-list">
                 <li class="pure-menu-item">
@@ -11,9 +11,6 @@
                 </li>
                 <li class="pure-menu-item">
                     <a routerLink="/admin/qlnv" class="pure-menu-link">Quản lý nhân viên</a>
-                </li>
-                <li class="pure-menu-item">
-                    <a routerLink="/admin/qlvl" class="pure-menu-link">Quản lý việc làm</a>
                 </li>
                 <li class="pure-menu-item">
                     <a routerLink="/admin/qldg" class="pure-menu-link">Quản lý đơn giặt</a>
@@ -26,9 +23,6 @@
                 </li>
                 <li class="pure-menu-item">
                     <a routerLink="/admin/qlkkh"class="pure-menu-link">Quản lý kho khách hàng</a>
-                </li>
-                <li class="pure-menu-item">
-                    <a routerLink="#" class="pure-menu-link">Quản lý giao diện</a>
                 </li>
                 <li class="pure-menu-item">
                     <a routerLink="/admin/qlgl" class="pure-menu-link">Quản lý giặt là</a>

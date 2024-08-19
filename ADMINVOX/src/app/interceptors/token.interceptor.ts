@@ -6,16 +6,16 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   // constructor(private tokenService: TokenService) { }
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjA5Njk4NTg2MDMiLCJzdWIiOiIwOTY5ODU4NjAzIiwiZXhwIjoxNzIwODk3MzQxfQ.8gvY57c_BsG8Yh6tzafodwrHEZfoqPwOwkNqLgXGYYI";
-      if (token) {
-        req = req.clone({
-          setHeaders: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-      }
-  
-      return next.handle(req);
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = "eyJhbGciOiJIUzI1NiJ9.eyJwaG9uZU51bWJlciI6IjA5Njk4NTg2MDMiLCJzdWIiOiIwOTY5ODU4NjAzIiwiZXhwIjoxNzI2NjMwNzIxfQ.3e28HseTr7a5OE0hXVG8Au_TKhVr4dV0bN8XEEsHF_M";
+    if (token) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
     }
+
+    return next.handle(req);
   }
+}
